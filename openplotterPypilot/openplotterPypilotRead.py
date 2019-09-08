@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # This file is part of Openplotter.
-# Copyright (C) 2019 by xxxx <https://github.com/xxxx/openplotter-myapp>
+# Copyright (C) 2015 by Sailoog <https://github.com/openplotter/openplotter-pypilot>
 # 
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -17,14 +17,15 @@
 import socket, time, random
 from openplotterSettings import conf
 
-# this file runs as a service in the background
+
 def main():
+	pass
+	'''
 	try:
 		conf2 = conf.Conf()
 		value = conf2.get('MYAPP', 'sending')
 		port = conf2.get('MYAPP', 'myappConn1')
 		if value == '1':
-			# this script sends data to Signal K servers by an UDP connection in client mode
 			sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 			while True:
 				random1 = random.randint(1,101)
@@ -35,6 +36,7 @@ def main():
 				sock.sendto(SignalK.encode('utf-8'), ('127.0.0.1', int(port)))
 				time.sleep(1)
 	except Exception as e: print (str(e))
+	'''
 
 if __name__ == '__main__':
 	main()

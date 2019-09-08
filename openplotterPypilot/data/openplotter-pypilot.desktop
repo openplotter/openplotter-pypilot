@@ -1,7 +1,7 @@
 [Desktop Entry]
-Name=OpenPlotter My App
-Exec=openplotter-myapp
-Icon=openplotter-myapp
+Name=OpenPlotter Pypilot
+Exec=openplotter-pypilot
+Icon=openplotter-pypilot
 StartupNotify=true
 Terminal=false
 Type=Application
