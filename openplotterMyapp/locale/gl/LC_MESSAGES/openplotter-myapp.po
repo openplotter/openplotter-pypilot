@@ -1,0 +1,144 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: openplotter-myapp\n"
+"POT-Creation-Date: 2019-09-07 18:19+0200\n"
+"PO-Revision-Date: 2019-09-07 18:26+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: gl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../../..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: myappPostInstall.py:29
+msgid "Adding openplotter-read-myapp service..."
+msgstr ""
+
+#: myappPostInstall.py:38 myappPreUninstall.py:35
+msgid "DONE"
+msgstr ""
+
+#: myappPostInstall.py:39 myappPreUninstall.py:36
+msgid "FAILED: "
+msgstr ""
+
+#: myappPreUninstall.py:29
+msgid "Removing openplotter-read-myapp service..."
+msgstr ""
+
+#: openplotterMyapp.py:36
+msgid "OpenPlotter My App"
+msgstr ""
+
+#: openplotterMyapp.py:46
+msgid "Help"
+msgstr ""
+
+#: openplotterMyapp.py:49
+msgid "Settings"
+msgstr ""
+
+#: openplotterMyapp.py:52
+msgid "Dummy Data"
+msgstr ""
+
+#: openplotterMyapp.py:55
+msgid "Dummy Output"
+msgstr ""
+
+#: openplotterMyapp.py:58
+msgid "Apply Changes"
+msgstr ""
+
+#: openplotterMyapp.py:60
+msgid "Cancel Changes"
+msgstr ""
+
+#: openplotterMyapp.py:68 ports.py:32
+msgid "My App"
+msgstr ""
+
+#: openplotterMyapp.py:69
+msgid "Data output"
+msgstr ""
+
+#: openplotterMyapp.py:70
+msgid "Output"
+msgstr ""
+
+#: openplotterMyapp.py:127
+msgid "Sending:  "
+msgstr ""
+
+#: openplotterMyapp.py:156
+msgid "SK Connection"
+msgstr ""
+
+#: openplotterMyapp.py:165
+msgid "Type"
+msgstr ""
+
+#: openplotterMyapp.py:166
+msgid "Mode"
+msgstr ""
+
+#: openplotterMyapp.py:167
+msgid "Data"
+msgstr ""
+
+#: openplotterMyapp.py:168 openplotterMyapp.py:297
+msgid "Port"
+msgstr ""
+
+#: openplotterMyapp.py:169
+msgid "Editable"
+msgstr ""
+
+#: openplotterMyapp.py:174
+msgid "Edit"
+msgstr ""
+
+#: openplotterMyapp.py:211
+msgid "yes"
+msgstr ""
+
+#: openplotterMyapp.py:212
+msgid "no"
+msgstr ""
+
+#: openplotterMyapp.py:254
+msgid "Sending dummy data enabled"
+msgstr ""
+
+#: openplotterMyapp.py:259
+msgid "Sending dummy data disabled"
+msgstr ""
+
+#: openplotterMyapp.py:267
+msgid "Changes canceled"
+msgstr ""
+
+#: openplotterMyapp.py:278
+msgid "Hello World!"
+msgstr ""
+
+#: openplotterMyapp.py:289
+msgid "Updating packages data, please wait... "
+msgstr ""
+
+#: startup.py:48
+msgid "Checking My App dummy sensors..."
+msgstr ""
+
+#: startup.py:58
+msgid "running"
+msgstr ""
+
+#: startup.py:59
+msgid "not running"
+msgstr ""
