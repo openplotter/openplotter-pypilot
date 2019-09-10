@@ -27,7 +27,7 @@ def main():
 	print(_('Removing incompatible packages and installing new ones...'))
 	try:
 		subprocess.call(['apt', '-y', 'autoremove', 'sense-hat'])
-		subprocess.call(['apt', '-y', 'install', 'py-rtimulib2'])
+		subprocess.call(['apt', '-y', 'install', 'py-rtimulib2', 'python3-rtimulib2'])
 
 		subprocess.call(['pip', 'install', 'pywavefront'])
 
@@ -65,7 +65,7 @@ def main():
 	print(_('Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
 	try:
 		fo = open('/etc/systemd/system/pypilot_boatimu.service', "w")
-		fo.write( '[Unit]\nDescription=pypilot boatimu\nDefaultDependencies=false\nConflicts=pypilot.service\n\n[Service]\nType=simple\nExecStart=pypilot_boatimu\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy=local-fs.target')
+		fo.write( '[Unit]\nDescription=pypilot boatimu\nDefaultDependencies=false\nConflicts=pypilot.service\n\n[Service]\nType=simple\nExecStart=pypilot_boatimu -q\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy=local-fs.target')
 		fo.close()
 		fo = open('/etc/systemd/system/pypilot.service', "w")
 		fo.write( '[Unit]\nDescription=pypilot\nDefaultDependencies=false\nConflicts=pypilot_boatimu.service\n\n[Service]\nType=simple\nExecStart=pypilot\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy=local-fs.target')
@@ -77,6 +77,12 @@ def main():
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
+	print(_('Copying openplotter-pypilot-read script manually...')) # pypilot is still python 2, so it have to be installed independent from openplotter-pypilot that is python 3
+	try:
+		subprocess.call(['cp', '-v', 'data/openplotter-pypilot-read', '/usr/bin'], cwd=currentdir+'/')
+		subprocess.call(['chmod', '+x', '/usr/bin/openplotter-pypilot-read'])
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
 if __name__ == '__main__':
 	main()

@@ -52,6 +52,11 @@ def main():
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
+	print(_('Removing openplotter-pypilot-read script manually...')) # pypilot is still python 2, so it have to be installed independent from openplotter-pypilot that is python 3
+	try:
+		subprocess.call(['rm', '-f', '/usr/bin/openplotter-pypilot-read'])
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
 if __name__ == '__main__':
 	main()

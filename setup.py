@@ -31,6 +31,6 @@ setup (
 	'Operating System :: POSIX :: Linux',
 	'Programming Language :: Python :: 3'],
 	include_package_data=True,
-	entry_points={'console_scripts': ['openplotter-pypilot=openplotterPypilot.openplotterPypilot:main','openplotter-pypilot-read=openplotterPypilot.openplotterPypilotRead:main','pypilotPostInstall=openplotterPypilot.pypilotPostInstall:main','pypilotPreUninstall=openplotterPypilot.pypilotPreUninstall:main']},
+	entry_points={'console_scripts': ['openplotter-pypilot=openplotterPypilot.openplotterPypilot:main','pypilotPostInstall=openplotterPypilot.pypilotPostInstall:main','pypilotPreUninstall=openplotterPypilot.pypilotPreUninstall:main']},
 	data_files=[('share/applications', ['openplotterPypilot/data/openplotter-pypilot.desktop']),('share/pixmaps', ['openplotterPypilot/data/openplotter-pypilot.png']),],
 	)
