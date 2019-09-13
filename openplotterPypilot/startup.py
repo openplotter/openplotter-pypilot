@@ -39,7 +39,7 @@ class Check():
 		self.conf = conf
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
-		self.initialMessage = 
+		self.initialMessage = ''
 
 	def check(self):
 		green = '' 
