@@ -27,10 +27,27 @@ def main():
 	print(_('Removing incompatible packages and installing new ones...'))
 	try:
 		subprocess.call(['apt', '-y', 'autoremove', 'sense-hat'])
-		subprocess.call(['apt', '-y', 'install', 'py-rtimulib2', 'python3-rtimulib2'])
-
 		subprocess.call(['pip', 'install', 'pywavefront'])
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
 
+	print(_('Compiling RTIMULib2 for python2 and python3...'))
+	try:
+		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
+		subprocess.call(['rm', '-rf', 'python-RTIMULib2-master'], cwd=conf2.home+'/')
+		subprocess.call(['wget', 'https://github.com/openplotter/python-RTIMULib2/archive/master.zip'], cwd=conf2.home+'/')
+		subprocess.call(['unzip', 'master.zip'], cwd=conf2.home+'/')
+		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
+		subprocess.call(['python', 'setup.py', 'build'], cwd=conf2.home+'/python-RTIMULib2-master/')
+		subprocess.call(['python', 'setup.py', 'install'], cwd=conf2.home+'/python-RTIMULib2-master/')
+		subprocess.call(['python3', 'setup.py', 'build'], cwd=conf2.home+'/python-RTIMULib2-master/')
+		subprocess.call(['python3', 'setup.py', 'install'], cwd=conf2.home+'/python-RTIMULib2-master/')
+		subprocess.call(['rm', '-rf', 'python-RTIMULib2-master'], cwd=conf2.home+'/')
+		print(_('DONE'))
+	except Exception as e: print(_('FAILED: ')+str(e))
+
+	print(_('Compiling Pypilot for python2...'))
+	try:
 		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
 		subprocess.call(['rm', '-rf', 'pypilot-master'], cwd=conf2.home+'/')
 		subprocess.call(['rm', '-rf', 'pypilot_data-master'], cwd=conf2.home+'/')
@@ -45,7 +62,6 @@ def main():
 		subprocess.call(['python', 'setup.py', 'install'], cwd=conf2.home+'/pypilot-master/')
 		subprocess.call(['rm', '-rf', 'pypilot-master'], cwd=conf2.home+'/')
 		subprocess.call(['rm', '-rf', 'pypilot_data-master'], cwd=conf2.home+'/')
-		
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
