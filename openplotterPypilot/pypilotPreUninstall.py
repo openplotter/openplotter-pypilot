@@ -18,6 +18,8 @@ import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
 
+
+
 def main():
 	conf2 = conf.Conf()
 	currentdir = os.path.dirname(__file__)
@@ -27,7 +29,7 @@ def main():
 	print(_('Removing packages...'))
 	try:
 		subprocess.call(['apt', '-y', 'autoremove', 'py-rtimulib2'])
-		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront'])
+		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront pyglet'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
@@ -39,16 +41,15 @@ def main():
 
 	print(_('Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
 	try:
-		subprocess.call(['systemctl', 'disable', 'openplotter-pypilot-read'])
-		subprocess.call(['systemctl', 'disable', 'pypilot'])
-		subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
-		subprocess.call(['systemctl', 'stop', 'openplotter-pypilot-read'])
-		subprocess.call(['systemctl', 'stop', 'pypilot'])
-		subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
-		subprocess.call(['rm', '-f', '/etc/systemd/system/pypilot_boatimu.service'])
-		subprocess.call(['rm', '-f', '/etc/systemd/system/pypilot.service'])
-		subprocess.call(['rm', '-f', '/etc/systemd/system/openplotter-pypilot-read.service'])
-		subprocess.call(['systemctl', 'daemon-reload'])
+                def disablestop(name):
+	                subprocess.call(['systemctl', 'disable', name])
+                        subprocess.call(['systemctl', 'stop', name])
+		        subprocess.call(['rm', '-f', '/etc/systemd/system/'+name+'.service'])
+                
+		disablestoprm('openplotter-pypilot-read'])
+		disablestoprm('pypilot'])
+		disablestoprm('pypilot_boatimu'])
+c		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

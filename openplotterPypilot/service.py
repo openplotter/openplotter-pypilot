@@ -16,26 +16,39 @@
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 import sys, subprocess
 
-if sys.argv[1]=='disable':
-	subprocess.call(['systemctl', 'disable', 'openplotter-pypilot-read'])
-	subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
-	subprocess.call(['systemctl', 'disable', 'pypilot'])
-	subprocess.call(['systemctl', 'stop', 'openplotter-pypilot-read'])
-	subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
-	subprocess.call(['systemctl', 'stop', 'pypilot'])
+def disablestop(name):
+    subprocess.call(['systemctl', 'disable', name])
+    subprocess.call(['systemctl', 'stop', name])
 
-if sys.argv[1]=='imu':
-	subprocess.call(['systemctl', 'disable', 'pypilot'])
-	subprocess.call(['systemctl', 'enable', 'pypilot_boatimu'])
-	subprocess.call(['systemctl', 'enable', 'openplotter-pypilot-read'])
-	subprocess.call(['systemctl', 'stop', 'pypilot'])
-	subprocess.call(['systemctl', 'restart', 'pypilot_boatimu'])
-	subprocess.call(['systemctl', 'restart', 'openplotter-pypilot-read'])
-	
-if sys.argv[1]=='autopilot':
-	subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
-	subprocess.call(['systemctl', 'enable', 'pypilot'])
-	subprocess.call(['systemctl', 'enable', 'openplotter-pypilot-read'])
-	subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
-	subprocess.call(['systemctl', 'restart', 'pypilot'])
-	subprocess.call(['systemctl', 'restart', 'openplotter-pypilot-read'])
+def enablestart(name):
+    subprocess.call(['systemctl', 'enable', name])
+    subprocess.call(['systemctl', 'start', name])
+
+config = {'disabled' : [],
+          'imu' : ['pypilot_boatimu'],
+          'autopilot' : ['pypilot', 'openplotter-pypilot-read']}
+    
+mode = sys.argv[1]
+
+if not mode in config:
+    print('invalid openplotter pypilot mode:', mode)
+
+# make table of all possible pypilot services
+allservices = {}
+for name in config:
+    for service in config[name]:
+        allservices[service] = True
+
+# remove from list services we are starting
+services = config[mode]
+for service in services:
+    del allservices[service]
+
+# stop unused services
+for service in allservices:
+    disablestop(service)
+
+# start needed services
+for service in services:
+    enablestart(service)
+
