@@ -124,8 +124,8 @@ def main():
         # read script is part of openplotter-pypilot
     print(_('Copying openplotter-pypilot-read script manually...'))
     try:
-        call('chmod +x data/openplotter-pypilot-read')
-        sudo('cp -v data/openplotter-pypilot-read /usr/bin')
+        call('chmod +x '+currentdir+'/data/openplotter-pypilot-read')
+        sudo('cp -v '+currentdir+'/data/openplotter-pypilot-read /usr/bin')
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
 
