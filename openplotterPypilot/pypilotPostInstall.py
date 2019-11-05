@@ -82,7 +82,7 @@ def main():
         call('cp -rv pypilot_data-master/. pypilot-master')
         os.chdir('pypilot-master')
         call('python setup.py build')
-        sudo('python setup.py install
+        sudo('python setup.py install')
         os.chdir('..')
         sudo('rm -rf pypilot-master')
         call('rm -rf pypilot_data-master')
