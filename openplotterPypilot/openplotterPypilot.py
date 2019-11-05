@@ -20,7 +20,7 @@ import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
-from openplotter_pypilot_ui import openplotter_pypilotBase
+from .openplotter_pypilot_ui import openplotter_pypilotBase
 
 class openplotter_pypilot(openplotter_pypilotBase):
     def __init__(self):
