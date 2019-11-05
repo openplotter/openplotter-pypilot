@@ -2,6 +2,7 @@
 
 # This file is part of Openplotter.
 # Copyright (C) 2015 by Sailoog <https://github.com/openplotter/openplotter-pypilot>
+# Copyright 2019 Sean D'Epagnier
 #
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,12 +23,28 @@ from openplotterSettings import language
 from openplotterSettings import platform
 from openplotter_pypilot_ui import openplotter_pypilotBase
 
+platform = platform.Platform()
+def systemctl(command, service):
+    subprocess.call([platform.admin, 'systemctl', command, service])
+
+def enable(service):
+    systemctl('enable', service)
+    systemctl('start', service)
+
+def disable(service):
+    systemctl('disable', service)
+    systemctl('stop', service)
+
+def status(service):
+    ret = not os.system('service ' + service + ' status | grep Active | grep -v failed | grep -v inactive')
+    print('status', service, ret)
+    return  ret
+    
 class openplotter_pypilot(openplotter_pypilotBase):
     def __init__(self):
         super(openplotter_pypilot, self).__init__(None)
         self.conf = conf.Conf()
         self.conf_folder = self.conf.conf_folder
-        self.platform = platform.Platform()
         self.currentdir = os.path.dirname(os.path.abspath(__file__))
         self.currentLanguage = self.conf.get('GENERAL', 'lang')
         self.language = language.Language(self.currentdir,'openplotter-pypilot',self.currentLanguage)
@@ -41,6 +58,11 @@ class openplotter_pypilot(openplotter_pypilotBase):
         self.GetStatusBar().SetFont(font_statusBar)
         
         self.Centre()
+
+        self.cMode.SetSelection(status('pypilot_boatimu')*1 + status('pypilot')*2)
+        self.cbOutputSignalKNode.SetValue(status('openplotter-pypilot-read'))
+        self.cbWebApp.SetValue(status('pypilot_webapp'))
+        self.cbLCDControl.SetValue(status('pypilot_lcd'))
 
         SETTINGS_FILE = "RTIMULib2"
         s = RTIMU.Settings(SETTINGS_FILE)
@@ -85,9 +107,6 @@ class openplotter_pypilot(openplotter_pypilotBase):
         url = "/usr/share/openplotter-doc/pypilot/pypilot_app.html"
         webbrowser.open(url, new=2)
 
-    def OnToolSettings(self, event): 
-        subprocess.call(['pkill', '-f', 'openplotter-settings'])
-        subprocess.Popen('openplotter-settings')
     def OnToolClient(self,e):
         subprocess.call(['pkill', '-f', 'signalk_client_wx'])
         subprocess.Popen('signalk_client_wx')
@@ -117,9 +136,36 @@ class openplotter_pypilot(openplotter_pypilotBase):
 
     def OnMode(self,e):
         mode = self.cMode.GetStringSelection()
-        self.conf.set('PYPILOT', 'mode', mode)
-        subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', mode])
+        if mode == 'disable':
+            disable('pypilot')
+            disable('pypilot_boatimu')
+        elif mode == 'imu':
+            disable('pypilot')
+            enable('pypilot_boatimu')
+        elif mode == 'autopilot':
+            disable('pypilot_boatimu')
+            enable('pypilot')
+            
+    def OnOutputSignalKNode(self, event):
+        self.OnCB(self.cbOutputSignalKNode, 'openplotter-pypilot-read')
 
+    def OnWebApp(self, event):
+        self.OnCB(self.cbWebApp, 'pypilot_webapp')
+
+    def OnLCDKeypad(self, event):
+        self.OnCB(self.cbLCDControl, 'pypilot_lcd')
+
+    def OnCB(self, control, service):
+        if control.GetValue():
+            enable(service)
+        else:
+            disable(service)
+
+    def OnAboutLCDKeypad(self, event): 
+        wx.MessageDialog(self, 'The pypilot lcd keypad hat for raspberry pi enables autopilot control using a keypad or IR remote control and nokia5110 screen.', 'pypilot lcd keypad', wx.OK | wx.ICON_INFORMATION).ShowModal()
+
+
+        
 ################################################################################
 
 def main():

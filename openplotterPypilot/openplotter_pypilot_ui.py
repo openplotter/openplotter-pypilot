@@ -33,8 +33,6 @@ class openplotter_pypilotBase ( wx.Frame ):
 		self.m_toolBar1 = wx.ToolBar( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_HORIZONTAL|wx.TB_TEXT )
 		self.m_tool1 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Help"), wx.Bitmap( u"data/help.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
-		self.m_tool2 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Settings"), wx.Bitmap( u"data/settings.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
-
 		self.m_tool4 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Client"), wx.Bitmap( u"data/edit.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
 		self.m_tool5 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Scope"), wx.Bitmap( u"data/connections.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
@@ -78,13 +76,13 @@ class openplotter_pypilotBase ( wx.Frame ):
 
 		fgSizer3.Add( self.m_staticText3, 0, wx.ALL, 5 )
 
-		cModeChoices = [ _(u"disabled"), _(u"imu"), _(u"autopilot") ]
+		cModeChoices = [ _(u"disable"), _(u"imu"), _(u"autopilot") ]
 		self.cMode = wx.Choice( self.m_panel3, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, cModeChoices, 0 )
 		self.cMode.SetSelection( 0 )
 		fgSizer3.Add( self.cMode, 0, wx.ALL, 5 )
 
-		self.cbOutputSignalkNode = wx.CheckBox( self.m_panel3, wx.ID_ANY, _(u"output to signalk node"), wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer3.Add( self.cbOutputSignalkNode, 0, wx.ALL, 5 )
+		self.cbOutputSignalKNode = wx.CheckBox( self.m_panel3, wx.ID_ANY, _(u"output to signalk node"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer3.Add( self.cbOutputSignalKNode, 0, wx.ALL, 5 )
 
 		fgSizer5 = wx.FlexGridSizer( 1, 0, 0, 0 )
 		fgSizer5.SetFlexibleDirection( wx.BOTH )
@@ -107,8 +105,8 @@ class openplotter_pypilotBase ( wx.Frame ):
 
 		fgSizer3.Add( fgSizer5, 1, wx.EXPAND, 5 )
 
-		self.cbWebControl = wx.CheckBox( self.m_panel3, wx.ID_ANY, _(u"Web Control"), wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer3.Add( self.cbWebControl, 0, wx.ALL, 5 )
+		self.cbWebApp = wx.CheckBox( self.m_panel3, wx.ID_ANY, _(u"Browser Control"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer3.Add( self.cbWebApp, 0, wx.ALL, 5 )
 
 		fgSizer6 = wx.FlexGridSizer( 1, 0, 0, 0 )
 		fgSizer6.SetFlexibleDirection( wx.BOTH )
@@ -156,14 +154,16 @@ class openplotter_pypilotBase ( wx.Frame ):
 
 		# Connect Events
 		self.Bind( wx.EVT_TOOL, self.OnToolHelp, id = self.m_tool1.GetId() )
-		self.Bind( wx.EVT_TOOL, self.OnToolSettings, id = self.m_tool2.GetId() )
 		self.Bind( wx.EVT_TOOL, self.OnToolClient, id = self.m_tool4.GetId() )
 		self.Bind( wx.EVT_TOOL, self.OnToolScope, id = self.m_tool5.GetId() )
 		self.Bind( wx.EVT_TOOL, self.OnToolCalibration, id = self.m_tool6.GetId() )
 		self.Bind( wx.EVT_TOOL, self.OnToolControl, id = self.m_tool8.GetId() )
 		self.Bind( wx.EVT_TOOL, self.OnToolOK, id = self.m_tool3.GetId() )
 		self.cMode.Bind( wx.EVT_CHOICE, self.OnMode )
+		self.cbOutputSignalKNode.Bind( wx.EVT_CHECKBOX, self.OnOutputSignalKNode )
+		self.cbWebApp.Bind( wx.EVT_CHECKBOX, self.OnWebApp )
 		self.m_button2.Bind( wx.EVT_BUTTON, self.OnOpenWebControl )
+		self.cbLCDControl.Bind( wx.EVT_CHECKBOX, self.OnLCDKeypad )
 		self.m_button1.Bind( wx.EVT_BUTTON, self.OnAboutLCDKeypad )
 
 	def __del__( self ):
@@ -172,9 +172,6 @@ class openplotter_pypilotBase ( wx.Frame ):
 
 	# Virtual event handlers, overide them in your derived class
 	def OnToolHelp( self, event ):
-		event.Skip()
-
-	def OnToolSettings( self, event ):
 		event.Skip()
 
 	def OnToolClient( self, event ):
@@ -195,7 +192,16 @@ class openplotter_pypilotBase ( wx.Frame ):
 	def OnMode( self, event ):
 		event.Skip()
 
+	def OnOutputSignalKNode( self, event ):
+		event.Skip()
+
+	def OnWebApp( self, event ):
+		event.Skip()
+
 	def OnOpenWebControl( self, event ):
+		event.Skip()
+
+	def OnLCDKeypad( self, event ):
 		event.Skip()
 
 	def OnAboutLCDKeypad( self, event ):

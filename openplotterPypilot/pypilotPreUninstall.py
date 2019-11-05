@@ -49,7 +49,9 @@ def main():
 		disablestoprm('openplotter-pypilot-read'])
 		disablestoprm('pypilot'])
 		disablestoprm('pypilot_boatimu'])
-c		subprocess.call(['systemctl', 'daemon-reload'])
+		disablestoprm('pypilot_webapp'])
+		disablestoprm('pypilot_lcd'])
+		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

@@ -70,6 +70,7 @@ def main():
 
     print(_('Compiling Pypilot for python2...'))
     try:
+        os.chdir('~')
         call('rm -f master.zip')
         call('rm -rf pypilot-master')
         call('rm -rf pypilot_data-master')
@@ -82,7 +83,7 @@ def main():
         call('cp -rv pypilot_data-master/. pypilot-master')
         os.chdir('pypilot-master')
         call('python setup.py build')
-        sudo('python setup.py install
+        sudo('python setup.py install')
         os.chdir('..')
         sudo('rm -rf pypilot-master')
         call('rm -rf pypilot_data-master')
@@ -116,6 +117,8 @@ def main():
 
         writeservice('pypilot_boatimu', 'local-fs.target', 'pypilot', '-q')
         writeservice('pypilot', 'local-fs.target', 'pypilot_boatimu')
+        writeservice('pypilot_lcd', 'local-fs.target')
+        writeservice('pypilot_webapp', 'local-fs.target')
         writeservice('openplotter-pypilot-read', 'multi-user.target')
         sudo('systemctl daemon-reload')
         print(_('DONE'))

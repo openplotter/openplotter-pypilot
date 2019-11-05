@@ -141,18 +141,6 @@
                             <event name="OnToolClicked">OnToolHelp</event>
                         </object>
                         <object class="tool" expanded="1">
-                            <property name="bitmap">Load From File; data/settings.png</property>
-                            <property name="context_menu">0</property>
-                            <property name="id">wxID_ANY</property>
-                            <property name="kind">wxITEM_NORMAL</property>
-                            <property name="label">Settings</property>
-                            <property name="name">m_tool2</property>
-                            <property name="permission">protected</property>
-                            <property name="statusbar"></property>
-                            <property name="tooltip"></property>
-                            <event name="OnToolClicked">OnToolSettings</event>
-                        </object>
-                        <object class="tool" expanded="1">
                             <property name="bitmap">Load From File; data/edit.png</property>
                             <property name="context_menu">0</property>
                             <property name="id">wxID_ANY</property>
@@ -558,7 +546,7 @@
                                                     <property name="caption"></property>
                                                     <property name="caption_visible">1</property>
                                                     <property name="center_pane">0</property>
-                                                    <property name="choices">&quot;disabled&quot; &quot;imu&quot; &quot;autopilot&quot;</property>
+                                                    <property name="choices">&quot;disable&quot; &quot;imu&quot; &quot;autopilot&quot;</property>
                                                     <property name="close_button">1</property>
                                                     <property name="context_help"></property>
                                                     <property name="context_menu">1</property>
@@ -646,7 +634,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size"></property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">cbOutputSignalkNode</property>
+                                                    <property name="name">cbOutputSignalKNode</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -667,6 +655,7 @@
                                                     <property name="window_extra_style"></property>
                                                     <property name="window_name"></property>
                                                     <property name="window_style"></property>
+                                                    <event name="OnCheckBox">OnOutputSignalKNode</event>
                                                 </object>
                                             </object>
                                             <object class="sizeritem" expanded="1">
@@ -906,7 +895,7 @@
                                                     <property name="gripper">0</property>
                                                     <property name="hidden">0</property>
                                                     <property name="id">wxID_ANY</property>
-                                                    <property name="label">Web Control</property>
+                                                    <property name="label">Browser Control</property>
                                                     <property name="max_size"></property>
                                                     <property name="maximize_button">0</property>
                                                     <property name="maximum_size"></property>
@@ -914,7 +903,7 @@
                                                     <property name="minimize_button">0</property>
                                                     <property name="minimum_size"></property>
                                                     <property name="moveable">1</property>
-                                                    <property name="name">cbWebControl</property>
+                                                    <property name="name">cbWebApp</property>
                                                     <property name="pane_border">1</property>
                                                     <property name="pane_position"></property>
                                                     <property name="pane_size"></property>
@@ -935,6 +924,7 @@
                                                     <property name="window_extra_style"></property>
                                                     <property name="window_name"></property>
                                                     <property name="window_style"></property>
+                                                    <event name="OnCheckBox">OnWebApp</event>
                                                 </object>
                                             </object>
                                             <object class="sizeritem" expanded="1">
@@ -1213,6 +1203,7 @@
                                                     <property name="window_extra_style"></property>
                                                     <property name="window_name"></property>
                                                     <property name="window_style"></property>
+                                                    <event name="OnCheckBox">OnLCDKeypad</event>
                                                 </object>
                                             </object>
                                             <object class="sizeritem" expanded="1">
