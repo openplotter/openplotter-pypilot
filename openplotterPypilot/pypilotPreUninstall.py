@@ -18,7 +18,10 @@ import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
 
-
+def disablestoprm(name):
+	subprocess.call(['systemctl', 'disable', name])
+	subprocess.call(['systemctl', 'stop', name])
+	subprocess.call(['rm', '-f', '/etc/systemd/system/'+name+'.service'])          
 
 def main():
 	conf2 = conf.Conf()
@@ -41,15 +44,10 @@ def main():
 
 	print(_('Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
 	try:
-                def disablestop(name):
-	                subprocess.call(['systemctl', 'disable', name])
-                        subprocess.call(['systemctl', 'stop', name])
-		        subprocess.call(['rm', '-f', '/etc/systemd/system/'+name+'.service'])
-                
-		disablestoprm('openplotter-pypilot-read'])
-		disablestoprm('pypilot'])
-		disablestoprm('pypilot_boatimu'])
-c		subprocess.call(['systemctl', 'daemon-reload'])
+		disablestoprm('openplotter-pypilot-read')
+		disablestoprm('pypilot')
+		disablestoprm('pypilot_boatimu')
+		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
