@@ -17,89 +17,118 @@
 import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
+from openplotterSettings import platform
+
+def call(command):
+    os.system(command)
+
+pt = platform.Platform()
+def sudo(command):
+    call(pt.admin + ' ' + command)
 
 def main():
-	conf2 = conf.Conf()
-	currentdir = os.path.dirname(__file__)
-	currentLanguage = conf2.get('GENERAL', 'lang')
-	language.Language(currentdir,'openplotter-pypilot',currentLanguage)
+    conf2 = conf.Conf()
+    currentdir = os.path.dirname(os.path.abspath(__file__))
+    currentLanguage = conf2.get('GENERAL', 'lang')
+    language.Language(currentdir,'openplotter-pypilot',currentLanguage)
 
-	print(_('Removing incompatible packages and installing new ones...'))
-	try:
-		subprocess.call(['apt', '-y', 'autoremove', 'sense-hat'])
-		subprocess.call(['pip', 'install', 'pywavefront'])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+    print(_('Removing incompatible packages...'))
+    try:
+        sudo('apt -y autoremove sense-hat')
+        print(_('DONE'))
+    except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Compiling RTIMULib2 for python2 and python3...'))
-	try:
-		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-rf', 'python-RTIMULib2-master'], cwd=conf2.home+'/')
-		subprocess.call(['wget', 'https://github.com/openplotter/python-RTIMULib2/archive/master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['unzip', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['python', 'setup.py', 'build'], cwd=conf2.home+'/python-RTIMULib2-master/')
-		subprocess.call(['python', 'setup.py', 'install'], cwd=conf2.home+'/python-RTIMULib2-master/')
-		subprocess.call(['python3', 'setup.py', 'build'], cwd=conf2.home+'/python-RTIMULib2-master/')
-		subprocess.call(['python3', 'setup.py', 'install'], cwd=conf2.home+'/python-RTIMULib2-master/')
-		subprocess.call(['rm', '-rf', 'python-RTIMULib2-master'], cwd=conf2.home+'/')
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+    # instead these shouold be dependencies of the openplotter-pypilot debian package
+    print(_('Installing packages'))
+    packages = ['python-gps python-serial libpython-dev python-numpy python-scipy swig',
+                'python-pil python-flask python-gevent-websocket',
+                'python-wxgtk3.0 python-opengl']
+    try:
+        for p in packages:
+            sudo('apt install -y ' + p)
+    except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Compiling Pypilot for python2...'))
-	try:
-		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-rf', 'pypilot-master'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-rf', 'pypilot_data-master'], cwd=conf2.home+'/')
-		subprocess.call(['wget', 'https://github.com/openplotter/pypilot/archive/master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['unzip', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['wget', 'https://github.com/pypilot/pypilot_data/archive/master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['unzip', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-f', 'master.zip'], cwd=conf2.home+'/')
-		subprocess.call(['cp', '-rv', 'pypilot_data-master/.', 'pypilot-master'], cwd=conf2.home+'/')
-		subprocess.call(['python', 'setup.py', 'build'], cwd=conf2.home+'/pypilot-master/')
-		subprocess.call(['python', 'setup.py', 'install'], cwd=conf2.home+'/pypilot-master/')
-		subprocess.call(['rm', '-rf', 'pypilot-master'], cwd=conf2.home+'/')
-		subprocess.call(['rm', '-rf', 'pypilot_data-master'], cwd=conf2.home+'/')
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+    print(_('Installing python dependencies...'))
+    sudo('pip install ujson pyudev pyglet pywavefront')
+    
+    print(_('Compiling RTIMULib2 for python2 and python3...'))
+    try:
+        call('rm -f master.zip')
+        call('rm -rf python-RTIMULib2-master')
+        call('wget https://github.com/openplotter/python-RTIMULib2/archive/master.zip')
+        call('unzip master.zip')
+        call('rm -f master.zip')
+        os.chdir('python-RTIMULib2-master')
+        call('python setup.py build')
+        sudo('python setup.py install')
+        call('python3 setup.py build')
+        sudo('python3 setup.py install')
+        os.chdir('..')
+        sudo('rm -rf python-RTIMULib2-master')
+        print(_('DONE'))
+    except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Creating config files...'))
-	try:
-		pypilotFolder = conf2.home+'/.pypilot'
-		if not os.path.exists(pypilotFolder): os.mkdir(pypilotFolder)
-		skConfFile = pypilotFolder+'/signalk.conf'
-		if not os.path.exists(skConfFile):
-			fo = open(skConfFile, "w")
-			fo.write( '{"host": "localhost"}')
-			fo.close()
-		subprocess.call(['chown', '-R', conf2.user, pypilotFolder])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+    print(_('Compiling Pypilot for python2...'))
+    try:
+        call('rm -f master.zip')
+        call('rm -rf pypilot-master')
+        call('rm -rf pypilot_data-master')
+        call('wget https://github.com/pypilot/pypilot/archive/master.zip')
+        call('unzip master.zip')
+        call('rm -f master.zip')
+        call('wget https://github.com/pypilot/pypilot_data/archive/master.zip')
+        call('unzip master.zip')
+        call('rm -f master.zip')
+        call('cp -rv pypilot_data-master/. pypilot-master')
+        os.chdir('pypilot-master')
+        call('python setup.py build')
+        sudo('python setup.py install
+        os.chdir('..')
+        sudo('rm -rf pypilot-master')
+        call('rm -rf pypilot_data-master')
+        print(_('DONE'))
+    except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
-	try:
-		fo = open('/etc/systemd/system/pypilot_boatimu.service', "w")
-		fo.write( '[Unit]\nDescription=pypilot boatimu\nDefaultDependencies=false\nConflicts=pypilot.service\n\n[Service]\nType=simple\nExecStart=pypilot_boatimu -q\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy=local-fs.target')
-		fo.close()
-		fo = open('/etc/systemd/system/pypilot.service', "w")
-		fo.write( '[Unit]\nDescription=pypilot\nDefaultDependencies=false\nConflicts=pypilot_boatimu.service\n\n[Service]\nType=simple\nExecStart=pypilot\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy=local-fs.target')
-		fo.close()
-		fo = open('/etc/systemd/system/openplotter-pypilot-read.service', "w")
-		fo.write( '[Service]\nExecStart=openplotter-pypilot-read\nStandardOutput=syslog\nStandardError=syslog\nUser='+conf2.user+'\n[Install]\nWantedBy=multi-user.target')
-		fo.close()
-		subprocess.call(['systemctl', 'daemon-reload'])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+    print(_('Creating config files...'))
+    try:
+        pypilotFolder = conf2.home+'/.pypilot'
+        if not os.path.exists(pypilotFolder): os.mkdir(pypilotFolder)
+        skConfFile = pypilotFolder+'/signalk.conf'
+        if not os.path.exists(skConfFile):
+            fo = open(skConfFile, "w")
+            fo.write( '{"host": "localhost"}')
+            fo.close()
+        call('chown -R ' + conf2.user + ' ' + pypilotFolder)
+        print(_('DONE'))
+    except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Copying openplotter-pypilot-read script manually...')) # pypilot is still python 2, so it have to be installed independent from openplotter-pypilot that is python 3
-	try:
-		subprocess.call(['cp', '-v', 'data/openplotter-pypilot-read', '/usr/bin'], cwd=currentdir+'/')
-		subprocess.call(['chmod', '+x', '/usr/bin/openplotter-pypilot-read'])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
+    print(_('Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
+    try:
+        def writeservice(name, wanted, conflicts=False, args=''):
+            tempname = '/tmp/'+name+'.service'
+            fo = open(tempname, 'w')
+            fo.write( '[Unit]\nDescription='+name+'\nDefaultDependencies=false\n')
+            if conflicts:
+                fo.write('Conflicts='+conflicts+'.service\n')
+            fo.write('\n[Service]\nType=simple\nExecStart='+name+' '+args+'\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy='+wanted)
+            fo.close()
+            sudo('mv -f ' + tempname + ' /etc/systemd/system')
+
+        writeservice('pypilot_boatimu', 'local-fs.target', 'pypilot', '-q')
+        writeservice('pypilot', 'local-fs.target', 'pypilot_boatimu')
+        writeservice('openplotter-pypilot-read', 'multi-user.target')
+        sudo('systemctl daemon-reload')
+        print(_('DONE'))
+    except Exception as e: print(_('FAILED: ')+str(e))
+
+        # read script is part of openplotter-pypilot
+    print(_('Copying openplotter-pypilot-read script manually...'))
+    try:
+        call('chmod +x data/openplotter-pypilot-read')
+        sudo('cp -v data/openplotter-pypilot-read /usr/bin')
+        print(_('DONE'))
+    except Exception as e: print(_('FAILED: ')+str(e))
 
 if __name__ == '__main__':
-	main()
+    main()
 
