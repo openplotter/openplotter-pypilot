@@ -42,14 +42,14 @@ def main():
     print(_('Installing packages'))
     packages = ['python-gps python-serial libpython-dev python-numpy python-scipy swig',
                 'python-pil python-flask python-gevent-websocket',
-                'python-wxgtk3.0 python-opengl']
+                'python-wxgtk3.0 python-opengl python-ujson python-pyudev python-pyglet']
     try:
         for p in packages:
             sudo('apt install -y ' + p)
     except Exception as e: print(_('FAILED: ')+str(e))
 
     print(_('Installing python dependencies...'))
-    sudo('pip install ujson pyudev pyglet pywavefront')
+    sudo('pip install pywavefront')
     
     print(_('Compiling RTIMULib2 for python2 and python3...'))
     try:

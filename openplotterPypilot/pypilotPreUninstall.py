@@ -29,7 +29,7 @@ def main():
 	print(_('Removing packages...'))
 	try:
 		subprocess.call(['apt', '-y', 'autoremove', 'py-rtimulib2'])
-		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront pyglet'])
+		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
