@@ -21,7 +21,7 @@ import wx.richtext as rt
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import platform
-from openplotter_pypilot_ui import openplotter_pypilotBase
+from .openplotter_pypilot_ui import openplotter_pypilotBase
 
 platform = platform.Platform()
 def systemctl(command, service):

@@ -18,7 +18,10 @@ import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
 
-
+def disablestoprm(name):
+	subprocess.call(['systemctl', 'disable', name])
+	subprocess.call(['systemctl', 'stop', name])
+	subprocess.call(['rm', '-f', '/etc/systemd/system/'+name+'.service'])          
 
 def main():
 	conf2 = conf.Conf()
@@ -29,7 +32,7 @@ def main():
 	print(_('Removing packages...'))
 	try:
 		subprocess.call(['apt', '-y', 'autoremove', 'py-rtimulib2'])
-		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront pyglet'])
+		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
@@ -51,6 +54,7 @@ def main():
 		disablestoprm('pypilot_boatimu'])
 		disablestoprm('pypilot_webapp'])
 		disablestoprm('pypilot_lcd'])
+
 		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))

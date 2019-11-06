@@ -6,15 +6,13 @@ OpenPlotter app to integrate Pypilot in Raspberry Pi
 
 #### For production
 
-Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) and just install this app from *OpenPlotter Apps* tab.
+Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **production** and just install this app from *OpenPlotter Apps* tab.
 
 #### For development
 
-Install OpenPlotter dependencies:
+Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
 
-`sudo apt install openplotter-settings`
-
-Install Pypilot dependencies:
+Install openplotter-pypilot dependencies:
 
 `sudo apt install python-gps python-serial libpython-dev python-numpy python-scipy swig python-ujson python-pyudev python-pil python-flask python-gevent-websocket python-wxgtk3.0 python-opengl python-pyglet python-pip`
 
@@ -33,9 +31,13 @@ Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-pypilot`
 
-Make your changes and test them locally:
+Make your changes and install:
 
 `sudo python3 setup.py install`
+
+Run:
+
+`openplotter-pypilot`
 
 Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
 

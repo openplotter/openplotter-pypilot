@@ -40,6 +40,7 @@ def main():
 
     # instead these shouold be dependencies of the openplotter-pypilot debian package
     print(_('Installing packages'))
+
     packages = ['python3-serial libpython3-dev python3-numpy python3-scipy swig',
                 'python3-pil python3-flask',
                 'python3-opengl']
@@ -50,6 +51,7 @@ def main():
 
     print(_('Installing python dependencies...'))
     sudo('pip3 install gps ujson pyudev pyglet pywavefront flask-socketio gevent-websocket')
+
     
     print(_('Compiling RTIMULib2 for python2 and python3...'))
     try:
@@ -126,8 +128,8 @@ def main():
         # read script is part of openplotter-pypilot
     print(_('Copying openplotter-pypilot-read script manually...'))
     try:
-        call('chmod +x data/openplotter-pypilot-read')
-        sudo('cp -v data/openplotter-pypilot-read /usr/bin')
+        call('chmod +x '+currentdir+'/data/openplotter-pypilot-read')
+        sudo('cp -v '+currentdir+'/data/openplotter-pypilot-read /usr/bin')
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
 
