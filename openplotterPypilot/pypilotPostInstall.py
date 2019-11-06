@@ -40,16 +40,16 @@ def main():
 
     # instead these shouold be dependencies of the openplotter-pypilot debian package
     print(_('Installing packages'))
-    packages = ['python-gps python-serial libpython-dev python-numpy python-scipy swig',
-                'python-pil python-flask python-gevent-websocket',
-                'python-wxgtk3.0 python-opengl']
+    packages = ['python3-serial libpython3-dev python3-numpy python3-scipy swig',
+                'python3-pil python3-flask',
+                'python3-opengl']
     try:
         for p in packages:
             sudo('apt install -y ' + p)
     except Exception as e: print(_('FAILED: ')+str(e))
 
     print(_('Installing python dependencies...'))
-    sudo('pip install ujson pyudev pyglet pywavefront flask-socketio')
+    sudo('pip3 install gps ujson pyudev pyglet pywavefront flask-socketio gevent-websocket')
     
     print(_('Compiling RTIMULib2 for python2 and python3...'))
     try:
@@ -68,9 +68,8 @@ def main():
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
 
-    print(_('Compiling Pypilot for python2...'))
+    print(_('Compiling Pypilot for python3...'))
     try:
-        os.chdir('~')
         call('rm -f master.zip')
         call('rm -rf pypilot-master')
         call('rm -rf pypilot_data-master')
@@ -82,8 +81,8 @@ def main():
         call('rm -f master.zip')
         call('cp -rv pypilot_data-master/. pypilot-master')
         os.chdir('pypilot-master')
-        call('python setup.py build')
-        sudo('python setup.py install')
+        call('python3 setup.py build')
+        sudo('python3 setup.py install')
         os.chdir('..')
         sudo('rm -rf pypilot-master')
         call('rm -rf pypilot_data-master')
