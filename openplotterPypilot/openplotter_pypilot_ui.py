@@ -88,20 +88,6 @@ class openplotter_pypilotBase ( wx.Frame ):
 		fgSizer5.SetFlexibleDirection( wx.BOTH )
 		fgSizer5.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
-		self.m_staticText6 = wx.StaticText( self.m_panel3, wx.ID_ANY, _(u"rate"), wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText6.Wrap( -1 )
-
-		fgSizer5.Add( self.m_staticText6, 0, wx.ALL, 5 )
-
-		self.m_spinCtrlDouble1 = wx.SpinCtrlDouble( self.m_panel3, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.Size( 50,-1 ), wx.SP_ARROW_KEYS, 0, 10, 0, 1 )
-		self.m_spinCtrlDouble1.SetDigits( 0 )
-		fgSizer5.Add( self.m_spinCtrlDouble1, 0, wx.ALL, 5 )
-
-		self.m_staticText7 = wx.StaticText( self.m_panel3, wx.ID_ANY, _(u"hz"), wx.DefaultPosition, wx.DefaultSize, 0 )
-		self.m_staticText7.Wrap( -1 )
-
-		fgSizer5.Add( self.m_staticText7, 0, wx.ALL, 5 )
-
 
 		fgSizer3.Add( fgSizer5, 1, wx.EXPAND, 5 )
 
@@ -117,8 +103,10 @@ class openplotter_pypilotBase ( wx.Frame ):
 
 		fgSizer6.Add( self.m_staticText10, 0, wx.ALL, 5 )
 
-		self.sPort = wx.SpinCtrl( self.m_panel3, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.SP_ARROW_KEYS, 0, 65536, 8080 )
-		fgSizer6.Add( self.sPort, 0, wx.ALL, 5 )
+		self.m_staticText71 = wx.StaticText( self.m_panel3, wx.ID_ANY, _(u"8000"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		self.m_staticText71.Wrap( -1 )
+
+		fgSizer6.Add( self.m_staticText71, 0, wx.ALL, 5 )
 
 		self.m_button2 = wx.Button( self.m_panel3, wx.ID_ANY, _(u"Open"), wx.DefaultPosition, wx.DefaultSize, 0 )
 		fgSizer6.Add( self.m_button2, 0, wx.ALL, 5 )

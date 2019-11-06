@@ -64,6 +64,8 @@ class openplotter_pypilot(openplotter_pypilotBase):
         self.cbWebApp.SetValue(status('pypilot_webapp'))
         self.cbLCDControl.SetValue(status('pypilot_lcd'))
 
+        self.SetEnabledControls()
+
         SETTINGS_FILE = "RTIMULib2"
         s = RTIMU.Settings(SETTINGS_FILE)
         imu = RTIMU.RTIMU(s)
@@ -109,17 +111,17 @@ class openplotter_pypilot(openplotter_pypilotBase):
 
     def OnToolClient(self,e):
         subprocess.call(['pkill', '-f', 'signalk_client_wx'])
-        subprocess.Popen('signalk_client_wx')
+        subprocess.Popen(['signalk_client_wx', 'localhost'])
 
     def OnToolScope(self,e):
-        subprocess.Popen('signalk_scope_wx')
+        subprocess.Popen(['signalk_scope_wx', 'localhost'])
 
     def OnToolControl(self,e):
         subprocess.call(['pkill', '-f', 'pypilot_control'])
-        subprocess.Popen('pypilot_control')
+        subprocess.Popen(['pypilot_control', 'localhost'])
 
     def OnOpenWebControl(self,e):
-        webbrowser.open('http://localhost:%d' % self.sPort.GetValue(), new=2)
+        webbrowser.open('http://localhost:8000', new=2)
         
     def OnToolImu(self,e):
         self.notebook.ChangeSelection(0)
@@ -129,7 +131,7 @@ class openplotter_pypilot(openplotter_pypilotBase):
 
     def OnToolCalibration(self,e):
         subprocess.call(['pkill', '-f', 'pypilot_calibration'])
-        subprocess.Popen('pypilot_calibration')
+        subprocess.Popen(['pypilot_calibration', 'localhost'])
 
     def OnToolOK(self,e):
         exit(0)
@@ -145,7 +147,15 @@ class openplotter_pypilot(openplotter_pypilotBase):
         elif mode == 'autopilot':
             disable('pypilot_boatimu')
             enable('pypilot')
-            
+        self.SetEnabledControls()
+
+    def SetEnabledControls(self):
+        s = self.cMode.GetSelection()
+        e = s == 2 #autopilot
+        self.cbOutputSignalKNode.Enable(e)
+        self.cbWebApp.Enable(e)
+        self.cbLCDControl.Enable(e)
+
     def OnOutputSignalKNode(self, event):
         self.OnCB(self.cbOutputSignalKNode, 'openplotter-pypilot-read')
 

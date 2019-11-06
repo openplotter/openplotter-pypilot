@@ -49,7 +49,7 @@ def main():
     except Exception as e: print(_('FAILED: ')+str(e))
 
     print(_('Installing python dependencies...'))
-    sudo('pip install ujson pyudev pyglet pywavefront')
+    sudo('pip install ujson pyudev pyglet pywavefront flask-socketio')
     
     print(_('Compiling RTIMULib2 for python2 and python3...'))
     try:
@@ -118,7 +118,7 @@ def main():
         writeservice('pypilot_boatimu', 'local-fs.target', 'pypilot', '-q')
         writeservice('pypilot', 'local-fs.target', 'pypilot_boatimu')
         writeservice('pypilot_lcd', 'local-fs.target')
-        writeservice('pypilot_webapp', 'local-fs.target')
+        writeservice('pypilot_webapp', 'local-fs.target', False, '8000')
         writeservice('openplotter-pypilot-read', 'multi-user.target')
         sudo('systemctl daemon-reload')
         print(_('DONE'))
