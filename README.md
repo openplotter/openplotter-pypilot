@@ -14,30 +14,39 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 Install openplotter-pypilot dependencies:
 
-`sudo apt install python-gps python-serial libpython-dev python-numpy python-scipy swig python-ujson python-pyudev python-pil python-flask python-gevent-websocket python-wxgtk3.0 python-opengl python-pyglet python-pip`
-
-`sudo pip install pywavefront`
+```
+sudo apt install python-gps python-serial libpython-dev python-numpy python-scipy swig python-ujson python-pyudev python-pil python-flask python-gevent-websocket python-wxgtk3.0 python-opengl python-pyglet python-pip
+sudo pip install pywavefront
+```
 
 Install Pypilot:
 
-`git clone https://github.com/pypilot/pypilot
+```
+git clone https://github.com/pypilot/pypilot
 git clone https://github.com/pypilot/pypilot_data
 cp -rv pypilot_data/* pypilot
 cd pypilot
 python setup.py build
-sudo python setup.py install`
+sudo python setup.py install
+```
 
 Clone the repository:
 
-`git clone https://github.com/openplotter/openplotter-pypilot`
+```
+git clone https://github.com/openplotter/openplotter-pypilot
+```
 
 Make your changes and install:
 
-`sudo python3 setup.py install`
+```
+sudo python3 setup.py install
+```
 
 Run:
 
-`openplotter-pypilot`
+```
+openplotter-pypilot
+```
 
 Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter/).
 
