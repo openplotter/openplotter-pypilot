@@ -44,9 +44,17 @@ def main():
 
 	print(_('Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
 	try:
-		disablestoprm('openplotter-pypilot-read')
-		disablestoprm('pypilot')
-		disablestoprm('pypilot_boatimu')
+                def disablestop(name):
+	                subprocess.call(['systemctl', 'disable', name])
+                        subprocess.call(['systemctl', 'stop', name])
+		        subprocess.call(['rm', '-f', '/etc/systemd/system/'+name+'.service'])
+                
+		disablestoprm('openplotter-pypilot-read'])
+		disablestoprm('pypilot'])
+		disablestoprm('pypilot_boatimu'])
+		disablestoprm('pypilot_webapp'])
+		disablestoprm('pypilot_lcd'])
+
 		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
