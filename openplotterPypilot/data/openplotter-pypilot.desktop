@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=OpenPlotter Pypilot
+Name=Pypilot
 Exec=openplotter-pypilot
 Icon=openplotter-pypilot
 StartupNotify=true
