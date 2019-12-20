@@ -23,14 +23,17 @@ class Ports:
 		currentdir = os.path.dirname(__file__)
 		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
 		self.connections = []
+		'''
 		try: port = int(self.conf.get('PYPILOT', 'pypilotConn2'))
 		except: port = 52000 #default port
 		self.connections.append({'id':'pypilotConn1', 'description':_('Internal Pypilot Signal K server'), 'data':_('Own Signal K format'), 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':21311, 'editable':'0'})
 		self.connections.append({'id':'pypilotConn2', 'description':_('Pypilot Signal K output'), 'data':_('Signal K keys: ')+'navigation.headingMagnetic, navigation.attitude.roll, navigation.attitude,pitch', 'direction':'2', 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':port, 'editable':'1'})
 		self.connections.append({'id':'pypilotConn3', 'description':_('Pypilot NMEA 0183 output'), 'data':'NMEA 0183: ', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':20220, 'editable':'0'})
-	
+		'''
+
 	def usedPorts(self):
 		usedPorts = []
+		'''
 		mode = self.conf.get('PYPILOT', 'mode')
 		if mode == '1': # imu
 			usedPorts.append(self.connections[0])
@@ -39,4 +42,5 @@ class Ports:
 			usedPorts.append(self.connections[0])
 			usedPorts.append(self.connections[1])
 			usedPorts.append(self.connections[2])
-		if usedPorts: return usedPorts
+		'''
+		return usedPorts

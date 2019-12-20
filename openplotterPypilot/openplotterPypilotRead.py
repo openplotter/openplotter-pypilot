@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 
 # This file is part of Openplotter.
 # Copyright (C) 2015 by Sailoog <https://github.com/openplotter/openplotter-pypilot>

@@ -14,9 +14,9 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 Install openplotter-pypilot dependencies:
 
-`sudo apt install python-gps python-serial libpython-dev python-numpy python-scipy swig python-ujson python-pyudev python-pil python-flask python-gevent-websocket python-wxgtk3.0 python-opengl python-pyglet python-pip`
+`sudo apt install swig python3-opengl python3-serial libpython3-dev python3-numpy python3-scipy python3-ujson python3-pyudev python3-pil python3-flask python3-pip`
 
-`sudo pip install pywavefront`
+`sudo pip3 install pywavefront pyglet gps gevent-websocket`
 
 Install Pypilot:
 
@@ -24,8 +24,8 @@ Install Pypilot:
 git clone https://github.com/pypilot/pypilot_data
 cp -rv pypilot_data/* pypilot
 cd pypilot
-python setup.py build
-sudo python setup.py install`
+python3 setup.py build
+sudo python3 setup.py install`
 
 Clone the repository:
 

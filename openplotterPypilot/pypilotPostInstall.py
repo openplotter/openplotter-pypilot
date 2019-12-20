@@ -37,23 +37,8 @@ def main():
         sudo('apt -y autoremove sense-hat')
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
-
-    # instead these shouold be dependencies of the openplotter-pypilot debian package
-    print(_('Installing packages'))
-
-    packages = ['python3-serial libpython3-dev python3-numpy python3-scipy swig',
-                'python3-pil python3-flask',
-                'python3-opengl']
-    try:
-        for p in packages:
-            sudo('apt install -y ' + p)
-    except Exception as e: print(_('FAILED: ')+str(e))
-
-    print(_('Installing python dependencies...'))
-    sudo('pip3 install gps ujson pyudev pyglet pywavefront flask-socketio gevent-websocket')
-
     
-    print(_('Compiling RTIMULib2 for python2 and python3...'))
+    print(_('Compiling RTIMULib2...'))
     try:
         call('rm -f master.zip')
         call('rm -rf python-RTIMULib2-master')
@@ -61,8 +46,6 @@ def main():
         call('unzip master.zip')
         call('rm -f master.zip')
         os.chdir('python-RTIMULib2-master')
-        call('python setup.py build')
-        sudo('python setup.py install')
         call('python3 setup.py build')
         sudo('python3 setup.py install')
         os.chdir('..')
@@ -70,7 +53,7 @@ def main():
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
 
-    print(_('Compiling Pypilot for python3...'))
+    print(_('Compiling Pypilot...'))
     try:
         call('rm -f master.zip')
         call('rm -rf pypilot-master')
@@ -122,14 +105,6 @@ def main():
         writeservice('pypilot_webapp', 'local-fs.target', False, '8000')
         writeservice('openplotter-pypilot-read', 'multi-user.target')
         sudo('systemctl daemon-reload')
-        print(_('DONE'))
-    except Exception as e: print(_('FAILED: ')+str(e))
-
-        # read script is part of openplotter-pypilot
-    print(_('Copying openplotter-pypilot-read script manually...'))
-    try:
-        call('chmod +x '+currentdir+'/data/openplotter-pypilot-read')
-        sudo('cp -v '+currentdir+'/data/openplotter-pypilot-read /usr/bin')
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
 

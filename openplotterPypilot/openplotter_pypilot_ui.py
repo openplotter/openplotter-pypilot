@@ -7,7 +7,7 @@
 ## PLEASE DO *NOT* EDIT THIS FILE!
 ###########################################################################
 
-import wx
+import wx, os
 import wx.xrc
 
 import gettext
@@ -24,6 +24,8 @@ class openplotter_pypilotBase ( wx.Frame ):
 
 		self.SetSizeHints( wx.DefaultSize, wx.DefaultSize )
 
+		self.currentdir = os.path.dirname(os.path.abspath(__file__))
+
 		fgSizer1 = wx.FlexGridSizer( 2, 1, 0, 0 )
 		fgSizer1.AddGrowableCol( 0 )
 		fgSizer1.AddGrowableRow( 1 )
@@ -31,19 +33,19 @@ class openplotter_pypilotBase ( wx.Frame ):
 		fgSizer1.SetNonFlexibleGrowMode( wx.FLEX_GROWMODE_SPECIFIED )
 
 		self.m_toolBar1 = wx.ToolBar( self, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TB_HORIZONTAL|wx.TB_TEXT )
-		self.m_tool1 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Help"), wx.Bitmap( u"data/help.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
+		self.m_tool1 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Help"), wx.Bitmap( self.currentdir+"/data/help.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
-		self.m_tool4 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Client"), wx.Bitmap( u"data/edit.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
+		self.m_tool4 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Client"), wx.Bitmap( self.currentdir+"/data/edit.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
-		self.m_tool5 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Scope"), wx.Bitmap( u"data/connections.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
+		self.m_tool5 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Scope"), wx.Bitmap( self.currentdir+"/data/connections.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
-		self.m_tool6 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Calibration"), wx.Bitmap( u"data/settings.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
+		self.m_tool6 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Calibration"), wx.Bitmap( self.currentdir+"/data/settings.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
-		self.m_tool8 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Control"), wx.Bitmap( u"data/heading.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
+		self.m_tool8 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Control"), wx.Bitmap( self.currentdir+"/data/heading.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
 		self.m_toolBar1.AddSeparator()
 
-		self.m_tool3 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Ok"), wx.Bitmap( u"data/apply.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
+		self.m_tool3 = self.m_toolBar1.AddLabelTool( wx.ID_ANY, _(u"Ok"), wx.Bitmap( self.currentdir+"/data/apply.png", wx.BITMAP_TYPE_ANY ), wx.NullBitmap, wx.ITEM_NORMAL, wx.EmptyString, wx.EmptyString, None )
 
 		self.m_toolBar1.Realize()
 
