@@ -180,31 +180,37 @@ class MyFrame(wx.Frame):
 				subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_lcd']).decode(sys.stdin.encoding)
 				self.toolbar2.ToggleTool(204,True)
 			except: pass
-
 			self.listSerial.Enable()
 
-		self.imuDetected.SetLabel(_('none'))
-		SETTINGS_FILE = "RTIMULibTemp"
-		s = RTIMU.Settings(SETTINGS_FILE)
-		imu = RTIMU.RTIMU(s)
-		keys = {}
-		with open(SETTINGS_FILE+'.ini', "r") as infile:
-			for line in infile:
-				for i in range(20):
-					key = '#   %d' % i
-					if key in line:
-						keys[i] = line[8:]
-						
-				if 'IMUType=' in line:
-					tmp = line.split("=")
-					imunum = int(tmp[1].strip())
-					if imunum in keys:
-						imuname = keys[imunum]
-					else:
-						imuname = _('unknown: ') + imunum
-					self.imuDetected.SetLabel(imuname)
-					break
-		subprocess.call(['rm', '-f', 'RTIMULibTemp.ini'])
+		try:
+			subprocess.check_output(['i2cdetect', '-y', '1']).decode(sys.stdin.encoding)
+		except:
+			self.ShowStatusBarRED(_('I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces'))
+			self.imuDetected.SetLabel(_('Failed'))
+		else:
+			self.imuDetected.SetLabel(_('none'))
+			SETTINGS_FILE = "RTIMULibTemp"
+			s = RTIMU.Settings(SETTINGS_FILE)
+			imu = RTIMU.RTIMU(s)
+			keys = {}
+			with open(SETTINGS_FILE+'.ini', "r") as infile:
+				for line in infile:
+					for i in range(20):
+						key = '#   %d' % i
+						if key in line:
+							keys[i] = line[8:]
+							
+					if 'IMUType=' in line:
+						tmp = line.split("=")
+						imunum = int(tmp[1].strip())
+						if imunum in keys:
+							imuname = keys[imunum]
+						else:
+							imuname = _('unknown: ') + imunum
+						imuname = imuname.replace('\n', '')
+						self.imuDetected.SetLabel(imuname)
+						break
+			subprocess.call(['rm', '-f', 'RTIMULibTemp.ini'])
 
 		self.listSerial.DeleteAllItems()
 		try:
@@ -214,6 +220,8 @@ class MyFrame(wx.Frame):
 					line = line.replace('\n', '')
 					line = line.strip()
 					self.listSerial.InsertItem(self.listSerial.GetItemCount(), line)
+					if pypilot:
+						self.listSerial.SetItemBackgroundColour(self.listSerial.GetItemCount()-1,(102,205,170))
 		except: pass
 
 		self.listConnections.DeleteAllItems()
@@ -278,7 +286,7 @@ class MyFrame(wx.Frame):
 
 	def pageAutopilot(self):
 		self.listSerial = wx.ListCtrl(self.autopilot, -1, style=wx.LC_REPORT | wx.LC_SINGLE_SEL | wx.LC_HRULES, size=(-1,200))
-		self.listSerial.InsertColumn(0, _('Autopilot serial devices'), width=650)
+		self.listSerial.InsertColumn(0, _('Autopilot serial devices'), width=630)
 		self.listSerial.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListSerialSelected)
 		self.listSerial.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListSerialDeselected)
 
@@ -317,6 +325,7 @@ class MyFrame(wx.Frame):
 		sizer = wx.BoxSizer(wx.VERTICAL)
 		sizer.AddSpacer(10)
 		sizer.Add(h2, 1, wx.EXPAND, 0)
+		sizer.AddSpacer(10)
 		sizer.Add(self.toolbar2, 0, wx.EXPAND, 0)
 		sizer.Add(h1, 1, wx.EXPAND, 0)
 
