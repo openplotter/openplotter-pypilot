@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-pypilot\n"
-"POT-Creation-Date: 2019-09-08 15:06+0200\n"
-"PO-Revision-Date: 2019-09-08 15:06+0200\n"
+"POT-Creation-Date: 2019-12-29 20:36+0100\n"
+"PO-Revision-Date: 2019-12-29 20:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -15,150 +15,278 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: myappPostInstall.py:29
-msgid "Adding openplotter-read-myapp service..."
-msgstr ""
-
-#: myappPostInstall.py:35 myappPreUninstall.py:35
-msgid "DONE"
-msgstr ""
-
-#: myappPostInstall.py:36 myappPreUninstall.py:36
-msgid "FAILED: "
-msgstr ""
-
-#: myappPreUninstall.py:29
-msgid "Removing openplotter-read-myapp service..."
-msgstr ""
-
-#: openplotterMyapp.py:34
-msgid "OpenPlotter My App"
-msgstr ""
-
-#: openplotterMyapp.py:44
+#: openplotterPypilot.py:45
 msgid "Help"
 msgstr ""
 
-#: openplotterMyapp.py:47
+#: openplotterPypilot.py:48
 msgid "Settings"
 msgstr ""
 
-#: openplotterMyapp.py:50
-msgid "Dummy Data"
-msgstr ""
-
-#: openplotterMyapp.py:53
-msgid "Dummy Output"
-msgstr ""
-
-#: openplotterMyapp.py:56
-msgid "Apply Changes"
-msgstr ""
-
-#: openplotterMyapp.py:58
-msgid "Cancel Changes"
-msgstr ""
-
-#: openplotterMyapp.py:66 ports.py:45
-msgid "My App"
-msgstr ""
-
-#: openplotterMyapp.py:67
-msgid "Data output"
-msgstr ""
-
-#: openplotterMyapp.py:68
-msgid "Output"
-msgstr ""
-
-#: openplotterMyapp.py:130
-msgid "Sending:  "
-msgstr ""
-
-#: openplotterMyapp.py:159
-msgid "SK Connection"
-msgstr ""
-
-#: openplotterMyapp.py:168
-msgid "Type"
-msgstr ""
-
-#: openplotterMyapp.py:169
+#: openplotterPypilot.py:51
 msgid "Mode"
 msgstr ""
 
-#: openplotterMyapp.py:170
+#: openplotterPypilot.py:51
+msgid "Disabled"
+msgstr ""
+
+#: openplotterPypilot.py:51 startup.py:88
+msgid "Only compass"
+msgstr ""
+
+#: openplotterPypilot.py:51 openplotterPypilot.py:69 startup.py:102
+msgid "Autopilot"
+msgstr ""
+
+#: openplotterPypilot.py:55
+msgid "Calibration"
+msgstr ""
+
+#: openplotterPypilot.py:57
+msgid "Scope"
+msgstr ""
+
+#: openplotterPypilot.py:59
+msgid "Client"
+msgstr ""
+
+#: openplotterPypilot.py:62
+msgid "Refresh"
+msgstr ""
+
+#: openplotterPypilot.py:70
+msgid "Connections"
+msgstr ""
+
+#: openplotterPypilot.py:126 openplotterPypilot.py:370
+#: openplotterPypilot.py:384
+msgid "Applying changes ..."
+msgstr ""
+
+#: openplotterPypilot.py:133 openplotterPypilot.py:377
+#: openplotterPypilot.py:399
+msgid "Changes applied"
+msgstr ""
+
+#: openplotterPypilot.py:188
+msgid ""
+"I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi "
+"configuration -> Interfaces"
+msgstr ""
+
+#: openplotterPypilot.py:189
+msgid "Failed"
+msgstr ""
+
+#: openplotterPypilot.py:191 openplotterPypilot.py:307
+msgid "none"
+msgstr ""
+
+#: openplotterPypilot.py:209
+msgid "unknown: "
+msgstr ""
+
+#: openplotterPypilot.py:230
+msgid "Heading, Heel, Pitch, Serial devices"
+msgstr ""
+
+#: openplotterPypilot.py:233
+msgid "Heel, Pitch"
+msgstr ""
+
+#: openplotterPypilot.py:237
+msgid "Heading, Heel, Pitch"
+msgstr ""
+
+#: openplotterPypilot.py:289
+msgid "Autopilot serial devices"
+msgstr ""
+
+#: openplotterPypilot.py:294
+msgid "Control"
+msgstr ""
+
+#: openplotterPypilot.py:297
+msgid "Browser Control"
+msgstr ""
+
+#: openplotterPypilot.py:299
+msgid "Open"
+msgstr ""
+
+#: openplotterPypilot.py:302
+msgid "LCD keypad/Remote Control"
+msgstr ""
+
+#: openplotterPypilot.py:306
+msgid "Detected IMU:"
+msgstr ""
+
+#: openplotterPypilot.py:310
+msgid "Add device"
+msgstr ""
+
+#: openplotterPypilot.py:312
+msgid "Remove device"
+msgstr ""
+
+#: openplotterPypilot.py:362
+msgid "You have to select a device"
+msgstr ""
+
+#: openplotterPypilot.py:367
+msgid "This device already exists"
+msgstr ""
+
+#: openplotterPypilot.py:423
 msgid "Data"
 msgstr ""
 
-#: openplotterMyapp.py:171
-msgid "Direction"
+#: openplotterPypilot.py:424
+msgid "Type"
 msgstr ""
 
-#: openplotterMyapp.py:172 openplotterMyapp.py:308
+#: openplotterPypilot.py:425
 msgid "Port"
 msgstr ""
 
-#: openplotterMyapp.py:173
-msgid "Editable"
+#: openplotterPypilot.py:426
+msgid "SK connection ID"
 msgstr ""
 
-#: openplotterMyapp.py:178
-msgid "Edit"
+#: openplotterPypilot.py:431
+msgid "Add Connection"
 msgstr ""
 
-#: openplotterMyapp.py:215
-msgid "yes"
+#: openplotterPypilot.py:433
+msgid "Edit connection"
 msgstr ""
 
-#: openplotterMyapp.py:216
-msgid "no"
+#: openplotterPypilot.py:435
+msgid "Remove connection"
 msgstr ""
 
-#: openplotterMyapp.py:218
-msgid "input"
+#: openplotterPypilot.py:482
+msgid "Failed. Error creating connection in Signal K"
 msgstr ""
 
-#: openplotterMyapp.py:219
-msgid "output"
+#: openplotterPypilot.py:484
+msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr ""
 
-#: openplotterMyapp.py:220
-msgid "both"
+#: openplotterPypilot.py:503
+msgid "Failed. Error removing connection in Signal K"
 msgstr ""
 
-#: openplotterMyapp.py:265
-msgid "Sending dummy data enabled"
+#: openplotterPypilot.py:506
+msgid "Restarting Signal K server... "
 msgstr ""
 
-#: openplotterMyapp.py:270
-msgid "Sending dummy data disabled"
+#: openplotterPypilot.py:512
+msgid "Signal K server restarted"
 msgstr ""
 
-#: openplotterMyapp.py:278
-msgid "Changes canceled"
+#: ports.py:42
+msgid "Internal Pypilot Signal K server"
 msgstr ""
 
-#: openplotterMyapp.py:289
-msgid "Hello World!"
+#: ports.py:42
+msgid "Own Signal K format"
 msgstr ""
 
-#: openplotterMyapp.py:300
-msgid "Updating packages data, please wait... "
+#: ports.py:43
+msgid "Pypilot Signal K output"
 msgstr ""
 
 #: ports.py:45
-msgid "Signal K keys: "
+msgid "Autopilot browser controller"
 msgstr ""
 
-#: startup.py:48
-msgid "Checking My App dummy sensors..."
+#: ports.py:48
+msgid "Pypilot NMEA 0183 output"
 msgstr ""
 
-#: startup.py:58
-msgid "running"
+#: pypilotPostInstall.py:27
+msgid "Removing incompatible packages..."
 msgstr ""
 
-#: startup.py:59
-msgid "not running"
+#: pypilotPostInstall.py:30 pypilotPostInstall.py:36 pypilotPostInstall.py:51
+#: pypilotPostInstall.py:72 pypilotPostInstall.py:85 pypilotPostInstall.py:106
+#: pypilotPreUninstall.py:36 pypilotPreUninstall.py:42
+#: pypilotPreUninstall.py:54
+msgid "DONE"
+msgstr ""
+
+#: pypilotPostInstall.py:31 pypilotPostInstall.py:37 pypilotPostInstall.py:52
+#: pypilotPostInstall.py:73 pypilotPostInstall.py:86 pypilotPostInstall.py:107
+#: pypilotPreUninstall.py:37 pypilotPreUninstall.py:43
+#: pypilotPreUninstall.py:55
+msgid "FAILED: "
+msgstr ""
+
+#: pypilotPostInstall.py:33
+msgid "Installing python packages..."
+msgstr ""
+
+#: pypilotPostInstall.py:39
+msgid "Compiling RTIMULib2..."
+msgstr ""
+
+#: pypilotPostInstall.py:54
+msgid "Compiling Pypilot..."
+msgstr ""
+
+#: pypilotPostInstall.py:75
+msgid "Creating config files..."
+msgstr ""
+
+#: pypilotPostInstall.py:88
+msgid ""
+"Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
+msgstr ""
+
+#: pypilotPreUninstall.py:32
+msgid "Removing packages..."
+msgstr ""
+
+#: pypilotPreUninstall.py:39
+msgid "Removing config files..."
+msgstr ""
+
+#: pypilotPreUninstall.py:45
+msgid ""
+"Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
+msgstr ""
+
+#: startup.py:38
+msgid "Checking Pypilot..."
+msgstr ""
+
+#: startup.py:80
+msgid "disabled"
+msgstr ""
+
+#: startup.py:84 startup.py:93
+msgid "Please disable this Signal K connection. ID: "
+msgstr ""
+
+#: startup.py:98
+msgid "Please enable a Signal K connection fot Pypilot Signal K data"
+msgstr ""
+
+#: startup.py:103
+msgid "Browser controlller"
+msgstr ""
+
+#: startup.py:104
+msgid "LCD keypad/Remote controller"
+msgstr ""
+
+#: startup.py:110
+msgid "Please enable a Signal K connection fot Pypilot NMEA 0183 data"
+msgstr ""
+
+#: startup.py:121 startup.py:130
+msgid "There are duplicate Signal K connections: "
 msgstr ""
