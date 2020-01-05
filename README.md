@@ -14,17 +14,17 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 Install openplotter-pypilot dependencies:
 
-`sudo apt install swig python3-opengl python3-serial libpython3-dev python3-numpy python3-scipy python3-ujson python3-pyudev python3-pil python3-flask python3-flask-socketio python3-pip`
+`sudo apt install swig python3-opengl python3-serial libpython3-dev python3-numpy python3-scipy python3-ujson python3-pyudev python3-pil python3-flask python3-flask-socketio python3-dev python3-setuptools python3-pip`
 
 Clone the repository:
 
 `git clone https://github.com/openplotter/openplotter-pypilot`
 
 Install:
-
-`cd openplotter-pypilot
-sudo python3 setup.py install`
-
+```
+cd openplotter-pypilot
+sudo python3 setup.py install
+```
 Run post-installation script:
 
 `sudo pypilotPostInstall`

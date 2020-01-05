@@ -32,7 +32,7 @@ def main():
 	print(_('Removing packages...'))
 	try:
 		#subprocess.call(['apt', '-y', 'autoremove', 'py-rtimulib2'])
-		subprocess.call(['pip3', 'uninstall', '-y', 'pywavefront', 'pyglet', 'gps', 'gevent-websocket', 'tensorflow'])
+		subprocess.call(['pip3', 'uninstall', '-y', 'pywavefront', 'pyglet', 'gps', 'gevent-websocket', 'python-socketio', 'tensorflow'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
