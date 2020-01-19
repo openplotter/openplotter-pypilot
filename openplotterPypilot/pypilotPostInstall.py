@@ -32,22 +32,23 @@ def main():
 
 	print(_('Installing python packages...'))
 	try:
-		subprocess.call(['pip3', 'install', 'pywavefront', 'pyglet', 'gps', 'gevent-websocket', 'python-socketio', 'tensorflow'])
+		#add libatlas-base-dev apt package and tensorflow pip3 if support for tensorflow is added
+		subprocess.call(['pip3', 'install', 'pywavefront', 'pyglet', 'gps', 'gevent-websocket', 'python-socketio'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 	
 	print(_('Compiling RTIMULib2...'))
 	try:
 		subprocess.call(['rm', '-f', 'master.zip'])
-		subprocess.call(['rm', '-rf', 'python-RTIMULib2-master'])
-		subprocess.call(['wget', 'https://github.com/openplotter/python-RTIMULib2/archive/master.zip'])
+		subprocess.call(['rm', '-rf', 'RTIMULib2-master'])
+		subprocess.call(['wget', 'https://github.com/openplotter/RTIMULib2/archive/master.zip'])
 		subprocess.call(['unzip', 'master.zip'])
 		subprocess.call(['rm', '-f', 'master.zip'])
-		os.chdir('python-RTIMULib2-master')
+		os.chdir('RTIMULib2-master/Linux/python')
 		subprocess.call(['python3', 'setup.py', 'build'])
 		subprocess.call(['python3', 'setup.py', 'install'])
-		os.chdir('..')
-		subprocess.call(['rm', '-rf', 'python-RTIMULib2-master'])
+		os.chdir('../../..')
+		subprocess.call(['rm', '-rf', 'RTIMULib2-master'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
