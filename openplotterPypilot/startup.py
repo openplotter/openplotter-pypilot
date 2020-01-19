@@ -48,10 +48,6 @@ class Check():
 			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_web']).decode(sys.stdin.encoding)
 			self.webapp = True
 		except: self.webapp = False
-		try:
-			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_lcd']).decode(sys.stdin.encoding)
-			self.lcd = True
-		except: self.lcd = False
 	def check(self):
 		platform2 = platform.Platform()
 		green = '' 
@@ -101,7 +97,6 @@ class Check():
 		elif self.pypilot: 
 			green = _('Autopilot')
 			if self.webapp: green += ' | '+_('Browser controlller')
-			if self.lcd: green += ' | '+_('LCD keypad/Remote controller')
 			exists = False
 			if sklist:
 				for i in sklist:

@@ -48,7 +48,6 @@ def main():
 		disablestoprm('pypilot')
 		disablestoprm('pypilot_boatimu')
 		disablestoprm('pypilot_web')
-		disablestoprm('pypilot_lcd')
 
 		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))

@@ -169,16 +169,11 @@ class MyFrame(wx.Frame):
 			self.toolbar1.EnableTool(106,True)
 			self.toolbar2.EnableTool(201,True)
 			self.toolbar2.EnableTool(202,True)
-			self.toolbar2.EnableTool(204,True)
 			self.toolbar3.EnableTool(301,True)
 			try:
 				subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_web']).decode(sys.stdin.encoding)
 				self.toolbar2.ToggleTool(202,True)
 				self.toolbar2.EnableTool(203,True)
-			except: pass
-			try:
-				subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_lcd']).decode(sys.stdin.encoding)
-				self.toolbar2.ToggleTool(204,True)
 			except: pass
 			self.listSerial.Enable()
 
@@ -278,8 +273,6 @@ class MyFrame(wx.Frame):
 		self.toolbar2.EnableTool(202,False)
 		self.toolbar2.ToggleTool(202,False)
 		self.toolbar2.EnableTool(203,False)
-		self.toolbar2.EnableTool(204,False)
-		self.toolbar2.ToggleTool(204,False)
 		self.toolbar3.EnableTool(301,False)
 		self.toolbar3.EnableTool(302,False)
 		self.listSerial.Disable()
@@ -298,9 +291,6 @@ class MyFrame(wx.Frame):
 		self.Bind(wx.EVT_TOOL, self.onToolBrowser, toolBrowser)
 		toolOpen = self.toolbar2.AddTool(203, _('Open'), wx.Bitmap(self.currentdir+"/data/open.png"))
 		self.Bind(wx.EVT_TOOL, self.onToolOpen, toolOpen)
-		self.toolbar2.AddSeparator()
-		toolLcd = self.toolbar2.AddCheckTool(204, _('LCD keypad/Remote Control'), wx.Bitmap(self.currentdir+"/data/control.png"))
-		self.Bind(wx.EVT_TOOL, self.onToolLcd, toolLcd)
 		self.toolbar2.AddSeparator()
 
 		imuDetectedLabel = wx.StaticText( self.autopilot, wx.ID_ANY, _('Detected IMU:'))
@@ -346,12 +336,6 @@ class MyFrame(wx.Frame):
 	def onToolOpen(self, e): 
 		url = "http://localhost:8080"
 		webbrowser.open(url, new=2)
-
-	def onToolLcd(self, e): 
-		if self.toolbar2.GetToolState(204):
-			subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'enableLcd'])
-		else: 
-			subprocess.Popen([self.platform.admin, 'python3', self.currentdir+'/service.py', 'disableLcd'])
 
 	def onToolAdd(self, e): 
 		dlg = selectConnections.AddPort('', True, 'auto', False)

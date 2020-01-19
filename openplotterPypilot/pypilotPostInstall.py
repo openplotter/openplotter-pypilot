@@ -100,7 +100,6 @@ def main():
 
 		writeservice('pypilot_boatimu', 'local-fs.target', 'pypilot', '-q')
 		writeservice('pypilot', 'local-fs.target', 'pypilot_boatimu')
-		writeservice('pypilot_lcd', 'local-fs.target')
 		writeservice('pypilot_web', 'local-fs.target', False, '8080')
 		writeservice('openplotter-pypilot-read', 'multi-user.target')
 		subprocess.call(['systemctl', 'daemon-reload'])
