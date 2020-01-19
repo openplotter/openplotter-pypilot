@@ -172,7 +172,7 @@ class MyFrame(wx.Frame):
 			self.toolbar2.EnableTool(204,True)
 			self.toolbar3.EnableTool(301,True)
 			try:
-				subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_webapp']).decode(sys.stdin.encoding)
+				subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_web']).decode(sys.stdin.encoding)
 				self.toolbar2.ToggleTool(202,True)
 				self.toolbar2.EnableTool(203,True)
 			except: pass
@@ -344,7 +344,7 @@ class MyFrame(wx.Frame):
 			self.toolbar2.EnableTool(203,False)
 
 	def onToolOpen(self, e): 
-		url = "http://localhost:8000"
+		url = "http://localhost:8080"
 		webbrowser.open(url, new=2)
 
 	def onToolLcd(self, e): 

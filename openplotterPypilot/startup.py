@@ -45,7 +45,7 @@ class Check():
 			self.pypilot = True
 		except: self.pypilot = False
 		try:
-			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_webapp']).decode(sys.stdin.encoding)
+			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_web']).decode(sys.stdin.encoding)
 			self.webapp = True
 		except: self.webapp = False
 		try:

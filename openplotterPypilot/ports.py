@@ -32,7 +32,7 @@ class Ports:
 			self.pypilot = True
 		except: self.pypilot = False
 		try:
-			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_webapp']).decode(sys.stdin.encoding)
+			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_web']).decode(sys.stdin.encoding)
 			self.webapp = True
 		except: self.webapp = False
 
@@ -42,8 +42,8 @@ class Ports:
 			usedPorts.append({'id':'pypilotConn1', 'description':_('Internal Pypilot Signal K server'), 'data':_('Own Signal K format'), 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':21311, 'editable':'0'})
 			usedPorts.append({'id':'pypilotConn2', 'description':_('Pypilot Signal K output'), 'data':'Signal K', 'direction':'2', 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':20220, 'editable':'0'})
 			if self.webapp:
-				usedPorts.append({'id':'pypilotConn4', 'description':_('Autopilot browser controller'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8000, 'editable':'0'})
-		
+				usedPorts.append({'id':'pypilotConn4', 'description':_('Autopilot browser controller'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8080, 'editable':'0'})
+				usedPorts.append({'id':'pypilotConn5', 'description':_('Autopilot browser controller remote'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':33333, 'editable':'0'})
 		if self.pypilot:
 			usedPorts.append({'id':'pypilotConn3', 'description':_('Pypilot NMEA 0183 output'), 'data':'NMEA 0183', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':20220, 'editable':'0'})
 		return usedPorts

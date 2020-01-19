@@ -23,22 +23,22 @@ if sys.argv[1]=='disable':
 	subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'disable', 'openplotter-pypilot-read'])
 	subprocess.call(['systemctl', 'disable', 'pypilot_lcd'])
-	subprocess.call(['systemctl', 'disable', 'pypilot_webapp'])
+	subprocess.call(['systemctl', 'disable', 'pypilot_web'])
 	subprocess.call(['systemctl', 'stop', 'pypilot'])
 	subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'stop', 'openplotter-pypilot-read'])
 	subprocess.call(['systemctl', 'stop', 'pypilot_lcd'])
-	subprocess.call(['systemctl', 'stop', 'pypilot_webapp'])
+	subprocess.call(['systemctl', 'stop', 'pypilot_web'])
 
 if sys.argv[1]=='boatimu':
 	subprocess.call(['systemctl', 'disable', 'pypilot'])
 	subprocess.call(['systemctl', 'disable', 'pypilot_lcd'])
-	subprocess.call(['systemctl', 'disable', 'pypilot_webapp'])
+	subprocess.call(['systemctl', 'disable', 'pypilot_web'])
 	subprocess.call(['systemctl', 'enable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'enable', 'openplotter-pypilot-read'])
 	subprocess.call(['systemctl', 'stop', 'pypilot'])
 	subprocess.call(['systemctl', 'stop', 'pypilot_lcd'])
-	subprocess.call(['systemctl', 'stop', 'pypilot_webapp'])
+	subprocess.call(['systemctl', 'stop', 'pypilot_web'])
 	subprocess.call(['systemctl', 'restart', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'restart', 'openplotter-pypilot-read'])
 
@@ -51,12 +51,12 @@ if sys.argv[1]=='pypilot':
 	subprocess.call(['systemctl', 'restart', 'openplotter-pypilot-read'])
 
 if sys.argv[1]=='enableBrowser':
-	subprocess.call(['systemctl', 'enable', 'pypilot_webapp'])
-	subprocess.call(['systemctl', 'restart', 'pypilot_webapp'])
+	subprocess.call(['systemctl', 'enable', 'pypilot_web'])
+	subprocess.call(['systemctl', 'restart', 'pypilot_web'])
 
 if sys.argv[1]=='disableBrowser':
-	subprocess.call(['systemctl', 'disable', 'pypilot_webapp'])
-	subprocess.call(['systemctl', 'stop', 'pypilot_webapp'])
+	subprocess.call(['systemctl', 'disable', 'pypilot_web'])
+	subprocess.call(['systemctl', 'stop', 'pypilot_web'])
 
 if sys.argv[1]=='enableLcd':
 	subprocess.call(['systemctl', 'enable', 'pypilot_lcd'])

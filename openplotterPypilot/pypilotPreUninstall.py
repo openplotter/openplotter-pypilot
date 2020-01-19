@@ -47,7 +47,7 @@ def main():
 		disablestoprm('openplotter-pypilot-read')
 		disablestoprm('pypilot')
 		disablestoprm('pypilot_boatimu')
-		disablestoprm('pypilot_webapp')
+		disablestoprm('pypilot_web')
 		disablestoprm('pypilot_lcd')
 
 		subprocess.call(['systemctl', 'daemon-reload'])
