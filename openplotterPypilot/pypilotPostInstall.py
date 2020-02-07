@@ -94,7 +94,7 @@ def main():
 			fo.write( '[Unit]\nDescription='+name+'\nDefaultDependencies=false\n')
 			if conflicts:
 				fo.write('Conflicts='+conflicts+'.service\n')
-			fo.write('\n[Service]\nType=simple\nExecStart='+name+' '+args+'\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy='+wanted)
+			fo.write('\n[Service]\nType=simple\nExecStart='+name+' '+args+'\nStandardOutput=null\nStandardError=null\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n[Install]\nWantedBy='+wanted)
 			fo.close()
 			subprocess.call(['mv', '-f', tempname, '/etc/systemd/system'])
 

@@ -61,14 +61,15 @@ def main():
 				if 'imu.heading_lowpass' in i: headingValue = result[i]['value']*0.017453293
 				if 'imu.roll' in i: rollValue = result[i]['value']*0.017453293
 				if 'imu.pitch' in i: pitchValue = result[i]['value']*0.017453293
+				
+			if headingValue and rollValue and pitchValue:
+				if pypilot_boatimu: 
+					values += '{"path": "navigation.headingMagnetic","value":'+str(headingValue)+'}'
+					values += ','
+				values += '{"path": "navigation.attitude","value":{"roll":'+str(rollValue)+',"pitch":'+str(pitchValue)+',"yaw":null}}'
 
-			if pypilot_boatimu: 
-				values += '{"path": "navigation.headingMagnetic","value":'+str(headingValue)+'}'
-				values += ','
-			values += '{"path": "navigation.attitude","value":{"roll":'+str(rollValue)+',"pitch":'+str(pitchValue)+',"yaw":null}}'
-
-			SignalK = '{"updates":[{"$source":"OpenPlotter.I2C.pypilot","values":['+values+']}]}\n'
-			sock.sendto(SignalK.encode('utf-8'), ('127.0.0.1', 20220))
+				SignalK = '{"updates":[{"$source":"OpenPlotter.I2C.pypilot","values":['+values+']}]}\n'
+				sock.sendto(SignalK.encode('utf-8'), ('127.0.0.1', 20220))
 
 if __name__ == '__main__':
 	main()
