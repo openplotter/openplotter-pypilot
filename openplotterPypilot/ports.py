@@ -20,7 +20,7 @@ from openplotterSettings import language
 class Ports:
 	def __init__(self,conf,currentLanguage):
 		self.conf = conf
-		currentdir = os.path.dirname(__file__)
+		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
 		self.connections = []
 		try:
