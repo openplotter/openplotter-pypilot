@@ -500,6 +500,7 @@ class MyFrame(wx.Frame):
 def main():
 	app = wx.App()
 	MyFrame().Show()
+	time.sleep(1)
 	app.MainLoop()
 
 if __name__ == '__main__':
