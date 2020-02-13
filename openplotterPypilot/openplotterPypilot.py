@@ -22,6 +22,7 @@ from openplotterSettings import language
 from openplotterSettings import ports
 from openplotterSettings import platform
 from openplotterSettings import selectConnections
+from .version import version
 
 class MyFrame(wx.Frame):
 	def __init__(self):
@@ -32,7 +33,7 @@ class MyFrame(wx.Frame):
 		self.currentLanguage = self.conf.get('GENERAL', 'lang')
 		self.language = language.Language(self.currentdir,'openplotter-pypilot',self.currentLanguage)
 
-		wx.Frame.__init__(self, None, title='Pypilot', size=(800,444))
+		wx.Frame.__init__(self, None, title='Pypilot'+' '+version, size=(800,444))
 		self.SetFont(wx.Font(10, wx.FONTFAMILY_DEFAULT, wx.FONTSTYLE_NORMAL, wx.FONTWEIGHT_NORMAL))
 		icon = wx.Icon(self.currentdir+"/data/openplotter-pypilot.png", wx.BITMAP_TYPE_PNG)
 		self.SetIcon(icon)
@@ -498,6 +499,13 @@ class MyFrame(wx.Frame):
 ################################################################################
 
 def main():
+	try:
+		platform2 = platform.Platform()
+		if not platform2.postInstall(version,'pypilot'):
+			subprocess.Popen(['openplotterPostInstall', platform2.admin+' pypilotPostInstall'])
+			return
+	except: pass
+
 	app = wx.App()
 	MyFrame().Show()
 	time.sleep(1)
