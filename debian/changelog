@@ -1,4 +1,10 @@
-openplotter-pypilot (2.0.6-beta) buster; urgency=medium
+openplotter-pypilot (2.0.7-beta) bionic; urgency=medium
+
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Sat, 29 Feb 2020 16:55:07 +0100
+
+openplotter-pypilot (2.0.6-beta) bionic; urgency=medium
 
   * Candidate release
 
