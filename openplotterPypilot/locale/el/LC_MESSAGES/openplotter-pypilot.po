@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-02-14 18:29+0100\n"
-"PO-Revision-Date: 2020-02-29 16:49+0100\n"
+"POT-Creation-Date: 2020-03-06 21:08+0100\n"
+"PO-Revision-Date: 2020-03-06 21:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el\n"
@@ -185,11 +185,7 @@ msgid "Signal K server restarted"
 msgstr ""
 
 #: ports.py:42
-msgid "Internal Pypilot Signal K server"
-msgstr ""
-
-#: ports.py:42
-msgid "Own Signal K format"
+msgid "Pypilot server"
 msgstr ""
 
 #: ports.py:43

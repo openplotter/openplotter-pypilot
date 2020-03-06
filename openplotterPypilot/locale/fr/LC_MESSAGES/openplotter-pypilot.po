@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-02-14 18:29+0100\n"
-"PO-Revision-Date: 2020-02-29 16:50+0100\n"
+"POT-Creation-Date: 2020-03-06 21:08+0100\n"
+"PO-Revision-Date: 2020-03-06 21:18+0100\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -166,15 +166,15 @@ msgstr "Supprimer la connexion"
 
 #: openplotterPypilot.py:467
 msgid "Failed. Error creating connection in Signal K"
-msgstr "Échec. Erreur lors de la création de la connection sur Signal K"
+msgstr "Échec. Erreur lors de la création de la connection Signal K"
 
 #: openplotterPypilot.py:469
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr "Veuillez installer l'appli OpenPlotter \"Signal K Installer\""
+msgstr "Veuillez installer l'appli d'OpenPlotter \"Signal K Installer\""
 
 #: openplotterPypilot.py:488
 msgid "Failed. Error removing connection in Signal K"
-msgstr "Échec. Erreur lors de la suppression de la connexion sur Signal K"
+msgstr "Échec. Erreur lors de la suppression de la connexion Signal K"
 
 #: openplotterPypilot.py:491
 msgid "Restarting Signal K server... "
@@ -185,12 +185,8 @@ msgid "Signal K server restarted"
 msgstr "Serveur Signal K redémarré"
 
 #: ports.py:42
-msgid "Internal Pypilot Signal K server"
-msgstr "Serveur Signal K interne de Pypilot"
-
-#: ports.py:42
-msgid "Own Signal K format"
-msgstr "Format Signal K personnalisé"
+msgid "Pypilot server"
+msgstr ""
 
 #: ports.py:43
 msgid "Pypilot Signal K output"

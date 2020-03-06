@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-02-14 18:29+0100\n"
-"PO-Revision-Date: 2020-02-29 16:50+0100\n"
+"POT-Creation-Date: 2020-03-06 21:08+0100\n"
+"PO-Revision-Date: 2020-03-06 21:17+0100\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -48,11 +48,11 @@ msgstr "Calibrazione"
 
 #: openplotterPypilot.py:58
 msgid "Scope"
-msgstr ""
+msgstr "Ambito"
 
 #: openplotterPypilot.py:60
 msgid "Client"
-msgstr ""
+msgstr "Cliente"
 
 #: openplotterPypilot.py:63
 msgid "Refresh"
@@ -82,7 +82,7 @@ msgstr "Errore"
 
 #: openplotterPypilot.py:187 openplotterPypilot.py:298
 msgid "none"
-msgstr ""
+msgstr "nessuno"
 
 #: openplotterPypilot.py:205
 msgid "unknown: "
@@ -90,27 +90,27 @@ msgstr "sconosciuto: "
 
 #: openplotterPypilot.py:226
 msgid "Heading, Heel, Pitch, Serial devices"
-msgstr ""
+msgstr "Rotta, rollio, beccheggio, dispositivi seriali"
 
 #: openplotterPypilot.py:229
 msgid "Heel, Pitch"
-msgstr ""
+msgstr "Rollio, Beccheggio"
 
 #: openplotterPypilot.py:233
 msgid "Heading, Heel, Pitch"
-msgstr ""
+msgstr "Rotta, Rollio, Beccheggio"
 
 #: openplotterPypilot.py:283
 msgid "Autopilot serial devices"
-msgstr ""
+msgstr "Dispositivi seriali autopilota"
 
 #: openplotterPypilot.py:288
 msgid "Control"
-msgstr ""
+msgstr "Controllo"
 
 #: openplotterPypilot.py:291
 msgid "Browser Control"
-msgstr ""
+msgstr "Controllo browser"
 
 #: openplotterPypilot.py:293
 msgid "Open"
@@ -185,24 +185,20 @@ msgid "Signal K server restarted"
 msgstr "Server Signal K riavviato"
 
 #: ports.py:42
-msgid "Internal Pypilot Signal K server"
-msgstr ""
-
-#: ports.py:42
-msgid "Own Signal K format"
+msgid "Pypilot server"
 msgstr ""
 
 #: ports.py:43
 msgid "Pypilot Signal K output"
-msgstr ""
+msgstr "Output Signal K Pypilot"
 
 #: ports.py:45
 msgid "Autopilot browser controller"
-msgstr ""
+msgstr "Controllo autopilota via browser"
 
 #: ports.py:46
 msgid "Autopilot browser controller remote"
-msgstr ""
+msgstr "Controllo autopilota via browser remoto"
 
 #: ports.py:48
 msgid "Pypilot NMEA 0183 output"
@@ -250,7 +246,7 @@ msgstr "Aggiunta di servizi pypilot, pypilot_boatimu e openplotter-pypilot-read.
 
 #: pypilotPostInstall.py:110
 msgid "Setting version..."
-msgstr ""
+msgstr "Impostazione versione..."
 
 #: pypilotPreUninstall.py:32
 msgid "Removing packages..."
@@ -266,7 +262,7 @@ msgstr "Rimozione dei servizi pypilot, pypilot_boatimu e openplotter-pypilot-rea
 
 #: pypilotPreUninstall.py:56
 msgid "Removing version..."
-msgstr ""
+msgstr "Rimozione versione..."
 
 #: startup.py:38
 msgid "Checking Pypilot..."
@@ -286,7 +282,7 @@ msgstr "Si prega di abilitare una connessione Signal K per i dati Pypilot"
 
 #: startup.py:99
 msgid "Browser controlller"
-msgstr ""
+msgstr "Controllo via browser"
 
 #: startup.py:105
 msgid "Please enable a Signal K connection fot Pypilot NMEA 0183 data"
