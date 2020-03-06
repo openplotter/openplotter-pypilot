@@ -78,7 +78,7 @@ def main():
 	try:
 		pypilotFolder = conf2.home+'/.pypilot'
 		if not os.path.exists(pypilotFolder): os.mkdir(pypilotFolder)
-		skConfFile = pypilotFolder+'/signalk.conf'
+		skConfFile = pypilotFolder+'/pypilot_client.conf'
 		if not os.path.exists(skConfFile):
 			fo = open(skConfFile, "w")
 			fo.write( '{"host": "localhost"}')

@@ -15,12 +15,12 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 import socket, time, subprocess, sys
-from signalk.client import SignalKClient
+from pypilot.client import pypilotClient
 
 def main():
 
 	def on_con(client):
-		print('conected to pypilot Signal K server')
+		print('conected to pypilot server')
 		client.watch('imu.heading_lowpass')
 		client.watch('imu.pitch')
 		client.watch('imu.roll')
@@ -42,14 +42,14 @@ def main():
 			time.sleep(0.5)
 			try:
 				if not client:
-					client = SignalKClient(on_con, 'localhost')
+					client = pypilotClient(on_con, 'localhost')
 			except:
 				time.sleep(3)
 				continue
 			try:
 				result = client.receive()
 			except:
-				print('disconnected from pypilot Signal K server')
+				print('disconnected from pypilot server')
 				client = False
 				continue
 
@@ -73,63 +73,4 @@ def main():
 
 if __name__ == '__main__':
 	main()
-
-'''
-import socketserver, time, sys, subprocess
-from signalk.client import SignalKClient
-
-class MyTCPHandler(socketserver.BaseRequestHandler):
-
-	def handle(self):
-
-		def nmea_cksum(msg):
-			value = 0
-			for c in msg:
-				value ^= ord(c)
-			return value & 255
 	
-		def send_nmea(msg):
-			line = '$' + msg + ('*%02X' % nmea_cksum(msg)) + '\r\n'
-			self.request.sendall(line.encode())
-
-		def on_con(client):
-			print('conected to pypilot Signal K server')
-			client.watch('imu.heading')
-			client.watch('imu.pitch')
-			client.watch('imu.roll')
-
-		client = False
-		while True:
-			time.sleep(0.5)
-			try:
-				if not client:
-					client = SignalKClient(on_con, 'localhost')
-			except:
-				time.sleep(3)
-				continue
-			try:
-				result = client.receive()
-			except:
-				print('disconnected from pypilot Signal K server')
-				client = False
-				continue
-			headingValue = ''
-			rollValue = ''
-			pitchValue = ''
-			for i in result:
-				if 'imu.heading' in i: headingValue = result[i]['value']
-				if 'imu.roll' in i: rollValue = result[i]['value']
-				if 'imu.pitch' in i: pitchValue = result[i]['value']
-
-			if pitchValue: send_nmea('APXDR,A,%.3f,D,PTCH' % pitchValue)
-			if rollValue: send_nmea('APXDR,A,%.3f,D,ROLL' % rollValue)
-			if headingValue: send_nmea('APHDM,%.3f,M' % headingValue)
-
-def main():
-	HOST, PORT = "localhost", 20220
-	with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
-		server.serve_forever()
-
-if __name__ == "__main__":
-	main()
-'''

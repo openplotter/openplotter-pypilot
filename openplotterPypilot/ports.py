@@ -39,7 +39,7 @@ class Ports:
 	def usedPorts(self):
 		usedPorts = []
 		if self.pypilot_boatimu or self.pypilot:
-			usedPorts.append({'id':'pypilotConn1', 'description':_('Internal Pypilot Signal K server'), 'data':_('Own Signal K format'), 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':21311, 'editable':'0'})
+			usedPorts.append({'id':'pypilotConn1', 'description':_('Pypilot server'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':21311, 'editable':'0'})
 			usedPorts.append({'id':'pypilotConn2', 'description':_('Pypilot Signal K output'), 'data':'Signal K', 'direction':'2', 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':20220, 'editable':'0'})
 			if self.webapp:
 				usedPorts.append({'id':'pypilotConn4', 'description':_('Autopilot browser controller'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8080, 'editable':'0'})

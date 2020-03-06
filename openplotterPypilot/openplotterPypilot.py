@@ -138,12 +138,12 @@ class MyFrame(wx.Frame):
 		subprocess.Popen(['pypilot_calibration', 'localhost'])
 
 	def OnToolScope(self,e):
-		subprocess.call(['pkill', '-f', 'signalk_scope_wx'])
-		subprocess.Popen(['signalk_scope_wx', 'localhost'])
+		subprocess.call(['pkill', '-f', 'pypilot_scope'])
+		subprocess.Popen(['pypilot_scope', 'localhost'])
 
 	def OnToolClient(self,e):
-		subprocess.call(['pkill', '-f', 'signalk_client_wx'])
-		subprocess.Popen(['signalk_client_wx', 'localhost'])
+		subprocess.call(['pkill', '-f', 'pypilot_client_wx'])
+		subprocess.Popen(['pypilot_client_wx', 'localhost'])
 
 	def onRead(self):
 		try:
