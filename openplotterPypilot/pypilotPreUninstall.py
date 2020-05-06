@@ -25,14 +25,14 @@ def disablestoprm(name):
 
 def main():
 	conf2 = conf.Conf()
-	currentdir = os.path.dirname(__file__)
+	currentdir = os.path.dirname(os.path.abspath(__file__))
 	currentLanguage = conf2.get('GENERAL', 'lang')
 	language.Language(currentdir,'openplotter-pypilot',currentLanguage)
 
 	print(_('Removing packages...'))
 	try:
-		subprocess.call(['apt', '-y', 'autoremove', 'py-rtimulib2'])
-		subprocess.call(['pip', 'uninstall', '-y', 'pywavefront'])
+		#subprocess.call(['apt', '-y', 'autoremove', 'py-rtimulib2'])
+		subprocess.call(['pip3', 'uninstall', '-y', 'pywavefront', 'pyglet', 'gps', 'gevent-websocket', 'python-socketio', 'tensorflow'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
@@ -44,26 +44,20 @@ def main():
 
 	print(_('Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services...'))
 	try:
-                def disablestop(name):
-	                subprocess.call(['systemctl', 'disable', name])
-                        subprocess.call(['systemctl', 'stop', name])
-		        subprocess.call(['rm', '-f', '/etc/systemd/system/'+name+'.service'])
-                
-		disablestoprm('openplotter-pypilot-read'])
-		disablestoprm('pypilot'])
-		disablestoprm('pypilot_boatimu'])
-		disablestoprm('pypilot_webapp'])
-		disablestoprm('pypilot_lcd'])
+		disablestoprm('openplotter-pypilot-read')
+		disablestoprm('pypilot')
+		disablestoprm('pypilot_boatimu')
+		disablestoprm('pypilot_web')
 
 		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Removing openplotter-pypilot-read script manually...')) # pypilot is still python 2, so it have to be installed independent from openplotter-pypilot that is python 3
+	print(_('Removing version...'))
 	try:
-		subprocess.call(['rm', '-f', '/usr/bin/openplotter-pypilot-read'])
+		conf2.set('APPS', 'pypilot', '')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
-
+	
 if __name__ == '__main__':
 	main()

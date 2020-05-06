@@ -14,29 +14,36 @@
 #
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
-import os
+import os, subprocess, sys
 from openplotterSettings import language
 
 class Ports:
 	def __init__(self,conf,currentLanguage):
 		self.conf = conf
-		currentdir = os.path.dirname(__file__)
+		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
 		self.connections = []
-		try: port = int(self.conf.get('PYPILOT', 'pypilotConn2'))
-		except: port = 52000 #default port
-		self.connections.append({'id':'pypilotConn1', 'description':_('Internal Pypilot Signal K server'), 'data':_('Own Signal K format'), 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':21311, 'editable':'0'})
-		self.connections.append({'id':'pypilotConn2', 'description':_('Pypilot Signal K output'), 'data':_('Signal K keys: ')+'navigation.headingMagnetic, navigation.attitude.roll, navigation.attitude,pitch', 'direction':'2', 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':port, 'editable':'1'})
-		self.connections.append({'id':'pypilotConn3', 'description':_('Pypilot NMEA 0183 output'), 'data':'NMEA 0183: ', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':20220, 'editable':'0'})
-	
+		try:
+			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_boatimu']).decode(sys.stdin.encoding)
+			self.pypilot_boatimu = True
+		except: self.pypilot_boatimu = False
+		try:
+			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot']).decode(sys.stdin.encoding)
+			self.pypilot = True
+		except: self.pypilot = False
+		try:
+			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot_web']).decode(sys.stdin.encoding)
+			self.webapp = True
+		except: self.webapp = False
+
 	def usedPorts(self):
 		usedPorts = []
-		mode = self.conf.get('PYPILOT', 'mode')
-		if mode == '1': # imu
-			usedPorts.append(self.connections[0])
-			usedPorts.append(self.connections[1])
-		elif mode == '2': # pypilot
-			usedPorts.append(self.connections[0])
-			usedPorts.append(self.connections[1])
-			usedPorts.append(self.connections[2])
-		if usedPorts: return usedPorts
+		if self.pypilot_boatimu or self.pypilot:
+			usedPorts.append({'id':'pypilotConn1', 'description':_('Pypilot server'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':21311, 'editable':'0'})
+			usedPorts.append({'id':'pypilotConn2', 'description':_('Pypilot Signal K output'), 'data':'Signal K', 'direction':'2', 'type':'UDP', 'mode':'client', 'address':'localhost', 'port':20220, 'editable':'0'})
+			if self.webapp:
+				usedPorts.append({'id':'pypilotConn4', 'description':_('Autopilot browser controller'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':8080, 'editable':'0'})
+				usedPorts.append({'id':'pypilotConn5', 'description':_('Autopilot browser controller remote'), 'data':'', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':33333, 'editable':'0'})
+		if self.pypilot:
+			usedPorts.append({'id':'pypilotConn3', 'description':_('Pypilot NMEA 0183 output'), 'data':'NMEA 0183', 'direction':'3', 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':20220, 'editable':'0'})
+		return usedPorts

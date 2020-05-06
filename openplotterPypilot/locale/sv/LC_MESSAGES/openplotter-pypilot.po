@@ -1,11 +1,11 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: openplotter-pypilot\n"
+"Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-03-06 21:08+0100\n"
-"PO-Revision-Date: 2020-03-06 21:08+0100\n"
+"PO-Revision-Date: 2020-03-06 21:17+0100\n"
 "Last-Translator: \n"
-"Language-Team: \n"
-"Language: en\n"
+"Language-Team: Swedish\n"
+"Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,83 +13,84 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Language: sv-SE\n"
+"X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
 msgid "Help"
-msgstr ""
+msgstr "Hjälp"
 
 #: openplotterPypilot.py:49
 msgid "Settings"
-msgstr ""
+msgstr "Inställningar"
 
 #: openplotterPypilot.py:52
 msgid "Mode"
-msgstr ""
+msgstr "Läge"
 
 #: openplotterPypilot.py:52
 msgid "Disabled"
-msgstr ""
+msgstr "Inaktiverad"
 
 #: openplotterPypilot.py:52 startup.py:84
 msgid "Only compass"
-msgstr ""
+msgstr "Endast kompass"
 
 #: openplotterPypilot.py:52 openplotterPypilot.py:70 startup.py:98
 msgid "Autopilot"
-msgstr ""
+msgstr "Autopilot"
 
 #: openplotterPypilot.py:56
 msgid "Calibration"
-msgstr ""
+msgstr "Kalibrering"
 
 #: openplotterPypilot.py:58
 msgid "Scope"
-msgstr ""
+msgstr "Oscilloskop"
 
 #: openplotterPypilot.py:60
 msgid "Client"
-msgstr ""
+msgstr "Klient"
 
 #: openplotterPypilot.py:63
 msgid "Refresh"
-msgstr ""
+msgstr "Uppdatera"
 
 #: openplotterPypilot.py:71
 msgid "Connections"
-msgstr ""
+msgstr "Anslutningar"
 
 #: openplotterPypilot.py:127 openplotterPypilot.py:355
 #: openplotterPypilot.py:369
 msgid "Applying changes ..."
-msgstr ""
+msgstr "Aktiverar ändringar..."
 
 #: openplotterPypilot.py:134 openplotterPypilot.py:362
 #: openplotterPypilot.py:384
 msgid "Changes applied"
-msgstr ""
+msgstr "Ändringar tillämpade"
 
 #: openplotterPypilot.py:184
-msgid ""
-"I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi "
-"configuration -> Interfaces"
-msgstr ""
+msgid "I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces"
+msgstr "I2C är inaktiverad. Vänligen aktivera I2C gränssnitt i Inställningar -> Raspberry Pi konfigurationen -> Gränssnitt"
 
 #: openplotterPypilot.py:185
 msgid "Failed"
-msgstr ""
+msgstr "Misslyckades"
 
 #: openplotterPypilot.py:187 openplotterPypilot.py:298
 msgid "none"
-msgstr ""
+msgstr "inga"
 
 #: openplotterPypilot.py:205
 msgid "unknown: "
-msgstr ""
+msgstr "okänd: "
 
 #: openplotterPypilot.py:226
 msgid "Heading, Heel, Pitch, Serial devices"
-msgstr ""
+msgstr "Kurs, Krängning, Lutning, Seriella enheter"
 
 #: openplotterPypilot.py:229
 msgid "Heel, Pitch"
@@ -240,8 +241,7 @@ msgid "Creating config files..."
 msgstr ""
 
 #: pypilotPostInstall.py:90
-msgid ""
-"Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
+msgid "Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
 msgstr ""
 
 #: pypilotPostInstall.py:110
@@ -257,8 +257,7 @@ msgid "Removing config files..."
 msgstr ""
 
 #: pypilotPreUninstall.py:45
-msgid ""
-"Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
+msgid "Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
 msgstr ""
 
 #: pypilotPreUninstall.py:56
