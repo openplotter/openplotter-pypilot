@@ -18,11 +18,19 @@ Install openplotter-pypilot dependencies:
 
 Clone the repository:
 
-`git clone https://github.com/openplotter/openplotter-pypilot`
-
-Make your changes and create the package:
 
 ```
+git clone https://github.com/pypilot/pypilot
+git clone https://github.com/pypilot/pypilot_data
+cp -rv pypilot_data/* pypilot
+cd pypilot
+python setup.py build
+sudo python setup.py install
+cd ..
+```
+
+```
+git clone https://github.com/openplotter/openplotter-pypilot
 cd openplotter-pypilot
 dpkg-buildpackage -b
 ```
@@ -38,9 +46,11 @@ Run post-installation script:
 
 `sudo pypilotPostInstall`
 
-Run:
+Run openplotter-pypilot
 
-`openplotter-pypilot`
+```
+openplotter-pypilot
+```
 
 Make your changes and repeat package, installation and post-installation steps to test. Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter).
 
