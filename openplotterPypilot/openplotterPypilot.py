@@ -283,6 +283,7 @@ class MyFrame(wx.Frame):
 		self.listSerial.InsertColumn(0, _('Autopilot serial devices'), width=630)
 		self.listSerial.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onListSerialSelected)
 		self.listSerial.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onListSerialDeselected)
+		self.listSerial.SetTextColour(wx.BLACK)
 
 		self.toolbar2 = wx.ToolBar(self.autopilot, style=wx.TB_TEXT)
 		toolControl = self.toolbar2.AddTool(201, _('Control'), wx.Bitmap(self.currentdir+"/data/control.png"))
@@ -411,6 +412,7 @@ class MyFrame(wx.Frame):
 		self.listConnections.InsertColumn(3, _('SK connection ID'), width=180)
 		self.listConnections.Bind(wx.EVT_LIST_ITEM_SELECTED, self.onlistConnectionsSelected)
 		self.listConnections.Bind(wx.EVT_LIST_ITEM_DESELECTED, self.onlistConnectionsDeselected)
+		self.listConnections.SetTextColour(wx.BLACK)
 
 		self.toolbar4 = wx.ToolBar(self.connections, style=wx.TB_TEXT | wx.TB_VERTICAL)
 		skConnections = self.toolbar4.AddTool(401, _('Add Connection'), wx.Bitmap(self.currentdir+"/data/sk.png"))
