@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-03-06 21:08+0100\n"
-"PO-Revision-Date: 2020-03-06 21:19+0100\n"
+"POT-Creation-Date: 2020-10-09 17:23+0200\n"
+"PO-Revision-Date: 2020-10-19 18:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 3;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: cs\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
+"X-Crowdin-File-ID: 19\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
@@ -62,13 +64,13 @@ msgstr "Aktualizovat"
 msgid "Connections"
 msgstr "Připojení"
 
-#: openplotterPypilot.py:127 openplotterPypilot.py:355
-#: openplotterPypilot.py:369
+#: openplotterPypilot.py:127 openplotterPypilot.py:356
+#: openplotterPypilot.py:370
 msgid "Applying changes ..."
 msgstr "Aplikování změn..."
 
-#: openplotterPypilot.py:134 openplotterPypilot.py:362
-#: openplotterPypilot.py:384
+#: openplotterPypilot.py:134 openplotterPypilot.py:363
+#: openplotterPypilot.py:385
 msgid "Changes applied"
 msgstr "Změny byly aplikovány"
 
@@ -80,7 +82,7 @@ msgstr "I2C je zakázáno. Prosím povolte I2C rozhraní v Nastavení -> Konfigu
 msgid "Failed"
 msgstr "Chyba"
 
-#: openplotterPypilot.py:187 openplotterPypilot.py:298
+#: openplotterPypilot.py:187 openplotterPypilot.py:299
 msgid "none"
 msgstr "žádný"
 
@@ -104,89 +106,89 @@ msgstr "Směr, náklon, stoupání"
 msgid "Autopilot serial devices"
 msgstr "Autopilot sériová zařízení"
 
-#: openplotterPypilot.py:288
+#: openplotterPypilot.py:289
 msgid "Control"
 msgstr "Ovládání"
 
-#: openplotterPypilot.py:291
+#: openplotterPypilot.py:292
 msgid "Browser Control"
 msgstr "Ovládání prohlížeče"
 
-#: openplotterPypilot.py:293
+#: openplotterPypilot.py:294
 msgid "Open"
 msgstr "Otevřít"
 
-#: openplotterPypilot.py:297
+#: openplotterPypilot.py:298
 msgid "Detected IMU:"
 msgstr "Detekován IMU:"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:302
 msgid "Add device"
 msgstr "Přidat zařízení"
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:304
 msgid "Remove device"
 msgstr "Odebrat zařízení"
 
-#: openplotterPypilot.py:347
+#: openplotterPypilot.py:348
 msgid "You have to select a device"
 msgstr "Musíte vybrat zařízení"
 
-#: openplotterPypilot.py:352
+#: openplotterPypilot.py:353
 msgid "This device already exists"
 msgstr "Toto zařízení již existuje"
 
-#: openplotterPypilot.py:408
+#: openplotterPypilot.py:409
 msgid "Data"
 msgstr "Data"
 
-#: openplotterPypilot.py:409
+#: openplotterPypilot.py:410
 msgid "Type"
 msgstr "Typ"
 
-#: openplotterPypilot.py:410
+#: openplotterPypilot.py:411
 msgid "Port"
 msgstr "Port"
 
-#: openplotterPypilot.py:411
+#: openplotterPypilot.py:412
 msgid "SK connection ID"
 msgstr "ID spojení SK"
 
-#: openplotterPypilot.py:416
+#: openplotterPypilot.py:418
 msgid "Add Connection"
 msgstr "Přidat spojení"
 
-#: openplotterPypilot.py:418
+#: openplotterPypilot.py:420
 msgid "Edit connection"
 msgstr "Upravit spojení"
 
-#: openplotterPypilot.py:420
+#: openplotterPypilot.py:422
 msgid "Remove connection"
 msgstr "Odstranit spojení"
 
-#: openplotterPypilot.py:467
+#: openplotterPypilot.py:469
 msgid "Failed. Error creating connection in Signal K"
 msgstr "Chyba při vytváření připojení k Signal K serveru"
 
-#: openplotterPypilot.py:469
+#: openplotterPypilot.py:471
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr "Prosím, nainstalujte OpenPlotter aplikaci \"Instalátor Signal K\""
 
-#: openplotterPypilot.py:488
+#: openplotterPypilot.py:490
 msgid "Failed. Error removing connection in Signal K"
 msgstr "Chyba při odstraňování připojení v Signal K serveru"
 
-#: openplotterPypilot.py:491
+#: openplotterPypilot.py:493
 msgid "Restarting Signal K server... "
 msgstr "Restartuji Signal K server... "
 
-#: openplotterPypilot.py:497
+#: openplotterPypilot.py:499
 msgid "Signal K server restarted"
 msgstr "Signal K server byl restartován"
 
 #: ports.py:42
 msgid "Pypilot server"
-msgstr ""
+msgstr "Pypilot server"
 
 #: ports.py:43
 msgid "Pypilot Signal K output"
@@ -277,16 +279,16 @@ msgid "Please disable this Signal K connection. ID: "
 msgstr "Prosím zakažte toto připojení Signal K dle ID: "
 
 #: startup.py:94
-msgid "Please enable a Signal K connection fot Pypilot Signal K data"
-msgstr "Prosím povolte připojení serveru Signal K k datům Pypilot Signal K"
+msgid "Please enable a Signal K connection for Pypilot Signal K data"
+msgstr ""
 
 #: startup.py:99
-msgid "Browser controlller"
-msgstr "Ovládání přes prohlížeč"
+msgid "Browser controller"
+msgstr ""
 
 #: startup.py:105
-msgid "Please enable a Signal K connection fot Pypilot NMEA 0183 data"
-msgstr "Prosím povolte připojení serveru Signal K k datům NMEA 0183"
+msgid "Please enable a Signal K connection for Pypilot NMEA 0183 data"
+msgstr ""
 
 #: startup.py:116 startup.py:125
 msgid "There are duplicate Signal K connections: "

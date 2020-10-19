@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-03-06 21:08+0100\n"
-"PO-Revision-Date: 2020-03-06 21:18+0100\n"
+"POT-Creation-Date: 2020-10-09 17:23+0200\n"
+"PO-Revision-Date: 2020-10-19 18:09+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: fi\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
+"X-Crowdin-File-ID: 19\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
@@ -62,13 +64,13 @@ msgstr "Päivitä"
 msgid "Connections"
 msgstr "Yhteydet"
 
-#: openplotterPypilot.py:127 openplotterPypilot.py:355
-#: openplotterPypilot.py:369
+#: openplotterPypilot.py:127 openplotterPypilot.py:356
+#: openplotterPypilot.py:370
 msgid "Applying changes ..."
 msgstr "Toteutaan muutoksia..."
 
-#: openplotterPypilot.py:134 openplotterPypilot.py:362
-#: openplotterPypilot.py:384
+#: openplotterPypilot.py:134 openplotterPypilot.py:363
+#: openplotterPypilot.py:385
 msgid "Changes applied"
 msgstr "Muutokset lisätty"
 
@@ -80,7 +82,7 @@ msgstr "I2C on estetty. Salli I2C liityntä Valinnat -> Raspberry Pi asetukset -
 msgid "Failed"
 msgstr "Epäonnistui"
 
-#: openplotterPypilot.py:187 openplotterPypilot.py:298
+#: openplotterPypilot.py:187 openplotterPypilot.py:299
 msgid "none"
 msgstr "ei mitään"
 
@@ -104,89 +106,89 @@ msgstr "Suunta, Kallistus, Nyökintä"
 msgid "Autopilot serial devices"
 msgstr "Autopilotin sarjalaitteet"
 
-#: openplotterPypilot.py:288
+#: openplotterPypilot.py:289
 msgid "Control"
 msgstr "Ohjaus"
 
-#: openplotterPypilot.py:291
+#: openplotterPypilot.py:292
 msgid "Browser Control"
 msgstr "Selain hallinta"
 
-#: openplotterPypilot.py:293
+#: openplotterPypilot.py:294
 msgid "Open"
 msgstr "Avaa"
 
-#: openplotterPypilot.py:297
+#: openplotterPypilot.py:298
 msgid "Detected IMU:"
 msgstr "Havaittu IMU:"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:302
 msgid "Add device"
 msgstr "Lisää laite"
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:304
 msgid "Remove device"
 msgstr "Poista laite"
 
-#: openplotterPypilot.py:347
+#: openplotterPypilot.py:348
 msgid "You have to select a device"
 msgstr "Valitse laite"
 
-#: openplotterPypilot.py:352
+#: openplotterPypilot.py:353
 msgid "This device already exists"
 msgstr "Tämä laite on jo olemassa"
 
-#: openplotterPypilot.py:408
+#: openplotterPypilot.py:409
 msgid "Data"
 msgstr "Data"
 
-#: openplotterPypilot.py:409
+#: openplotterPypilot.py:410
 msgid "Type"
 msgstr "Tyyppi"
 
-#: openplotterPypilot.py:410
+#: openplotterPypilot.py:411
 msgid "Port"
 msgstr "Portti"
 
-#: openplotterPypilot.py:411
+#: openplotterPypilot.py:412
 msgid "SK connection ID"
 msgstr "SK kytkentä ID"
 
-#: openplotterPypilot.py:416
+#: openplotterPypilot.py:418
 msgid "Add Connection"
 msgstr "Lisää kytkentä"
 
-#: openplotterPypilot.py:418
+#: openplotterPypilot.py:420
 msgid "Edit connection"
 msgstr "Muokkaa yhteyttä"
 
-#: openplotterPypilot.py:420
+#: openplotterPypilot.py:422
 msgid "Remove connection"
 msgstr "Poista yhteys"
 
-#: openplotterPypilot.py:467
+#: openplotterPypilot.py:469
 msgid "Failed. Error creating connection in Signal K"
 msgstr "Epäonnistui. Virhe kytkettäessä Signal Khon"
 
-#: openplotterPypilot.py:469
+#: openplotterPypilot.py:471
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr "Asenna \"Signal K asennin\" OpenPlotter sovelma"
 
-#: openplotterPypilot.py:488
+#: openplotterPypilot.py:490
 msgid "Failed. Error removing connection in Signal K"
 msgstr "Epäonnistui. Virhe kytkennän poistossa Signal Kssa"
 
-#: openplotterPypilot.py:491
+#: openplotterPypilot.py:493
 msgid "Restarting Signal K server... "
 msgstr "Käynnistetään Signal K palvelin... "
 
-#: openplotterPypilot.py:497
+#: openplotterPypilot.py:499
 msgid "Signal K server restarted"
 msgstr "Signal K palvelin käynnistetty"
 
 #: ports.py:42
 msgid "Pypilot server"
-msgstr ""
+msgstr "Pypilot palvelin"
 
 #: ports.py:43
 msgid "Pypilot Signal K output"
@@ -277,15 +279,15 @@ msgid "Please disable this Signal K connection. ID: "
 msgstr "Poistathan tämän Signal K yhteyden. ID: "
 
 #: startup.py:94
-msgid "Please enable a Signal K connection fot Pypilot Signal K data"
-msgstr "Salli Signal K yhteys Pypilot Signal K datalle"
+msgid "Please enable a Signal K connection for Pypilot Signal K data"
+msgstr "Ota käyttöön Signal K -yhteys Pypilot Signal K -dataa varten"
 
 #: startup.py:99
-msgid "Browser controlller"
-msgstr "Selain hallinta"
+msgid "Browser controller"
+msgstr "Selain ohjain"
 
 #: startup.py:105
-msgid "Please enable a Signal K connection fot Pypilot NMEA 0183 data"
+msgid "Please enable a Signal K connection for Pypilot NMEA 0183 data"
 msgstr "Salli Signal K yhteys Pypilot Signal K NMEA 0183 datalle"
 
 #: startup.py:116 startup.py:125
