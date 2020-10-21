@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-10-09 17:23+0200\n"
-"PO-Revision-Date: 2020-10-19 18:09+0200\n"
+"PO-Revision-Date: 2020-10-21 18:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: French\n"
 "Language: fr\n"
@@ -280,15 +280,15 @@ msgstr "Veuillez désactiver cette connexion Signal K. ID : "
 
 #: startup.py:94
 msgid "Please enable a Signal K connection for Pypilot Signal K data"
-msgstr ""
+msgstr "Veuillez activer une connexion pour les données Signal K de Pypilot"
 
 #: startup.py:99
 msgid "Browser controller"
-msgstr ""
+msgstr "Contrôle par navigateur"
 
 #: startup.py:105
 msgid "Please enable a Signal K connection for Pypilot NMEA 0183 data"
-msgstr ""
+msgstr "Veuillez activer une connexion Signal K pour les données NMEA 0183 de Pypilot"
 
 #: startup.py:116 startup.py:125
 msgid "There are duplicate Signal K connections: "
