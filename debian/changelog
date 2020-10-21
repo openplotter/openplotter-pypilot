@@ -1,3 +1,10 @@
+openplotter-pypilot (2.1.1-beta) bionic; urgency=medium
+
+  * Fix error checking network conflicts
+  * Update translations 
+
+ -- Sailoog <info@sailoog.com>  Wed, 21 Oct 2020 18:18:28 +0200
+
 openplotter-pypilot (2.1.0-beta) bionic; urgency=medium
 
   * Add GPIO management
