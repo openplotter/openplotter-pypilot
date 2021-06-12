@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2020-03-06 21:08+0100\n"
-"PO-Revision-Date: 2020-03-06 21:18+0100\n"
+"POT-Creation-Date: 2020-10-09 17:23+0200\n"
+"PO-Revision-Date: 2020-10-21 18:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -14,8 +14,10 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
+"X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
+"X-Crowdin-File-ID: 19\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
@@ -62,13 +64,13 @@ msgstr "Aktualisieren"
 msgid "Connections"
 msgstr "Verbindungen"
 
-#: openplotterPypilot.py:127 openplotterPypilot.py:355
-#: openplotterPypilot.py:369
+#: openplotterPypilot.py:127 openplotterPypilot.py:356
+#: openplotterPypilot.py:370
 msgid "Applying changes ..."
 msgstr "Änderungen werden übernommen ..."
 
-#: openplotterPypilot.py:134 openplotterPypilot.py:362
-#: openplotterPypilot.py:384
+#: openplotterPypilot.py:134 openplotterPypilot.py:363
+#: openplotterPypilot.py:385
 msgid "Changes applied"
 msgstr "Änderungen übernommen"
 
@@ -80,7 +82,7 @@ msgstr "I2C ist deaktiviert. Bitte aktivieren Sie die I2C-Schnittstelle unter Ei
 msgid "Failed"
 msgstr "Fehlgeschlagen"
 
-#: openplotterPypilot.py:187 openplotterPypilot.py:298
+#: openplotterPypilot.py:187 openplotterPypilot.py:299
 msgid "none"
 msgstr "keine"
 
@@ -104,89 +106,89 @@ msgstr "Kurs, Krängung, Neigung"
 msgid "Autopilot serial devices"
 msgstr "Autopilot serielle Geräte"
 
-#: openplotterPypilot.py:288
+#: openplotterPypilot.py:289
 msgid "Control"
 msgstr "Steuerung"
 
-#: openplotterPypilot.py:291
+#: openplotterPypilot.py:292
 msgid "Browser Control"
 msgstr "Browser-Steuerung"
 
-#: openplotterPypilot.py:293
+#: openplotterPypilot.py:294
 msgid "Open"
 msgstr "Öffnen"
 
-#: openplotterPypilot.py:297
+#: openplotterPypilot.py:298
 msgid "Detected IMU:"
 msgstr "Erkannte IMU:"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:302
 msgid "Add device"
 msgstr "Gerät hinzufügen"
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:304
 msgid "Remove device"
 msgstr "Gerät entfernen"
 
-#: openplotterPypilot.py:347
+#: openplotterPypilot.py:348
 msgid "You have to select a device"
 msgstr "Sie müssen ein Gerät auswählen"
 
-#: openplotterPypilot.py:352
+#: openplotterPypilot.py:353
 msgid "This device already exists"
 msgstr "Dieses Gerät existiert bereits"
 
-#: openplotterPypilot.py:408
+#: openplotterPypilot.py:409
 msgid "Data"
 msgstr "Daten"
 
-#: openplotterPypilot.py:409
+#: openplotterPypilot.py:410
 msgid "Type"
 msgstr "Typ"
 
-#: openplotterPypilot.py:410
+#: openplotterPypilot.py:411
 msgid "Port"
 msgstr "Port"
 
-#: openplotterPypilot.py:411
+#: openplotterPypilot.py:412
 msgid "SK connection ID"
 msgstr "SK-Verbindungs-ID"
 
-#: openplotterPypilot.py:416
+#: openplotterPypilot.py:418
 msgid "Add Connection"
 msgstr "Verbindung hinzufügen"
 
-#: openplotterPypilot.py:418
+#: openplotterPypilot.py:420
 msgid "Edit connection"
 msgstr "Verbindung bearbeiten"
 
-#: openplotterPypilot.py:420
+#: openplotterPypilot.py:422
 msgid "Remove connection"
 msgstr "Verbindung entfernen"
 
-#: openplotterPypilot.py:467
+#: openplotterPypilot.py:469
 msgid "Failed. Error creating connection in Signal K"
 msgstr "Fehlgeschlagen. Fehler beim Erstellen der Verbindung in Signal K"
 
-#: openplotterPypilot.py:469
+#: openplotterPypilot.py:471
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
 msgstr "Bitte installieren Sie die OpenPlotter App \"Signal K Installer\""
 
-#: openplotterPypilot.py:488
+#: openplotterPypilot.py:490
 msgid "Failed. Error removing connection in Signal K"
 msgstr "Fehlgeschlagen. Fehler beim Entfernen der Verbindung in Signal K"
 
-#: openplotterPypilot.py:491
+#: openplotterPypilot.py:493
 msgid "Restarting Signal K server... "
 msgstr "Starte Signal K-Server neu... "
 
-#: openplotterPypilot.py:497
+#: openplotterPypilot.py:499
 msgid "Signal K server restarted"
 msgstr "Signal K Server neu gestartet"
 
 #: ports.py:42
 msgid "Pypilot server"
-msgstr ""
+msgstr "Pypilot-Server"
 
 #: ports.py:43
 msgid "Pypilot Signal K output"
@@ -277,15 +279,15 @@ msgid "Please disable this Signal K connection. ID: "
 msgstr "Bitte deaktivieren Sie diese Signal K Verbindung. ID: "
 
 #: startup.py:94
-msgid "Please enable a Signal K connection fot Pypilot Signal K data"
+msgid "Please enable a Signal K connection for Pypilot Signal K data"
 msgstr "Bitte aktivieren Sie eine Signal K Verbindung für Pypilot Signal K Daten"
 
 #: startup.py:99
-msgid "Browser controlller"
-msgstr "Browser-Steuerung"
+msgid "Browser controller"
+msgstr "Browser-Controller"
 
 #: startup.py:105
-msgid "Please enable a Signal K connection fot Pypilot NMEA 0183 data"
+msgid "Please enable a Signal K connection for Pypilot NMEA 0183 data"
 msgstr "Bitte aktivieren Sie eine Signal K Verbindung für Pypilot NMEA 0183 Daten"
 
 #: startup.py:116 startup.py:125

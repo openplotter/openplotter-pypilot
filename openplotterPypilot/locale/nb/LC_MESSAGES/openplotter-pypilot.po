@@ -4,8 +4,8 @@ msgstr ""
 "POT-Creation-Date: 2020-10-09 17:23+0200\n"
 "PO-Revision-Date: 2020-10-21 18:16+0200\n"
 "Last-Translator: \n"
-"Language-Team: Catalan\n"
-"Language: ca\n"
+"Language-Team: Norwegian Bokmal\n"
+"Language: nb_NO\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -15,168 +15,168 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
-"X-Crowdin-Language: ca\n"
+"X-Crowdin-Language: nb\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Crowdin-File-ID: 19\n"
 "X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
 msgid "Help"
-msgstr ""
+msgstr "Hjelp"
 
 #: openplotterPypilot.py:49
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: openplotterPypilot.py:52
 msgid "Mode"
-msgstr ""
+msgstr "Modus"
 
 #: openplotterPypilot.py:52
 msgid "Disabled"
-msgstr ""
+msgstr "Deaktivert"
 
 #: openplotterPypilot.py:52 startup.py:84
 msgid "Only compass"
-msgstr ""
+msgstr "Bare kompass"
 
 #: openplotterPypilot.py:52 openplotterPypilot.py:70 startup.py:98
 msgid "Autopilot"
-msgstr ""
+msgstr "Autopilot"
 
 #: openplotterPypilot.py:56
 msgid "Calibration"
-msgstr ""
+msgstr "Kalibrering"
 
 #: openplotterPypilot.py:58
 msgid "Scope"
-msgstr ""
+msgstr "Omfang"
 
 #: openplotterPypilot.py:60
 msgid "Client"
-msgstr ""
+msgstr "Klient"
 
 #: openplotterPypilot.py:63
 msgid "Refresh"
-msgstr ""
+msgstr "Oppdater"
 
 #: openplotterPypilot.py:71
 msgid "Connections"
-msgstr ""
+msgstr "Tilkoblinger"
 
 #: openplotterPypilot.py:127 openplotterPypilot.py:356
 #: openplotterPypilot.py:370
 msgid "Applying changes ..."
-msgstr ""
+msgstr "Bruker endringer ..."
 
 #: openplotterPypilot.py:134 openplotterPypilot.py:363
 #: openplotterPypilot.py:385
 msgid "Changes applied"
-msgstr ""
+msgstr "Endringer brukt"
 
 #: openplotterPypilot.py:184
 msgid "I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces"
-msgstr ""
+msgstr "I2C er deaktivert. Vennligst aktiver I2C-grensesnitt i Innstillinger -> Raspberry Pi konfigurasjon -> Grensesnitt"
 
 #: openplotterPypilot.py:185
 msgid "Failed"
-msgstr ""
+msgstr "Mislyktes"
 
 #: openplotterPypilot.py:187 openplotterPypilot.py:299
 msgid "none"
-msgstr ""
+msgstr "ingen"
 
 #: openplotterPypilot.py:205
 msgid "unknown: "
-msgstr ""
+msgstr "ukjent: "
 
 #: openplotterPypilot.py:226
 msgid "Heading, Heel, Pitch, Serial devices"
-msgstr ""
+msgstr "Retning, Krengning, Stamping, Serielle enheter"
 
 #: openplotterPypilot.py:229
 msgid "Heel, Pitch"
-msgstr ""
+msgstr "Krengning, Stamping"
 
 #: openplotterPypilot.py:233
 msgid "Heading, Heel, Pitch"
-msgstr ""
+msgstr "Retning, Krengning, Stamping"
 
 #: openplotterPypilot.py:283
 msgid "Autopilot serial devices"
-msgstr ""
+msgstr "Autopilot serielle enheter"
 
 #: openplotterPypilot.py:289
 msgid "Control"
-msgstr ""
+msgstr "Styring"
 
 #: openplotterPypilot.py:292
 msgid "Browser Control"
-msgstr ""
+msgstr "Nettleserkontroll"
 
 #: openplotterPypilot.py:294
 msgid "Open"
-msgstr ""
+msgstr "Åpen"
 
 #: openplotterPypilot.py:298
 msgid "Detected IMU:"
-msgstr ""
+msgstr "Oppdaget IMU:"
 
 #: openplotterPypilot.py:302
 msgid "Add device"
-msgstr ""
+msgstr "Legg til enhet"
 
 #: openplotterPypilot.py:304
 msgid "Remove device"
-msgstr ""
+msgstr "Fjern enhet"
 
 #: openplotterPypilot.py:348
 msgid "You have to select a device"
-msgstr ""
+msgstr "Du må velge en enhet"
 
 #: openplotterPypilot.py:353
 msgid "This device already exists"
-msgstr ""
+msgstr "Denne enheten finnes allerede"
 
 #: openplotterPypilot.py:409
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: openplotterPypilot.py:410
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: openplotterPypilot.py:411
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: openplotterPypilot.py:412
 msgid "SK connection ID"
-msgstr ""
+msgstr "SK tilkoblings-ID"
 
 #: openplotterPypilot.py:418
 msgid "Add Connection"
-msgstr ""
+msgstr "Legg til Forbindelse"
 
 #: openplotterPypilot.py:420
 msgid "Edit connection"
-msgstr ""
+msgstr "Rediger forbindelse"
 
 #: openplotterPypilot.py:422
 msgid "Remove connection"
-msgstr ""
+msgstr "Fjern forbindelse"
 
 #: openplotterPypilot.py:469
 msgid "Failed. Error creating connection in Signal K"
-msgstr ""
+msgstr "Mislyktes. Feil ved opprettelse av tilkobling i Signal K"
 
 #: openplotterPypilot.py:471
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr ""
+msgstr "Vennligst installer \"Signal K Installer\" OpenPlotter app"
 
 #: openplotterPypilot.py:490
 msgid "Failed. Error removing connection in Signal K"
-msgstr ""
+msgstr "Mislyktes. Feil ved fjerning av tilkobling i Signal K"
 
 #: openplotterPypilot.py:493
 msgid "Restarting Signal K server... "

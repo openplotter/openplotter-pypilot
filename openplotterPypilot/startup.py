@@ -91,18 +91,18 @@ class Check():
 						else: red += '\n'+msg
 					if i[1] == 'UDP' and i[2]: exists = True
 			if not exists:
-				msg = _('Please enable a Signal K connection fot Pypilot Signal K data')
+				msg = _('Please enable a Signal K connection for Pypilot Signal K data')
 				if not red: red = msg
 				else: red += '\n'+msg
 		elif self.pypilot: 
 			green = _('Autopilot')
-			if self.webapp: green += ' | '+_('Browser controlller')
+			if self.webapp: green += ' | '+_('Browser controller')
 			exists = False
 			if sklist:
 				for i in sklist:
 					if i[1] == 'TCP' and i[2]: exists = True
 			if not exists:
-				msg = _('Please enable a Signal K connection fot Pypilot NMEA 0183 data')
+				msg = _('Please enable a Signal K connection for Pypilot NMEA 0183 data')
 				if not red: red = msg
 				else: red += '\n'+msg
 		
