@@ -50,7 +50,9 @@ class pypilotPanel(pypilotPanelBase):
         try:
             with open(configfile) as f:
                 config = ujson.loads(f.read())
-            self.hardware.SetLabel(config['arduino']['hardware'])
+            self.hardware.SetLabel(str(config['arduino']['hardware']))
+            if not self.active('pypilot_hat'):
+                wx.MessageBox(_('Detected pypilot hat, but the service is not enabled.\nEnable the hat service touse the lcd display and remote controls'), _('warning'), wx.OK | wx.ICON_WARNING)
 
         except Exception as e:
             self.hardware.SetLabel(_("no pypilot hat detected"))
