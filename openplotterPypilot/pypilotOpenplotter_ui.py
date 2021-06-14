@@ -113,7 +113,7 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_panel1.SetSizer( fgSizer1 )
 		self.m_panel1.Layout()
 		fgSizer1.Fit( self.m_panel1 )
-		self.m_notebook1.AddPage( self.m_panel1, _(u"Services"), True )
+		self.m_notebook1.AddPage( self.m_panel1, _(u"Services"), False )
 		self.m_panel7 = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer12 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer12.SetFlexibleDirection( wx.BOTH )
@@ -178,7 +178,7 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_panel2.SetSizer( fgSizer5 )
 		self.m_panel2.Layout()
 		fgSizer5.Fit( self.m_panel2 )
-		self.m_notebook1.AddPage( self.m_panel2, _(u"Serial"), False )
+		self.m_notebook1.AddPage( self.m_panel2, _(u"Serial"), True )
 		self.m_panel3 = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer4 = wx.FlexGridSizer( 0, 1, 0, 0 )
 		fgSizer4.AddGrowableCol( 0 )
@@ -211,7 +211,7 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_button3.Bind( wx.EVT_BUTTON, self.onOpenBrowser )
 		self.HatControl.Bind( wx.EVT_CHECKBOX, self.onHatControl )
 		self.m_button4.Bind( wx.EVT_BUTTON, self.onConfigureHat )
-		self.bHardwareSerial.Bind( wx.EVT_BUTTON, self.OnHardwareSerial )
+		self.bHardwareSerial.Bind( wx.EVT_BUTTON, self.onHardwareSerial )
 		self.m_button6.Bind( wx.EVT_BUTTON, self.onAddSerial )
 		self.m_button7.Bind( wx.EVT_BUTTON, self.onRemoveSerial )
 		self.m_button5.Bind( wx.EVT_BUTTON, self.onReinstall )
@@ -236,7 +236,7 @@ class pypilotPanelBase ( wx.Panel ):
 	def onConfigureHat( self, event ):
 		event.Skip()
 
-	def OnHardwareSerial( self, event ):
+	def onHardwareSerial( self, event ):
 		event.Skip()
 
 	def onAddSerial( self, event ):

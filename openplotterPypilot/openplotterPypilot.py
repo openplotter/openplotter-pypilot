@@ -176,6 +176,10 @@ class pypilotPanel(pypilotPanelBase):
         url = "http://localhost:33333"
         webbrowser.open(url, new=2)
 
+    def onHardwareSerial(self, e):
+        subprocess.call([self.platform.admin, 'python3', './'+os.path.dirname(__file__)+'/hardwareserial.py'])
+        wx.MessageBox(_('must reboot to update changes to hardware serial'), _('reboot'), wx.OK)
+
     def onAddSerial(self, e): 
         dlg = selectConnections.AddPort('', True, 'auto', False)
         res = dlg.ShowModal()
