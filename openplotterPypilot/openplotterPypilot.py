@@ -30,7 +30,11 @@ try:
 except:
     from version import version
 
-from pypilotOpenplotter_ui import pypilotPanelBase
+try:
+    from .pypilotOpenplotter_ui import pypilotPanelBase
+except:
+    from pypilotOpenplotter_ui import pypilotPanelBase
+
 
 class pypilotPanel(pypilotPanelBase):
     def __init__(self, parent):
@@ -103,7 +107,8 @@ class pypilotPanel(pypilotPanelBase):
         self.relistSerial()
 
     def active(self, name):
-        print('testing service', name)
+        sys.stdout.write('service ' + name + ': ')
+        sys.stdout.flush()
         return not os.system('systemctl is-active ' + name)
 
     def relistSerial(self):
