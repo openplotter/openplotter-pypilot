@@ -40,10 +40,10 @@ def main():
     try:
         os.chdir('/tmp')
         subprocess.call(['sudo', 'rm', '-rf', 'pypilot'])
-        subprocess.call(['git', 'clone', 'https://github.com/pypilot/pypilot'])
+        subprocess.call(['git', 'clone', '--depth', '1', 'https://github.com/pypilot/pypilot'])
         os.chdir('pypilot')
-        #subprocess.call(['sudo', 'python3', 'setup.py', 'install'])
-        #subprocess.call(['sudo rm', '-rf', 'pypilot'])
+        subprocess.call(['sudo', 'python3', 'setup.py', 'install'])
+        subprocess.call(['sudo', 'rm', '-rf', 'pypilot'])
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
     

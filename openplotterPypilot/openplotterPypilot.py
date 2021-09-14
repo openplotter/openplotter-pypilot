@@ -146,7 +146,7 @@ class pypilotPanel(pypilotPanelBase):
                     wx.MessageBox(_('the hardware serial port for the motor /dev/ttyAMA0 should be added to the list of serial ports pypilot manages'), _('warning'), wx.OK | wx.ICON_WARNING)            
 
     def service(self, command):
-        subprocess.call([self.platform.admin, 'python3', './'+os.path.dirname(__file__)+'/service.py', command])
+        subprocess.call([self.platform.admin, 'python3', os.path.dirname(__file__)+'/service.py', command])
 
     def onServices( self, event=None ):
         services = self.services.GetSelection()
@@ -184,7 +184,7 @@ class pypilotPanel(pypilotPanelBase):
         webbrowser.open(url, new=2)
 
     def onHardwareSerial(self, e):
-        subprocess.call([self.platform.admin, 'python3', './'+os.path.dirname(__file__)+'/hardwareserial.py'])
+        subprocess.call([self.platform.admin, 'python3', os.path.dirname(__file__)+'/hardwareserial.py'])
         wx.MessageBox(_('must reboot to update changes to hardware serial'), _('reboot'), wx.OK)
 
     def onAddSerial(self, e): 
@@ -240,26 +240,47 @@ class pypilotPanel(pypilotPanelBase):
         self.relistSerial()
 
     def onConsoleTimer(self, event):
+        if self.installProcess.poll() != None:
+            self.installConsoleTimer.Stop()
+            self.bReinstall.Enable(True)
+
+            self.installConsole.SetInsertionPoint(-1)
+            self.installConsole.ShowPosition(self.installConsole.GetLastPosition())
+            self.installConsole.Refresh()
+            self.installConsole.Update()
+            return
+            
         try:
-            while True:
-                line = self.installProcess.readline()
-                if not line:
-                    break
-                self.installConsole.WriteText(line)
+            for f in [self.installProcess.stdout, self.installProcess.stderr]:
+                while True:
+                    line = f.readline()
+                    if not line:
+                        break
+                    self.installConsole.WriteText(line)
 
         except Exception as e:
             print('exception', e)
+        self.installConsole.SetInsertionPoint(-1)
+        self.installConsole.ShowPosition(self.installConsole.GetLastPosition())
+        self.installConsole.Refresh()
+        self.installConsole.Update()
 
     def onReinstall(self, event):
         self.installConsole.Clear()
         self.installConsoleTimer = wx.Timer(self, wx.ID_ANY)
         self.Bind(wx.EVT_TIMER, self.onConsoleTimer, id=wx.ID_ANY)
-        self.installConsoleTimer.Start(1000, False)
+        self.bReinstall.Enable(False)
 
         try:
-            self.installProcess = os.popen('python3 pypilotPostInstall.py')
+            self.installProcess = subprocess.Popen(['python3', os.path.dirname(__file__)+'/pypilotPostInstall.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+            import fcntl
+            for f in [self.installProcess.stdout, self.installProcess.stderr]:
+                fd = f.fileno()
+                fcntl.fcntl(fd, fcntl.F_SETFL, fcntl.fcntl(fd, fcntl.F_GETFL) | os.O_NONBLOCK)
+
+            self.installConsoleTimer.Start(500, False)
         except Exception as e:
-            print('except', e)
+            print('exception', e)
             t = self.installConsole.GetLabel()
             self.installConsole.SetLabel(t + str(e) + '\n')
             self.installProcess.kill()

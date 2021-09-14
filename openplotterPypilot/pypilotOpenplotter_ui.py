@@ -113,7 +113,7 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_panel1.SetSizer( fgSizer1 )
 		self.m_panel1.Layout()
 		fgSizer1.Fit( self.m_panel1 )
-		self.m_notebook1.AddPage( self.m_panel1, _(u"Services"), False )
+		self.m_notebook1.AddPage( self.m_panel1, _(u"Services"), True )
 		self.m_panel7 = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer12 = wx.FlexGridSizer( 0, 2, 0, 0 )
 		fgSizer12.SetFlexibleDirection( wx.BOTH )
@@ -178,7 +178,7 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_panel2.SetSizer( fgSizer5 )
 		self.m_panel2.Layout()
 		fgSizer5.Fit( self.m_panel2 )
-		self.m_notebook1.AddPage( self.m_panel2, _(u"Serial"), True )
+		self.m_notebook1.AddPage( self.m_panel2, _(u"Serial"), False )
 		self.m_panel3 = wx.Panel( self.m_notebook1, wx.ID_ANY, wx.DefaultPosition, wx.DefaultSize, wx.TAB_TRAVERSAL )
 		fgSizer4 = wx.FlexGridSizer( 0, 1, 0, 0 )
 		fgSizer4.AddGrowableCol( 0 )
@@ -189,8 +189,8 @@ class pypilotPanelBase ( wx.Panel ):
 		self.installConsole = wx.TextCtrl( self.m_panel3, wx.ID_ANY, wx.EmptyString, wx.DefaultPosition, wx.DefaultSize, wx.TE_MULTILINE|wx.TE_READONLY )
 		fgSizer4.Add( self.installConsole, 0, wx.ALL|wx.EXPAND, 5 )
 
-		self.m_button5 = wx.Button( self.m_panel3, wx.ID_ANY, _(u"Update"), wx.DefaultPosition, wx.DefaultSize, 0 )
-		fgSizer4.Add( self.m_button5, 0, wx.ALL, 5 )
+		self.bReinstall = wx.Button( self.m_panel3, wx.ID_ANY, _(u"Update"), wx.DefaultPosition, wx.DefaultSize, 0 )
+		fgSizer4.Add( self.bReinstall, 0, wx.ALL, 5 )
 
 
 		self.m_panel3.SetSizer( fgSizer4 )
@@ -211,10 +211,10 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_button3.Bind( wx.EVT_BUTTON, self.onOpenBrowser )
 		self.HatControl.Bind( wx.EVT_CHECKBOX, self.onHatControl )
 		self.m_button4.Bind( wx.EVT_BUTTON, self.onConfigureHat )
-		self.bHardwareSerial.Bind( wx.EVT_BUTTON, self.onHardwareSerial )
+		self.bHardwareSerial.Bind( wx.EVT_BUTTON, self.OnHardwareSerial )
 		self.m_button6.Bind( wx.EVT_BUTTON, self.onAddSerial )
 		self.m_button7.Bind( wx.EVT_BUTTON, self.onRemoveSerial )
-		self.m_button5.Bind( wx.EVT_BUTTON, self.onReinstall )
+		self.bReinstall.Bind( wx.EVT_BUTTON, self.onReinstall )
 
 	def __del__( self ):
 		pass
@@ -236,7 +236,7 @@ class pypilotPanelBase ( wx.Panel ):
 	def onConfigureHat( self, event ):
 		event.Skip()
 
-	def onHardwareSerial( self, event ):
+	def OnHardwareSerial( self, event ):
 		event.Skip()
 
 	def onAddSerial( self, event ):
