@@ -12,17 +12,8 @@ Install [openplotter-settings](https://github.com/openplotter/openplotter-settin
 
 Install [openplotter-settings](https://github.com/openplotter/openplotter-settings) for **development**.
 
-Install openplotter-pypilot dependencies:
-
-`sudo apt install swig python3-opengl python3-serial libpython3-dev python3-numpy python3-scipy python3-ujson python3-pyudev python3-pil python3-flask python3-flask-socketio python3-dev python3-setuptools python3-pip`
-
-Clone the repository:
-
-`git clone https://github.com/openplotter/openplotter-pypilot`
-
-Make your changes and create the package:
-
 ```
+git clone https://github.com/openplotter/openplotter-pypilot
 cd openplotter-pypilot
 dpkg-buildpackage -b
 ```
@@ -38,9 +29,11 @@ Run post-installation script:
 
 `sudo pypilotPostInstall`
 
-Run:
+Run openplotter-pypilot
 
-`openplotter-pypilot`
+```
+openplotter-pypilot
+```
 
 Make your changes and repeat package, installation and post-installation steps to test. Pull request your changes to github and we will check and add them to the next version of the [Debian package](https://launchpad.net/~openplotter/+archive/ubuntu/openplotter).
 
