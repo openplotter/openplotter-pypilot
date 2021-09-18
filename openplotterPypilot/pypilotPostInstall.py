@@ -43,6 +43,10 @@ def main():
         subprocess.call(['git', 'clone', '--depth', '1', 'https://github.com/pypilot/pypilot'])
         os.chdir('pypilot')
         subprocess.call(['sudo', 'python3', 'setup.py', 'install'])
+
+        print(_('installing debian service scripts'))
+        os.system('sudo cp -rv scripts/debian/etc/systemd /etc')
+        
         subprocess.call(['sudo', 'rm', '-rf', 'pypilot'])
         print(_('DONE'))
     except Exception as e: print(_('FAILED: ')+str(e))
