@@ -18,12 +18,17 @@
 
 
 
-import wx, os, webbrowser, subprocess, sys, RTIMU, time, ujson
+import wx, os, webbrowser, subprocess, sys, time, ujson
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import ports
 from openplotterSettings import platform
 from openplotterSettings import selectConnections
+
+try:
+	import RTIMU
+except:
+	RTIMU = None
 
 try:
     from .version import version
@@ -77,9 +82,10 @@ class pypilotPanel(pypilotPanelBase):
         try:
             subprocess.check_output(['i2cdetect', '-y', '1']).decode(sys.stdin.encoding)
         except:
-            self.ShowStatusBarRED(_('I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces'))
+            self.GetParent().ShowStatusBarRED(_('I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces'))
             self.imuDetected.SetLabel(_('Failed'))
-        else:
+
+        if RTIMU:
             self.imuDetected.SetLabel(_('none'))
             SETTINGS_FILE = "RTIMULibTemp"
             s = RTIMU.Settings(SETTINGS_FILE)
@@ -91,7 +97,7 @@ class pypilotPanel(pypilotPanelBase):
                         key = '#   %d' % i
                         if key in line:
                             keys[i] = line[8:]
-                            
+
                     if 'IMUType=' in line:
                         tmp = line.split("=")
                         imunum = int(tmp[1].strip())
