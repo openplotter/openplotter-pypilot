@@ -136,6 +136,7 @@ class pypilotPanel(pypilotPanelBase):
         if os.path.realpath('/dev/serial0') != '/dev/ttyAMA0':
             wx.MessageBox(_('hardware serial must be enabled for motor controller communication'), _('warning'), wx.OK | wx.ICON_WARNING)
             self.hardwareSerial.SetLabel(_('warning: no hardware serial'))
+            return
 
         self.hardwareSerial.SetLabel(_('hardware serial detected'))
 

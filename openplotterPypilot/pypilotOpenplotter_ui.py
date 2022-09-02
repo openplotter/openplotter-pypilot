@@ -211,7 +211,7 @@ class pypilotPanelBase ( wx.Panel ):
 		self.m_button3.Bind( wx.EVT_BUTTON, self.onOpenBrowser )
 		self.HatControl.Bind( wx.EVT_CHECKBOX, self.onHatControl )
 		self.m_button4.Bind( wx.EVT_BUTTON, self.onConfigureHat )
-		self.bHardwareSerial.Bind( wx.EVT_BUTTON, self.OnHardwareSerial )
+		self.bHardwareSerial.Bind( wx.EVT_BUTTON, self.onHardwareSerial )
 		self.m_button6.Bind( wx.EVT_BUTTON, self.onAddSerial )
 		self.m_button7.Bind( wx.EVT_BUTTON, self.onRemoveSerial )
 		self.bReinstall.Bind( wx.EVT_BUTTON, self.onReinstall )
@@ -236,7 +236,7 @@ class pypilotPanelBase ( wx.Panel ):
 	def onConfigureHat( self, event ):
 		event.Skip()
 
-	def OnHardwareSerial( self, event ):
+	def onHardwareSerial( self, event ):
 		event.Skip()
 
 	def onAddSerial( self, event ):
