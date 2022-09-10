@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-10-09 17:23+0200\n"
-"PO-Revision-Date: 2020-10-21 18:16+0200\n"
+"PO-Revision-Date: 2022-07-02 16:55\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -13,12 +13,12 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: de\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Crowdin-File-ID: 19\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
 msgid "Help"
@@ -293,3 +293,4 @@ msgstr "Bitte aktivieren Sie eine Signal K Verbindung für Pypilot NMEA 0183 Dat
 #: startup.py:116 startup.py:125
 msgid "There are duplicate Signal K connections: "
 msgstr "Es gibt doppelte Signal K Verbindungen: "
+

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-10-09 17:23+0200\n"
-"PO-Revision-Date: 2020-10-21 18:16+0200\n"
+"PO-Revision-Date: 2022-06-01 19:10\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
@@ -13,202 +13,202 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: ca\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Crowdin-File-ID: 19\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
 msgid "Help"
-msgstr ""
+msgstr "Ajuda"
 
 #: openplotterPypilot.py:49
 msgid "Settings"
-msgstr ""
+msgstr "Preferències"
 
 #: openplotterPypilot.py:52
 msgid "Mode"
-msgstr ""
+msgstr "Mode"
 
 #: openplotterPypilot.py:52
 msgid "Disabled"
-msgstr ""
+msgstr "Deshabilitada"
 
 #: openplotterPypilot.py:52 startup.py:84
 msgid "Only compass"
-msgstr ""
+msgstr "Només compàs"
 
 #: openplotterPypilot.py:52 openplotterPypilot.py:70 startup.py:98
 msgid "Autopilot"
-msgstr ""
+msgstr "Pilot automàtic"
 
 #: openplotterPypilot.py:56
 msgid "Calibration"
-msgstr ""
+msgstr "Calibratge"
 
 #: openplotterPypilot.py:58
 msgid "Scope"
-msgstr ""
+msgstr "Àmbit"
 
 #: openplotterPypilot.py:60
 msgid "Client"
-msgstr ""
+msgstr "Client"
 
 #: openplotterPypilot.py:63
 msgid "Refresh"
-msgstr ""
+msgstr "Actualitza"
 
 #: openplotterPypilot.py:71
 msgid "Connections"
-msgstr ""
+msgstr "Connexions"
 
 #: openplotterPypilot.py:127 openplotterPypilot.py:356
 #: openplotterPypilot.py:370
 msgid "Applying changes ..."
-msgstr ""
+msgstr "Aplicant els canvis..."
 
 #: openplotterPypilot.py:134 openplotterPypilot.py:363
 #: openplotterPypilot.py:385
 msgid "Changes applied"
-msgstr ""
+msgstr "Canvis aplicats"
 
 #: openplotterPypilot.py:184
 msgid "I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces"
-msgstr ""
+msgstr "I2C està desactivat. Si us plau activa la interfície I2C a Preferències -> Configuració de Raspberry Pi -> Interfícies"
 
 #: openplotterPypilot.py:185
 msgid "Failed"
-msgstr ""
+msgstr "Error"
 
 #: openplotterPypilot.py:187 openplotterPypilot.py:299
 msgid "none"
-msgstr ""
+msgstr "cap"
 
 #: openplotterPypilot.py:205
 msgid "unknown: "
-msgstr ""
+msgstr "desconegut: "
 
 #: openplotterPypilot.py:226
 msgid "Heading, Heel, Pitch, Serial devices"
-msgstr ""
+msgstr "Rumb, Escora, Capcineig, Dispositius sèrie"
 
 #: openplotterPypilot.py:229
 msgid "Heel, Pitch"
-msgstr ""
+msgstr "Escora, Capcineig"
 
 #: openplotterPypilot.py:233
 msgid "Heading, Heel, Pitch"
-msgstr ""
+msgstr "Rumb, Escora, Capcineig"
 
 #: openplotterPypilot.py:283
 msgid "Autopilot serial devices"
-msgstr ""
+msgstr "Dispositius sèrie de pilot automàtic"
 
 #: openplotterPypilot.py:289
 msgid "Control"
-msgstr ""
+msgstr "Control"
 
 #: openplotterPypilot.py:292
 msgid "Browser Control"
-msgstr ""
+msgstr "Control de cercador"
 
 #: openplotterPypilot.py:294
 msgid "Open"
-msgstr ""
+msgstr "Obre"
 
 #: openplotterPypilot.py:298
 msgid "Detected IMU:"
-msgstr ""
+msgstr "IMU detectat:"
 
 #: openplotterPypilot.py:302
 msgid "Add device"
-msgstr ""
+msgstr "Afegeix un dispositiu"
 
 #: openplotterPypilot.py:304
 msgid "Remove device"
-msgstr ""
+msgstr "Elimina el dispositiu"
 
 #: openplotterPypilot.py:348
 msgid "You have to select a device"
-msgstr ""
+msgstr "Has de seleccionar un dispositiu"
 
 #: openplotterPypilot.py:353
 msgid "This device already exists"
-msgstr ""
+msgstr "Aquest dispositiu ja existeix"
 
 #: openplotterPypilot.py:409
 msgid "Data"
-msgstr ""
+msgstr "Dades"
 
 #: openplotterPypilot.py:410
 msgid "Type"
-msgstr ""
+msgstr "Tipus"
 
 #: openplotterPypilot.py:411
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: openplotterPypilot.py:412
 msgid "SK connection ID"
-msgstr ""
+msgstr "ID de connexió de SK"
 
 #: openplotterPypilot.py:418
 msgid "Add Connection"
-msgstr ""
+msgstr "Afegeix una connexió"
 
 #: openplotterPypilot.py:420
 msgid "Edit connection"
-msgstr ""
+msgstr "Edita una connexió"
 
 #: openplotterPypilot.py:422
 msgid "Remove connection"
-msgstr ""
+msgstr "Elimina la connexió"
 
 #: openplotterPypilot.py:469
 msgid "Failed. Error creating connection in Signal K"
-msgstr ""
+msgstr "Error. Error en crear la connexió a Signal K"
 
 #: openplotterPypilot.py:471
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr ""
+msgstr "Si us plau instal·la l'aplicació d'OpenPlotter \"Instal·lador de SignalK\""
 
 #: openplotterPypilot.py:490
 msgid "Failed. Error removing connection in Signal K"
-msgstr ""
+msgstr "Error. Error en eliminar la connexió a Signal K"
 
 #: openplotterPypilot.py:493
 msgid "Restarting Signal K server... "
-msgstr ""
+msgstr "Reiniciant el servidor Signal K... "
 
 #: openplotterPypilot.py:499
 msgid "Signal K server restarted"
-msgstr ""
+msgstr "Servidor Signal K reiniciat"
 
 #: ports.py:42
 msgid "Pypilot server"
-msgstr ""
+msgstr "Servidor Pypilot"
 
 #: ports.py:43
 msgid "Pypilot Signal K output"
-msgstr ""
+msgstr "Sortida Signal K de Pypilot"
 
 #: ports.py:45
 msgid "Autopilot browser controller"
-msgstr ""
+msgstr "Controlador del cercador del pilot automàtic"
 
 #: ports.py:46
 msgid "Autopilot browser controller remote"
-msgstr ""
+msgstr "Controlador remot del cercador del pilot automàtic"
 
 #: ports.py:48
 msgid "Pypilot NMEA 0183 output"
-msgstr ""
+msgstr "Sortida NMEA0183 de Pypilot"
 
 #: pypilotPostInstall.py:28
 msgid "Removing incompatible packages..."
-msgstr ""
+msgstr "Eliminant paquets incompatibles..."
 
 #: pypilotPostInstall.py:31 pypilotPostInstall.py:38 pypilotPostInstall.py:53
 #: pypilotPostInstall.py:74 pypilotPostInstall.py:87 pypilotPostInstall.py:107
@@ -216,7 +216,7 @@ msgstr ""
 #: pypilotPreUninstall.py:42 pypilotPreUninstall.py:53
 #: pypilotPreUninstall.py:59
 msgid "DONE"
-msgstr ""
+msgstr "FET"
 
 #: pypilotPostInstall.py:32 pypilotPostInstall.py:39 pypilotPostInstall.py:54
 #: pypilotPostInstall.py:75 pypilotPostInstall.py:88 pypilotPostInstall.py:108
@@ -224,72 +224,73 @@ msgstr ""
 #: pypilotPreUninstall.py:43 pypilotPreUninstall.py:54
 #: pypilotPreUninstall.py:60
 msgid "FAILED: "
-msgstr ""
+msgstr "ERROR: "
 
 #: pypilotPostInstall.py:34
 msgid "Installing python packages..."
-msgstr ""
+msgstr "Instal·lant paquets python..."
 
 #: pypilotPostInstall.py:41
 msgid "Compiling RTIMULib2..."
-msgstr ""
+msgstr "Compilant RTIMULib2..."
 
 #: pypilotPostInstall.py:56
 msgid "Compiling Pypilot..."
-msgstr ""
+msgstr "Compilant Pypilot..."
 
 #: pypilotPostInstall.py:77
 msgid "Creating config files..."
-msgstr ""
+msgstr "Creant fitxers de configuració..."
 
 #: pypilotPostInstall.py:90
 msgid "Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
-msgstr ""
+msgstr "Afegint els serveis pypilot, pypilot_boatimu i openplotter-pypilot-read..."
 
 #: pypilotPostInstall.py:110
 msgid "Setting version..."
-msgstr ""
+msgstr "Establint la versió..."
 
 #: pypilotPreUninstall.py:32
 msgid "Removing packages..."
-msgstr ""
+msgstr "Eliminant paquets..."
 
 #: pypilotPreUninstall.py:39
 msgid "Removing config files..."
-msgstr ""
+msgstr "Eliminant fitxers de configuració..."
 
 #: pypilotPreUninstall.py:45
 msgid "Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
-msgstr ""
+msgstr "Eliminant els serveis pypilot, pypilot_boatimu i openplotter-pypilot-read..."
 
 #: pypilotPreUninstall.py:56
 msgid "Removing version..."
-msgstr ""
+msgstr "Eliminant versió..."
 
 #: startup.py:38
 msgid "Checking Pypilot..."
-msgstr ""
+msgstr "Comprovant Pypilot..."
 
 #: startup.py:76
 msgid "disabled"
-msgstr ""
+msgstr "deshabilitat"
 
 #: startup.py:80 startup.py:89
 msgid "Please disable this Signal K connection. ID: "
-msgstr ""
+msgstr "Si us plau deshabilita aquesta connexió de SignalK. ID: "
 
 #: startup.py:94
 msgid "Please enable a Signal K connection for Pypilot Signal K data"
-msgstr ""
+msgstr "Si us plau habilita una connexió de Signal K per a dades Pypilot Signal K"
 
 #: startup.py:99
 msgid "Browser controller"
-msgstr ""
+msgstr "Controlador del cercador"
 
 #: startup.py:105
 msgid "Please enable a Signal K connection for Pypilot NMEA 0183 data"
-msgstr ""
+msgstr "Si us plau habilita una connexió de Signal K per a dades Pypilot NMEA0183"
 
 #: startup.py:116 startup.py:125
 msgid "There are duplicate Signal K connections: "
-msgstr ""
+msgstr "Hi ha connexions de Signal K duplicades: "
+

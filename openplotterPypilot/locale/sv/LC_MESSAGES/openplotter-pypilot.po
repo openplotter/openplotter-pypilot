@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2020-10-09 17:23+0200\n"
-"PO-Revision-Date: 2020-10-21 18:16+0200\n"
+"PO-Revision-Date: 2022-07-02 16:55\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
@@ -13,12 +13,12 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: sv-SE\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Crowdin-File-ID: 19\n"
-"X-Poedit-SearchPath-0: .\n"
 
 #: openplotterPypilot.py:46
 msgid "Help"
@@ -96,119 +96,119 @@ msgstr "Kurs, Krängning, Lutning, Seriella enheter"
 
 #: openplotterPypilot.py:229
 msgid "Heel, Pitch"
-msgstr ""
+msgstr "Krängning, Stigning"
 
 #: openplotterPypilot.py:233
 msgid "Heading, Heel, Pitch"
-msgstr ""
+msgstr "Kurs, Krängning, Stigning"
 
 #: openplotterPypilot.py:283
 msgid "Autopilot serial devices"
-msgstr ""
+msgstr "Autopilot seriella enheter"
 
 #: openplotterPypilot.py:289
 msgid "Control"
-msgstr ""
+msgstr "Kontroll"
 
 #: openplotterPypilot.py:292
 msgid "Browser Control"
-msgstr ""
+msgstr "Kontrollera webbläsare"
 
 #: openplotterPypilot.py:294
 msgid "Open"
-msgstr ""
+msgstr "Öppna"
 
 #: openplotterPypilot.py:298
 msgid "Detected IMU:"
-msgstr ""
+msgstr "Funnen IMU:"
 
 #: openplotterPypilot.py:302
 msgid "Add device"
-msgstr ""
+msgstr "Lägg till enhet"
 
 #: openplotterPypilot.py:304
 msgid "Remove device"
-msgstr ""
+msgstr "Ta bort enhet"
 
 #: openplotterPypilot.py:348
 msgid "You have to select a device"
-msgstr ""
+msgstr "Du måste välja en enhet"
 
 #: openplotterPypilot.py:353
 msgid "This device already exists"
-msgstr ""
+msgstr "Denna enhet finns redan"
 
 #: openplotterPypilot.py:409
 msgid "Data"
-msgstr ""
+msgstr "Data"
 
 #: openplotterPypilot.py:410
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: openplotterPypilot.py:411
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: openplotterPypilot.py:412
 msgid "SK connection ID"
-msgstr ""
+msgstr "SK anslutnings-ID"
 
 #: openplotterPypilot.py:418
 msgid "Add Connection"
-msgstr ""
+msgstr "Lägg till anslutning"
 
 #: openplotterPypilot.py:420
 msgid "Edit connection"
-msgstr ""
+msgstr "Redigera anslutning"
 
 #: openplotterPypilot.py:422
 msgid "Remove connection"
-msgstr ""
+msgstr "Ta bort anslutning"
 
 #: openplotterPypilot.py:469
 msgid "Failed. Error creating connection in Signal K"
-msgstr ""
+msgstr "Misslyckades. Fel vid skapande av anslutning i Signal K"
 
 #: openplotterPypilot.py:471
 msgid "Please install \"Signal K Installer\" OpenPlotter app"
-msgstr ""
+msgstr "Installera \"Signal K Installer\" OpenPlotter appen"
 
 #: openplotterPypilot.py:490
 msgid "Failed. Error removing connection in Signal K"
-msgstr ""
+msgstr "Misslyckades. Fel vid borttagning av anslutning i Signal K"
 
 #: openplotterPypilot.py:493
 msgid "Restarting Signal K server... "
-msgstr ""
+msgstr "Startar om Signal K-servern... "
 
 #: openplotterPypilot.py:499
 msgid "Signal K server restarted"
-msgstr ""
+msgstr "Signal K-servern omstartad"
 
 #: ports.py:42
 msgid "Pypilot server"
-msgstr ""
+msgstr "Pypilot server"
 
 #: ports.py:43
 msgid "Pypilot Signal K output"
-msgstr ""
+msgstr "Pypilot Signal K utgång"
 
 #: ports.py:45
 msgid "Autopilot browser controller"
-msgstr ""
+msgstr "Autopilot kontrollera webbläsare"
 
 #: ports.py:46
 msgid "Autopilot browser controller remote"
-msgstr ""
+msgstr "Autopilot kontrollera webbläsare fjärr"
 
 #: ports.py:48
 msgid "Pypilot NMEA 0183 output"
-msgstr ""
+msgstr "Pypilot NMEA 0183 utgång"
 
 #: pypilotPostInstall.py:28
 msgid "Removing incompatible packages..."
-msgstr ""
+msgstr "Tar bort inkompatibla paket..."
 
 #: pypilotPostInstall.py:31 pypilotPostInstall.py:38 pypilotPostInstall.py:53
 #: pypilotPostInstall.py:74 pypilotPostInstall.py:87 pypilotPostInstall.py:107
@@ -216,7 +216,7 @@ msgstr ""
 #: pypilotPreUninstall.py:42 pypilotPreUninstall.py:53
 #: pypilotPreUninstall.py:59
 msgid "DONE"
-msgstr ""
+msgstr "KLAR"
 
 #: pypilotPostInstall.py:32 pypilotPostInstall.py:39 pypilotPostInstall.py:54
 #: pypilotPostInstall.py:75 pypilotPostInstall.py:88 pypilotPostInstall.py:108
@@ -224,72 +224,73 @@ msgstr ""
 #: pypilotPreUninstall.py:43 pypilotPreUninstall.py:54
 #: pypilotPreUninstall.py:60
 msgid "FAILED: "
-msgstr ""
+msgstr "MISSLYCKADES: "
 
 #: pypilotPostInstall.py:34
 msgid "Installing python packages..."
-msgstr ""
+msgstr "Installerar python-paket..."
 
 #: pypilotPostInstall.py:41
 msgid "Compiling RTIMULib2..."
-msgstr ""
+msgstr "Kompilerar RTIMULib2..."
 
 #: pypilotPostInstall.py:56
 msgid "Compiling Pypilot..."
-msgstr ""
+msgstr "Kompilerar Pypilot..."
 
 #: pypilotPostInstall.py:77
 msgid "Creating config files..."
-msgstr ""
+msgstr "Skapar konfigurationsfiler..."
 
 #: pypilotPostInstall.py:90
 msgid "Adding pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
-msgstr ""
+msgstr "Lägger till pypilot, pypilot_boatimu och openplotter-pypilot-read tjänster..."
 
 #: pypilotPostInstall.py:110
 msgid "Setting version..."
-msgstr ""
+msgstr "Ställer in version..."
 
 #: pypilotPreUninstall.py:32
 msgid "Removing packages..."
-msgstr ""
+msgstr "Tar bort paket..."
 
 #: pypilotPreUninstall.py:39
 msgid "Removing config files..."
-msgstr ""
+msgstr "Tar bort konfigurationsfiler..."
 
 #: pypilotPreUninstall.py:45
 msgid "Removing pypilot, pypilot_boatimu and openplotter-pypilot-read services..."
-msgstr ""
+msgstr "Tar bort pypilot, pypilot_boatimu och openplotter-pypilot-read tjänster..."
 
 #: pypilotPreUninstall.py:56
 msgid "Removing version..."
-msgstr ""
+msgstr "Tar bort version..."
 
 #: startup.py:38
 msgid "Checking Pypilot..."
-msgstr ""
+msgstr "Kontrollerar Pypilot..."
 
 #: startup.py:76
 msgid "disabled"
-msgstr ""
+msgstr "inaktiverad"
 
 #: startup.py:80 startup.py:89
 msgid "Please disable this Signal K connection. ID: "
-msgstr ""
+msgstr "Vänligen inaktivera denna Signal K-anslutning. ID: "
 
 #: startup.py:94
 msgid "Please enable a Signal K connection for Pypilot Signal K data"
-msgstr ""
+msgstr "Aktivera en Signal K-anslutning för Pypilot Signal K-data"
 
 #: startup.py:99
 msgid "Browser controller"
-msgstr ""
+msgstr "Kontrollera webbläsare"
 
 #: startup.py:105
 msgid "Please enable a Signal K connection for Pypilot NMEA 0183 data"
-msgstr ""
+msgstr "Aktivera Signal K-anslutning för Pypilot NMEA 0183 data"
 
 #: startup.py:116 startup.py:125
 msgid "There are duplicate Signal K connections: "
-msgstr ""
+msgstr "Det finns dubbla Signal K-anslutningar: "
+

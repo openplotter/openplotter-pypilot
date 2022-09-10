@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 
-# This file is part of Openplotter.
-# Copyright (C) 2019 by Sailoog <https://github.com/openplotter/openplotter-pypilot>
-# Copyright (C) 2019 by Sean D'Epagnier <https://github.com/pypilot/openplotter-pypilot>
-#
+# This file is part of OpenPlotter.
+# Copyright (C) 2022 by Sailoog <https://github.com/openplotter/openplotter-pypilot>
+# Copyright (C) 2022 by Sean D'Epagnier <https://github.com/pypilot/openplotter-pypilot>
+# 
 # Openplotter is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 2 of the License, or
@@ -22,11 +22,8 @@ class SerialPorts:
 	def __init__(self,conf):
 		self.conf = conf
 		self.connections = []
-		try:
-			subprocess.check_output(['systemctl', 'is-enabled', 'pypilot']).decode(sys.stdin.encoding)
-			self.pypilot = True
-		except: self.pypilot = False
-
+		self.pypilot = False
+		if self.conf.get('PYPILOT', 'pypilot') == '1': self.pypilot = True
 
 	def usedSerialPorts(self):
 		# {'app':'xxx', 'id':'xxx', 'data':'NMEA0183/NMEA2000/SignalK', 'device': '/dev/xxx', "baudrate": nnnnnn, "enabled": True/False}
