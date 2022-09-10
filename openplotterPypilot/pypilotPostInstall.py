@@ -62,6 +62,10 @@ def main():
             fo = open(skConfFile, "w")
             fo.write( '{"host": "localhost"}')
             fo.close()
+        serialPorts = pypilotFolder+'/serial_ports'
+        if not os.path.exists(serialPorts):
+            fo = open(skConfFile, "w")
+            fo.close()
         subprocess.call(['chown', '-R', conf2.user, pypilotFolder])
         print(_('DONE'))
     except Exception as e:
