@@ -29,8 +29,6 @@ class Start():
 		black = '' 
 		red = '' 
 
-		subprocess.call(['pkill', '-f', 'pypilot'])
-
 		skConnections = connections.Connections('PYPILOT')
 		result = skConnections.checkConnection()
 		if result[0] == 'approved' or result[0] == 'validated':
@@ -48,31 +46,6 @@ class Start():
 				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
 				file.write(token)
 				file.close()
-			pypilot = self.conf.get('PYPILOT', 'pypilot')
-			pypilot_boatimu = self.conf.get('PYPILOT', 'pypilot_boatimu')
-			pypilot_web = self.conf.get('PYPILOT', 'pypilot_web')
-			pypilot_hat = self.conf.get('PYPILOT', 'pypilot_hat')
-			if pypilot_boatimu == '1':
-				msg = _('starting IMU only...')
-				if not black: black = msg
-				else: black+= ' | '+msg
-				subprocess.Popen(['pypilot_boatimu','-q'], cwd = self.conf.home+'/.pypilot')
-				subprocess.Popen('openplotter-pypilot-read')
-			elif pypilot == '1':
-				msg = _('starting autopilot...')
-				if not black: black = msg
-				else: black+= ' | '+msg
-				subprocess.Popen('pypilot', cwd = self.conf.home+'/.pypilot')
-				if pypilot_web == '1':
-					msg = _('starting web control...')
-					if not black: black = msg
-					else: black+= ' | '+msg
-					subprocess.Popen('pypilot_web')
-				if pypilot_hat == '1':
-					msg = _('starting HAT control...')
-					if not black: black = msg
-					else: black+= ' | '+msg
-					subprocess.Popen('pypilot_hat')
 
 		return {'green': green,'black': black,'red': red}
 
