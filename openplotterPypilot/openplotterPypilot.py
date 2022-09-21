@@ -412,8 +412,6 @@ class pypilotFrame(wx.Frame):
 
 
 	def active(self, name):
-		sys.stdout.write('service ' + name + ': ')
-		sys.stdout.flush()
 		return not os.system('systemctl is-active ' + name)
 
 
