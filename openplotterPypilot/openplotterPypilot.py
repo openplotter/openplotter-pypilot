@@ -226,28 +226,14 @@ class pypilotFrame(wx.Frame):
 			self.imuDetected.SetLabel(label+_('Failed'))
 			self.conf.set('PYPILOT', 'pypilot_boatimu', '0')
 		else:
-			self.imuDetected.SetLabel(label+_('None'))
 			SETTINGS_FILE = "RTIMULibTemp"
 			s = RTIMU.Settings(SETTINGS_FILE)
 			imu = RTIMU.RTIMU(s)
-			keys = {}
-			with open(SETTINGS_FILE+'.ini', "r") as infile:
-				for line in infile:
-					for i in range(20):
-						key = '#   %d' % i
-						if key in line:
-							keys[i] = line[8:]
-							
-					if 'IMUType=' in line:
-						tmp = line.split("=")
-						imunum = int(tmp[1].strip())
-						if imunum in keys:
-							imuname = keys[imunum]
-						else:
-							imuname = _('unknown: ') + imunum
-						imuname = imuname.replace('\n', '')
-						self.imuDetected.SetLabel(label+imuname)
-						break
+			imuname = imu.IMUName()
+
+			if imuname == 'Null IMU':
+				imuname = _('None')
+			self.imuDetected.SetLabel(label+imuname)
 			subprocess.call(['rm', '-f', 'RTIMULibTemp.ini'])
 
 		#hardware
