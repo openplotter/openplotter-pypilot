@@ -34,16 +34,10 @@ def main():
 	
 	print(_('Removing incompatible packages...'))
 	try:
-		subprocess.call(['apt', '-y', 'autoremove', 'sense-hat'])
+		subprocess.call(['sudo', 'apt', '-y', 'autoremove', 'sense-hat'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
-	print(_('Installing python packages...'))
-	try:
-		subprocess.call(['pip3', 'install', 'websocket-client', '-U'])
-		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
-	
 	print(_('Installing Pypilot...'))
 	try:
 		pypilotFolder = conf2.home+'/.pypilot'
@@ -56,6 +50,10 @@ def main():
 		os.chdir('pypilot')
 		os.system('python3 setup.py install --record '+installfile)
 		os.system('chown -R '+conf2.user+' '+pypilotFolder)
+
+		print(_('installing debian service scripts'))
+		os.system('sudo cp -rv scripts/debian/etc/systemd /etc')
+
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
@@ -74,6 +72,26 @@ def main():
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 	
+	print(_('Creating config files...'))
+	try:
+		pypilotFolder = conf2.home+'/.pypilot'
+		if not os.path.exists(pypilotFolder):
+			os.mkdir(pypilotFolder)
+		skConfFile = pypilotFolder+'/pypilot_client.conf'
+		if not os.path.exists(skConfFile):
+			fo = open(skConfFile, "w")
+			fo.write( '{"host": "localhost"}')
+			fo.close()
+		serialPorts = pypilotFolder+'/serial_ports'
+		if not os.path.exists(serialPorts):
+			fo = open(skConfFile, "w")
+			fo.write('/dev/ttyAMA0\n')
+			fo.close()
+		subprocess.call(['chown', '-R', conf2.user, pypilotFolder])
+		print(_('DONE'))
+	except Exception as e:
+		print(_('FAILED: ')+str(e))
+    
 if __name__ == '__main__':
 	main()
 			

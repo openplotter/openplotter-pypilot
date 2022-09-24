@@ -16,21 +16,34 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import wx, os, webbrowser, subprocess, sys, RTIMU, time, ujson
+import wx, os, webbrowser, subprocess, sys, time, ujson
 from openplotterSettings import conf
 from openplotterSettings import language
 from openplotterSettings import ports
 from openplotterSettings import platform
 from openplotterSettings import selectConnections
-from .version import version
+
 from openplotterSignalkInstaller import connections
-		
-class MyFrame(wx.Frame):
+
+try:
+	import RTIMU
+except:
+	RTIMU = None
+
+try:
+	from .version import version
+except:
+	from version import version
+
+
+
+class pypilotFrame(wx.Frame):
 	def __init__(self):
 		self.conf = conf.Conf()
 		if self.conf.get('GENERAL', 'debug') == 'yes': self.debug = True
 		else: self.debug = False
 		self.platform = platform.Platform()
+		
 		self.currentdir = os.path.dirname(os.path.abspath(__file__))
 		self.currentLanguage = self.conf.get('GENERAL', 'lang')
 		self.language = language.Language(self.currentdir,'openplotter-pypilot',self.currentLanguage)
@@ -56,7 +69,7 @@ class MyFrame(wx.Frame):
 		connectionSK = self.toolbar1.AddTool(108, _('Allowed'), wx.Bitmap(self.currentdir+"/data/sk.png"))
 		self.Bind(wx.EVT_TOOL, self.onConnectionSK, connectionSK)
 		self.toolbar1.AddSeparator()
-		toolRescue = self.toolbar1.AddCheckTool(104, _('Rescue'), wx.Bitmap(self.currentdir+"/data/rescue.png"))
+		toolRescue = self.toolbar1.AddTool(104, _('Rescue'), wx.Bitmap(self.currentdir+"/data/rescue.png"))
 		self.Bind(wx.EVT_TOOL, self.onToolRescue, toolRescue)
 		if self.conf.get('GENERAL', 'rescue') == 'yes': self.toolbar1.ToggleTool(104,True)
 		self.toolbar1.AddSeparator()
@@ -68,8 +81,6 @@ class MyFrame(wx.Frame):
 		self.Bind(wx.EVT_TOOL, self.onToolControl, toolControl)
 		toolWebControl = self.toolbar2.AddTool(205, _('Web Control'), wx.Bitmap(self.currentdir+"/data/open.png"))
 		self.Bind(wx.EVT_TOOL, self.onToolWebControl, toolWebControl)
-		toolHatControl = self.toolbar2.AddTool(206, _('HAT Control'), wx.Bitmap(self.currentdir+"/data/lcd.png"))
-		self.Bind(wx.EVT_TOOL, self.onToolHatControl, toolHatControl)
 		self.toolbar2.AddSeparator()
 		toolCalibration= self.toolbar2.AddTool(202, _('Calibration'), wx.Bitmap(self.currentdir+"/data/calibration.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolCalibration, toolCalibration)
@@ -104,13 +115,69 @@ class MyFrame(wx.Frame):
 	   
 		self.Centre()
 
+		
 		self.pageServices()
 		self.pageSerial()
 		self.onRead()
 
+
+	def onConsoleTimer(self, event):
+		if self.installProcess.poll() != None:
+			self.installConsoleTimer.Stop()
+			self.bReinstall.Enable(True)
+
+			self.installConsole.SetInsertionPoint(-1)
+			self.installConsole.ShowPosition(self.installConsole.GetLastPosition())
+			self.installConsole.Refresh()
+			self.installConsole.Update()
+			return
+			
+		try:
+			for f in [self.installProcess.stdout, self.installProcess.stderr]:
+				while True:
+					line = f.readline()
+					if not line:
+						break
+					self.installConsole.WriteText(line)
+
+		except Exception as e:
+			print('exception', e)
+		self.installConsole.SetInsertionPoint(-1)
+		self.installConsole.ShowPosition(self.installConsole.GetLastPosition())
+		self.installConsole.Refresh()
+		self.installConsole.Update()
+
+		
+	def onReinstall(self, event):
+		self.installConsole.Clear()
+		self.installConsoleTimer = wx.Timer(self, wx.ID_ANY)
+		self.Bind(wx.EVT_TIMER, self.onConsoleTimer, id=wx.ID_ANY)
+		self.bReinstall.Enable(False)
+
+		try:
+			self.installProcess = subprocess.Popen(['python3', os.path.dirname(__file__)+'/pypilotPostInstall.py'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
+			import fcntl
+			for f in [self.installProcess.stdout, self.installProcess.stderr]:
+				fd = f.fileno()
+				fcntl.fcntl(fd, fcntl.F_SETFL, fcntl.fcntl(fd, fcntl.F_GETFL) | os.O_NONBLOCK)
+			
+			self.installConsoleTimer.Start(500, False)
+		except Exception as e:
+			print('exception', e)
+			t = self.installConsole.GetLabel()
+			self.installConsole.SetLabel(t + str(e) + '\n')
+			self.installProcess.kill()
+
+		
 	def onToolRescue(self,e):
-		if self.toolbar1.GetToolState(104): self.conf.set('GENERAL', 'rescue', 'yes')
-		else: self.conf.set('GENERAL', 'rescue', 'no')
+		self.service('disable')
+		self.service('disableWeb')
+		self.service('disableHat')
+
+		os.system('rm ~/.pypilot/pypilot.conf')
+		os.system('echo "/dev/ttyAMA0" > ~/.pypilot/serial_ports')
+		
+		self.relistSerial()
 		self.onRead()
 
 	def OnToolRefresh(self, event):
@@ -118,19 +185,17 @@ class MyFrame(wx.Frame):
 		
 	def onRead(self):
 		self.SetStatusText('')
-		self.mode.SetSelection(0)
 		running = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
 		self.toolbar1.EnableTool(107,False)
-		self.toolbar2.EnableTool(201,False)
-		self.toolbar2.EnableTool(202,False)
-		self.toolbar2.EnableTool(203,False)
-		self.toolbar2.EnableTool(204,False)
-		self.toolbar2.EnableTool(205,False)
-		self.toolbar2.EnableTool(206,False)
-		self.HatControl.SetValue(False)
-		self.HatControl.Disable()
-		self.WebControl.SetValue(False)
-		self.WebControl.Disable()
+		def enable_tools(v):
+			self.systemd_services.SetSelection(v)
+			self.toolbar2.EnableTool(201,v)
+			self.toolbar2.EnableTool(202,v)
+			self.toolbar2.EnableTool(203,v)
+			self.toolbar2.EnableTool(204,v)
+			self.toolbar2.EnableTool(205,v)
+			self.toolbar2.EnableTool(206,v)
+
 
 		#pypilot version
 		try:
@@ -138,7 +203,20 @@ class MyFrame(wx.Frame):
 			self.pypilotVersion.SetLabel(_('pypilot version:')+' '+strversion)
 		except Exception as e:
 			self.pypilotVersion.SetLabel(_('pypilot version:')+' '+str(e))
+		if self.active('pypilot'):
+			enable_tools(2)
+		elif self.active('boatimu'):
+			enable_tools(1)
+		else:
+			enable_tools(0)
+			
 
+		self.WebControl.SetValue(self.active('pypilot_web'))
+		self.HatControl.SetValue(self.active('pypilot_hat'))
+
+		self.relistSerial()
+
+			
 		#IMU
 		label = _('Detected IMU:')+' '
 		try:
@@ -148,28 +226,14 @@ class MyFrame(wx.Frame):
 			self.imuDetected.SetLabel(label+_('Failed'))
 			self.conf.set('PYPILOT', 'pypilot_boatimu', '0')
 		else:
-			self.imuDetected.SetLabel(label+_('None'))
 			SETTINGS_FILE = "RTIMULibTemp"
 			s = RTIMU.Settings(SETTINGS_FILE)
 			imu = RTIMU.RTIMU(s)
-			keys = {}
-			with open(SETTINGS_FILE+'.ini', "r") as infile:
-				for line in infile:
-					for i in range(20):
-						key = '#   %d' % i
-						if key in line:
-							keys[i] = line[8:]
-							
-					if 'IMUType=' in line:
-						tmp = line.split("=")
-						imunum = int(tmp[1].strip())
-						if imunum in keys:
-							imuname = keys[imunum]
-						else:
-							imuname = _('unknown: ') + imunum
-						imuname = imuname.replace('\n', '')
-						self.imuDetected.SetLabel(label+imuname)
-						break
+			imuname = imu.IMUName()
+
+			if imuname == 'Null IMU':
+				imuname = _('None')
+			self.imuDetected.SetLabel(label+imuname)
 			subprocess.call(['rm', '-f', 'RTIMULibTemp.ini'])
 
 		#hardware
@@ -221,55 +285,6 @@ class MyFrame(wx.Frame):
 				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
 				file.write(token)
 				file.close()
-
-		#Services
-		rescue = self.conf.get('GENERAL', 'rescue')
-		if rescue == 'yes': 
-			self.stopServices()
-			self.ShowStatusBarRED(_('pypilot is in rescue mode'))
-		else:
-			pypilot = self.conf.get('PYPILOT', 'pypilot')
-			pypilot_boatimu = self.conf.get('PYPILOT', 'pypilot_boatimu')
-			pypilot_web = self.conf.get('PYPILOT', 'pypilot_web')
-			pypilot_hat = self.conf.get('PYPILOT', 'pypilot_hat')
-			if pypilot_boatimu == '1':
-				self.mode.SetSelection(1)
-				self.toolbar2.EnableTool(202,True)
-				self.toolbar2.EnableTool(203,True)
-				self.toolbar2.EnableTool(204,True)
-				subprocess.call(['pkill', '-x', 'pypilot'])
-				subprocess.call(['pkill', '-f', 'pypilot_web'])
-				subprocess.call(['pkill', '-f', 'pypilot_hat'])
-				if not 'pypilot_boatimu' in running: subprocess.Popen(['pypilot_boatimu','-q'], cwd = self.conf.home+'/.pypilot')
-				if not 'openplotter-pypilot-read' in running: subprocess.Popen('openplotter-pypilot-read')
-			elif pypilot == '1':
-				self.mode.SetSelection(2)
-				self.WebControl.Enable()
-				self.HatControl.Enable()
-				self.toolbar2.EnableTool(201,True)
-				self.toolbar2.EnableTool(202,True)
-				self.toolbar2.EnableTool(203,True)
-				self.toolbar2.EnableTool(204,True)
-				subprocess.call(['pkill', '-f', 'openplotter-pypilot-read'])
-				subprocess.call(['pkill', '-f', 'pypilot_boatimu'])
-				running2 = running.replace('openplotter-pypilot-read','')
-				running2 = running2.replace('openplotter-pypilot','')
-				running2 = running2.replace('pypilot_web','')
-				running2 = running2.replace('pypilot_hat','')
-				running2 = running2.replace('pypilot_boatimu','')
-				if not 'pypilot' in running2: subprocess.Popen('pypilot', cwd = self.conf.home+'/.pypilot')
-				if pypilot_web == '1':
-					if not 'pypilot_web' in running: subprocess.Popen('pypilot_web')
-					self.toolbar2.EnableTool(205,True)
-					self.WebControl.SetValue(True)
-				else: subprocess.call(['pkill', '-f', 'pypilot_web'])
-				if pypilot_hat == '1': 
-					if not 'pypilot_hat' in running: subprocess.Popen('pypilot_hat')
-					self.toolbar2.EnableTool(206,True)
-					self.HatControl.SetValue(True)
-				else: subprocess.call(['pkill', '-f', 'pypilot_hat'])
-			else: 
-				self.stopServices()
 
 		#serial
 		self.listSerial.Clear()
@@ -338,85 +353,146 @@ class MyFrame(wx.Frame):
 		url = "http://localhost:8000"
 		webbrowser.open(url, new=2)
 
-	def onToolHatControl(self,e): 
-		url = "http://localhost:33333"
-		webbrowser.open(url, new=2)
-
-	def onAproveSK(self,e):
+	def onAproveSK(self, e):
 		if self.platform.skPort: 
 			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/security/access/requests'
 			webbrowser.open(url, new=2)
 
-	def onConnectionSK(self,e):
+	def onConnectionSK(self, e):
 		if self.platform.skPort: 
 			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/security/devices'
 			webbrowser.open(url, new=2)
 
 	def pageServices(self):
-		self.mode = wx.Choice(self.services, choices = (_("Disable"),_("Enable IMU Only"),_("Enable Autopilot")), style=wx.CB_READONLY)
-		self.mode.Bind(wx.EVT_CHOICE, self.onMode)
+		self.systemd_services = wx.Choice(self.services, choices = (_("Disable"),_("Enable IMU Only"),_("Enable Autopilot")), style=wx.CB_READONLY)
+		self.systemd_services.Bind(wx.EVT_CHOICE, self.onServices)
 		self.WebControl = wx.CheckBox(self.services, label=_('Enable Web Control'))
 		self.WebControl.Bind(wx.EVT_CHECKBOX, self.onWebControl)
 		self.HatControl = wx.CheckBox(self.services, label=_('Enable HAT Control'))
 		self.HatControl.Bind(wx.EVT_CHECKBOX, self.onHatControl)
+		self.HatControlConfig = wx.Button(self.services, label=_('Configure'))
+		self.HatControlConfig.Bind(wx.EVT_BUTTON, self.onConfigureHat)
 		self.pypilotVersion = wx.StaticText(self.services, label='')
 		self.imuDetected = wx.StaticText(self.services, label='')
 		self.hardware = wx.StaticText(self.services, label='')
+		self.hardwareSerial = wx.StaticText(self.services, label='')
 
 		vbox = wx.BoxSizer(wx.VERTICAL)
-		vbox.Add(self.mode, 0, wx.ALL, 7)
+		vbox.Add(self.systemd_services, 0, wx.ALL, 7)
 		vbox.Add(self.WebControl, 0, wx.ALL, 7)
-		vbox.Add(self.HatControl, 0, wx.ALL, 7)
+		hbox = wx.BoxSizer(wx.HORIZONTAL)
+		hbox.Add(self.HatControl, 0, wx.ALL, 7)
+		hbox.Add(self.HatControlConfig, 0, wx.ALL, 7)
+		vbox.Add(hbox)
+		
 		vbox.Add(self.pypilotVersion, 0, wx.ALL, 7)
 		vbox.Add(self.imuDetected, 0, wx.ALL, 7)
 		vbox.Add(self.hardware, 0, wx.ALL, 7)
+		vbox.Add(self.hardwareSerial, 0, wx.ALL, 7)
 		
 		self.services.SetSizer(vbox)
 
-	def onMode(self,e):
-		selected = self.mode.GetSelection()
-		if selected == 0:
-			self.conf.set('PYPILOT', 'pypilot_boatimu', '0')
-			self.conf.set('PYPILOT', 'pypilot', '0')
-			self.conf.set('PYPILOT', 'pypilot_hat', '0')
-			self.conf.set('PYPILOT', 'pypilot_web', '0')
-		elif selected == 1:
-			self.conf.set('PYPILOT', 'pypilot_boatimu', '1')
-			self.conf.set('PYPILOT', 'pypilot', '0')
-			self.conf.set('PYPILOT', 'pypilot_hat', '0')
-			self.conf.set('PYPILOT', 'pypilot_web', '0')
-		elif selected == 2:
-			# test if hardware serial is enabled
-			if os.path.realpath('/dev/serial0') != '/dev/ttyAMA0':
-				wx.MessageBox(_('UART0 must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app.'), _('warning'), wx.OK | wx.ICON_WARNING)
-				self.conf.set('PYPILOT', 'pypilot', '0')
-			else:
-				self.conf.set('PYPILOT', 'pypilot', '1')
-				self.conf.set('PYPILOT', 'pypilot_boatimu', '0')
-		else: pass
-		self.onRead()
+
+		# look for eeprom of hat for hints as to what hardware is available
+		configfile = '/proc/device-tree/hat/custom_0'
+		config = None
+		try:
+			with open(configfile) as f:
+				config = ujson.loads(f.read())
+				self.hardware.SetLabel(str(config['arduino']['hardware']))
+			'''
+			if not self.active('pypilot_hat'):
+				wx.MessageBox(_('Detected pypilot hat, but the service is not enabled.\nEnable the hat service to use the lcd display and remote controls'), _('warning'), wx.OK | wx.ICON_WARNING)
+			'''
+
+		except Exception as e:
+			self.hardware.SetLabel(_("no pypilot hat detected"))
+
+		self.WarnHardwareSerial()
+
+
+	def active(self, name):
+		return not os.system('systemctl is-active ' + name)
+
 
 	def onWebControl(self,e):
-		if self.WebControl.GetValue(): self.conf.set('PYPILOT', 'pypilot_web', '1')
-		else: self.conf.set('PYPILOT', 'pypilot_web', '0')
-		self.onRead()
+		if self.WebControl.GetValue():
+			self.service('enableWeb')
+		else:
+			self.service('disableWeb')
 
 	def onHatControl(self,e):
-		if self.HatControl.GetValue(): 
-			configfile = '/proc/device-tree/hat/custom_0'
-			config = None
-			try:
-				with open(configfile) as f:
-					config = ujson.loads(f.read())
-				print(config['arduino']['hardware'])
-				self.conf.set('PYPILOT', 'pypilot_hat', '1')
-			except:
-				wx.MessageBox(_('No pypilot HAT detected.'), _('warning'), wx.OK | wx.ICON_WARNING)
-				self.conf.set('PYPILOT', 'pypilot_hat', '0')
-		else: self.conf.set('PYPILOT', 'pypilot_hat', '0')
-		self.onRead()
+		if self.HatControl.GetValue():
+			self.service('enableHat')
+		else:
+			self.service('disableHat')
 
+
+	def relistSerial(self):
+		self.listSerial.Clear()
+		try:
+			path = self.conf.home + '/.pypilot/serial_ports'
+			with open(path, 'r') as f:
+				for line in f:
+					line = line.replace('\n', '')
+					line = line.strip()
+					self.listSerial.Append(line)
+					#self.listSerial.SetItemBackgroundColour(self.listSerial.GetItemCount()-1,(102,205,170))
+		except:
+			pass
+
+						
+	def WarnHardwareSerial(self):
+		# test if hardware serial is enabled
+		if os.path.realpath('/dev/serial0') != '/dev/ttyAMA0':
+			wx.MessageBox(_('hardware serial must be enabled for motor controller communication'), _('warning'), wx.OK | wx.ICON_WARNING)
+			self.hardwareSerial.SetLabel(_('warning: no hardware serial'))
+			return
+
+		self.hardwareSerial.SetLabel(_('hardware serial detected'))
+
+		# test that /dev/ttyAMA0 is in ~/.pypilot/serial_ports
+		path = self.conf.home + '/.pypilot/serial_ports'
+		if os.path.exists(path):
+			with open(path, 'r') as f:
+				for line in f:
+					line = line.replace('\n', '')
+					line = line.strip()
+					if os.path.realpath(line) == '/dev/ttyAMA0':
+						break
+				else:
+					wx.MessageBox(_('the hardware serial port for the motor /dev/ttyAMA0 should be added to the list of serial ports pypilot manages'), _('warning'), wx.OK | wx.ICON_WARNING)
+
+	def service(self, command):
+		subprocess.call([self.platform.admin, 'python3', os.path.dirname(__file__)+'/service.py', command])
+
+	def onServices( self, event=None ):
+		mode = self.systemd_services.GetSelection()
+
+		self.ShowStatusBarYELLOW(_('Applying changes ...'))
+		if mode == 0:
+			self.service('disable')
+		elif mode == 1:
+			self.service('boatimu')
+		elif mode == 2:
+			self.service('pypilot')
+			self.WarnHardwareSerial()
+
+		self.onRead()
+		self.relistSerial()
+		self.ShowStatusBarGREEN(_('Changes applied'))
+
+		
 	############################################################################
+	def onConfigureHat(self, e):
+		url = "http://localhost:33333"
+		webbrowser.open(url, new=2)
+
+
+	def onHardwareSerial(self, e):
+		subprocess.call([self.platform.admin, 'python3', os.path.dirname(__file__)+'/hardwareserial.py'])
+		wx.MessageBox(_('must reboot to update changes to hardware serial'), _('reboot'), wx.OK)
+
 
 	def pageSerial(self):
 		self.listSerial = wx.ListBox(self.serial, choices=[])
@@ -434,6 +510,7 @@ class MyFrame(wx.Frame):
 		hbox.Add(self.toolbar3, 0, wx.ALL | wx.EXPAND, 0)
 
 		self.serial.SetSizer(hbox)
+
 
 	def onAddSerial(self, e): 
 		dlg = selectConnections.AddPort('', True, 'auto', False)
@@ -455,6 +532,8 @@ class MyFrame(wx.Frame):
 				file.write(device + '\n')
 			self.onRead()
 		dlg.Destroy()
+		self.onServices()
+		self.relistSerial()
 
 	def onRemoveSerial(self, e): 
 		index = self.listSerial.GetSelection()
@@ -480,6 +559,9 @@ class MyFrame(wx.Frame):
 			if i[:4] == 'nmea' and i[-6:] == 'device':
 				subprocess.call(['rm', '-f', path+i])
 
+		self.onServices()
+		self.relistSerial()
+
 ################################################################################
 
 def main():
@@ -491,7 +573,7 @@ def main():
 	except: pass
 
 	app = wx.App()
-	MyFrame().Show()
+	pypilotFrame().Show()
 	time.sleep(1)
 	app.MainLoop()
 
