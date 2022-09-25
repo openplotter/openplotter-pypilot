@@ -25,19 +25,19 @@ class Ports:
 		self.connections = []
 
 	def usedPorts(self):
-		pypilot = self.conf.get('PYPILOT', 'pypilot')
-		pypilot_boatimu = self.conf.get('PYPILOT', 'pypilot_boatimu')
-		pypilot_web = self.conf.get('PYPILOT', 'pypilot_web')
-		pypilot_hat = self.conf.get('PYPILOT', 'pypilot_hat')
+		pypilot = not os.system('systemctl is-active pypilot')
+		pypilot_boatimu = not os.system('systemctl is-active pypilot_boatimu')
+		pypilot_web = not os.system('systemctl is-active pypilot_web')
+		pypilot_hat = not os.system('systemctl is-active pypilot_hat')
 		usedPorts = []
 
-		if pypilot_boatimu == '1' or pypilot == '1':
+		if pypilot_boatimu or pypilot:
 			usedPorts.append({'id':'Pypilot1', 'description':_('Pypilot Server'), 'data':[], 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'23322', 'editable':'0'})
-			if pypilot == '1':
+			if pypilot:
 				usedPorts.append({'id':'Pypilot2', 'description':_('Pypilot NMEA 0183 Server'), 'data':[], 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'20220', 'editable':'0'})
-				if pypilot_web == '1':
-					usedPorts.append({'id':'Pypilot3', 'description':_('Pypilot Web Control'), 'data':[], 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8000', 'editable':'0'})
-				if pypilot_hat == '1':
-					usedPorts.append({'id':'Pypilot4', 'description':_('Pypilot HAT Control'), 'data':[], 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'33333', 'editable':'0'})
+		if pypilot_web:
+			usedPorts.append({'id':'Pypilot3', 'description':_('Pypilot Web Control'), 'data':[], 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'8000', 'editable':'0'})
+		if pypilot_hat:
+			usedPorts.append({'id':'Pypilot4', 'description':_('Pypilot HAT Control'), 'data':[], 'type':'TCP', 'mode':'server', 'address':'localhost', 'port':'33333', 'editable':'0'})
 
 		return usedPorts

@@ -16,14 +16,13 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import subprocess, sys
+import subprocess, sys, os
 
 class SerialPorts:
 	def __init__(self,conf):
 		self.conf = conf
 		self.connections = []
-		self.pypilot = False
-		if self.conf.get('PYPILOT', 'pypilot') == '1': self.pypilot = True
+		self.pypilot = not os.system('systemctl is-active pypilot')
 
 	def usedSerialPorts(self):
 		# {'app':'xxx', 'id':'xxx', 'data':'NMEA0183/NMEA2000/SignalK', 'device': '/dev/xxx', "baudrate": nnnnnn, "enabled": True/False}

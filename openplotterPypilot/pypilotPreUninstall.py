@@ -16,7 +16,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import os
+import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language    
 
@@ -30,10 +30,18 @@ def main():
 	try:
 		os.system('xargs rm -rf < '+conf2.home+'/.pypilot/install.txt')
 		os.system('rm -rf '+conf2.home+'/.pypilot')
-		conf2.set('PYPILOT', 'pypilot_boatimu', '0')
-		conf2.set('PYPILOT', 'pypilot', '0')
-		conf2.set('PYPILOT', 'pypilot_hat', '0')
-		conf2.set('PYPILOT', 'pypilot_web', '0')
+		subprocess.call(['systemctl', 'disable', 'pypilot'])
+		subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
+		subprocess.call(['systemctl', 'disable', 'pypilot_web'])
+		subprocess.call(['systemctl', 'disable', 'pypilot_hat'])
+		subprocess.call(['systemctl', 'stop', 'pypilot'])
+		subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
+		subprocess.call(['systemctl', 'stop', 'pypilot_web'])
+		subprocess.call(['systemctl', 'stop', 'pypilot_hat'])
+		os.system('rm -f /etc/systemd/system/pypilot.service')
+		os.system('rm -f /etc/systemd/system/pypilot_boatimu.service')
+		os.system('rm -f /etc/systemd/system/pypilot_hat.service')
+		os.system('rm -f /etc/systemd/system/pypilot_web.service')
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 

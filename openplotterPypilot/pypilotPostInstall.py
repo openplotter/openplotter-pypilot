@@ -19,12 +19,8 @@
 import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
-
-try:
-	from .version import version
-except:
-	from version import version
-
+try: from .version import version
+except: from version import version
 
 def main():
 	conf2 = conf.Conf()
@@ -34,7 +30,7 @@ def main():
 	
 	print(_('Removing incompatible packages...'))
 	try:
-		subprocess.call(['sudo', 'apt', '-y', 'autoremove', 'sense-hat'])
+		subprocess.call(['apt', '-y', 'autoremove', 'sense-hat'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
@@ -43,6 +39,16 @@ def main():
 		pypilotFolder = conf2.home+'/.pypilot'
 		installfile = pypilotFolder+'/install.txt'
 		if not os.path.exists(pypilotFolder): os.mkdir(pypilotFolder)
+		skConfFile = pypilotFolder+'/pypilot_client.conf'
+		if not os.path.exists(skConfFile):
+			fo = open(skConfFile, "w")
+			fo.write( '{"host": "localhost"}')
+			fo.close()
+		serialPorts = pypilotFolder+'/serial_ports'
+		if not os.path.exists(serialPorts):
+			fo = open(serialPorts, "w")
+			fo.write('')
+			fo.close()
 		os.system('rm -f '+installfile)
 		os.chdir('/tmp')
 		os.system('rm -rf pypilot')
@@ -50,7 +56,6 @@ def main():
 		os.chdir('pypilot')
 		os.system('python3 setup.py install --record '+installfile)
 		os.system('chown -R '+conf2.user+' '+pypilotFolder)
-
 		print(_('installing debian service scripts'))
 		os.system('sudo cp -rv scripts/debian/etc/systemd /etc')
 
@@ -71,28 +76,6 @@ def main():
 		conf2.set('APPS', 'pypilot', version)
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
-	
-	print(_('Creating config files...'))
-	try:
-		pypilotFolder = conf2.home+'/.pypilot'
-		if not os.path.exists(pypilotFolder):
-			os.mkdir(pypilotFolder)
-		skConfFile = pypilotFolder+'/pypilot_client.conf'
-		if not os.path.exists(skConfFile):
-			fo = open(skConfFile, "w")
-			fo.write( '{"host": "localhost"}')
-			fo.close()
-		serialPorts = pypilotFolder+'/serial_ports'
-		if not os.path.exists(serialPorts):
-			fo = open(skConfFile, "w")
-			fo.write('/dev/ttyAMA0\n')
-			fo.close()
-		subprocess.call(['chown', '-R', conf2.user, pypilotFolder])
-		print(_('DONE'))
-	except Exception as e:
-		print(_('FAILED: ')+str(e))
     
 if __name__ == '__main__':
 	main()
-			
-			
