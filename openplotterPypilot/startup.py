@@ -17,22 +17,62 @@
 
 import os, sys, subprocess
 from openplotterSettings import language
+from openplotterSettings import platform
 from openplotterSignalkInstaller import connections
 
 class Start():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
-		self.initialMessage = _('Starting pypilot...')
+		self.initialMessage = ''
 
 	def start(self):
 		green = '' 
 		black = '' 
 		red = '' 
 
-		subprocess.call(['pkill', '-f', 'pypilot'])
+		return {'green': green,'black': black,'red': red}
 
+class Check():
+	def __init__(self, conf, currentLanguage):
+		self.conf = conf
+		self.platform = platform.Platform()
+		currentdir = os.path.dirname(os.path.abspath(__file__))
+		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
+		self.initialMessage = _('Checking pypilot...')
+
+	def check(self):
+		green = '' 
+		black = '' 
+		red = '' 
+		
+		def active(name):
+			return not os.system('systemctl is-active ' + name)
+		
+		def addgreen(n):
+			nonlocal green
+			if green:
+				n = ' | ' + n
+			green += n
+
+		def addred(n):
+			nonlocal red
+			if red:
+				n = '\n   ' + n
+			red += n
+
+		def addblack(n):
+			nonlocal black
+			if black:
+				n = ' | ' + n
+			black += n
+			
+		#access
 		skConnections = connections.Connections('PYPILOT')
 		result = skConnections.checkConnection()
+		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions':
+			addred(result[1])
+			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'stop', 'pypilot'])
+			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'stop', 'pypilot_boatimu'])
 		if result[0] == 'approved' or result[0] == 'validated':
 			token = self.conf.get('PYPILOT', 'token')
 			try:
@@ -48,173 +88,32 @@ class Start():
 				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
 				file.write(token)
 				file.close()
-			pypilot = self.conf.get('PYPILOT', 'pypilot')
-			pypilot_boatimu = self.conf.get('PYPILOT', 'pypilot_boatimu')
-			pypilot_web = self.conf.get('PYPILOT', 'pypilot_web')
-			pypilot_hat = self.conf.get('PYPILOT', 'pypilot_hat')
-			if pypilot_boatimu == '1':
-				msg = _('starting IMU only...')
-				if not black: black = msg
-				else: black+= ' | '+msg
-				subprocess.Popen(['pypilot_boatimu','-q'], cwd = self.conf.home+'/.pypilot')
-				subprocess.Popen('openplotter-pypilot-read')
-			elif pypilot == '1':
-				msg = _('starting autopilot...')
-				if not black: black = msg
-				else: black+= ' | '+msg
-				subprocess.Popen('pypilot', cwd = self.conf.home+'/.pypilot')
-				if pypilot_web == '1':
-					msg = _('starting web control...')
-					if not black: black = msg
-					else: black+= ' | '+msg
-					subprocess.Popen('pypilot_web')
-				if pypilot_hat == '1':
-					msg = _('starting HAT control...')
-					if not black: black = msg
-					else: black+= ' | '+msg
-					subprocess.Popen('pypilot_hat')
-
-		return {'green': green,'black': black,'red': red}
-
-class Check():
-	def __init__(self, conf, currentLanguage):
-		self.conf = conf
-		currentdir = os.path.dirname(os.path.abspath(__file__))
-		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
-		self.initialMessage = _('Checking pypilot...')
-
-
-	def check(self):
-		green = '' 
-		black = '' 
-		red = '' 
-
-		#access
-		skConnections = connections.Connections('PYPILOT')
-		result = skConnections.checkConnection()
-		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions':
-			if not red: red = result[1]
-			else: red+= '\n    '+result[1]
-		if result[0] == 'approved' or result[0] == 'validated':
-			msg = _('Access to Signal K server validated')
-			if not black: black = msg
-			else: black+= ' | '+msg
+			addblack(_('Access to Signal K server validated'))
+			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot'])
+			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot_boatimu'])
 
 		#services status
-		running = subprocess.check_output(['ps','aux']).decode(sys.stdin.encoding)
-		running2 = running.replace('openplotter-pypilot-read','')
-		running2 = running2.replace('openplotter-pypilot','')
-		running2 = running2.replace('pypilot_web','')
-		running2 = running2.replace('pypilot_hat','')
-		running2 = running2.replace('pypilot_boatimu','')
+		running = ' ' + _('running')
+		notrunning = ' ' + _('not running')
 
-		pypilot = self.conf.get('PYPILOT', 'pypilot')
-		pypilot_boatimu = self.conf.get('PYPILOT', 'pypilot_boatimu')
-		pypilot_web = self.conf.get('PYPILOT', 'pypilot_web')
-		pypilot_hat = self.conf.get('PYPILOT', 'pypilot_hat')
+		if active('pypilot'):
+			if active('pypilot_boatimu'):
+				addred(_('both pypilot and pypilot_boatimu services are running'))
+			else:
+				addgreen('pypilot' + running)
+		elif active('pypilot_boatimu'):
+			addgreen('pypilot_boatimu' + running)
+		else:
+			addblack('pypilot' + notrunning)
 
-		if pypilot_boatimu == '1':
-			if not 'pypilot_boatimu' in running:
-				msg = _('IMU only not running')
-				if red: red += '\n   '+msg
-				else: red = msg
+		def showservice(name):
+			if active(name):
+				addgreen(name + running)
 			else:
-				msg = _('IMU only running')
-				if not green: green = msg
-				else: green+= ' | '+msg
-			if 'pypilot' in running2:
-				msg = _('IMU only and Autopilot running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			if not 'openplotter-pypilot-read' in running:
-				msg = _('openplotter-pypilot-read not running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('openplotter-pypilot-read running')
-				if not green: green = msg
-				else: green+= ' | '+msg
-		else:
-			if 'pypilot_boatimu' in running:
-				msg = _('IMU only running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('IMU only not running')
-				if not black: black = msg
-				else: black+= ' | '+msg
-			if 'openplotter-pypilot-read' in running:
-				msg = _('openplotter-pypilot-read running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('openplotter-pypilot-read not running')
-				if not black: black = msg
-				else: black+= ' | '+msg
-		if pypilot == '1':
-			if not 'pypilot' in running2:
-				msg = _('Autopilot not running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('Autopilot running')
-				if not green: green = msg
-				else: green+= ' | '+msg
-		else:
-			if 'pypilot' in running2:
-				msg = _('Autopilot running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('Autopilot not running')
-				if not black: black = msg
-				else: black+= ' | '+msg
+				addblack(name + notrunning)
 
-		if pypilot_web == '1':
-			if not 'pypilot_web' in running:
-				msg = _('Web control not running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('Web control running')
-				if not green: green = msg
-				else: green+= ' | '+msg
-			if not 'pypilot' in running2:
-				msg = _('Autopilot not running')
-				if red: red += '\n   '+msg
-				else: red = msg
-		else:
-			if 'pypilot_web' in running:
-				msg = _('Web control running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('Web control not running')
-				if not black: black = msg
-				else: black+= ' | '+msg
+		showservice('pypilot_web')
+		showservice('pypilot_hat')
 
-		if pypilot_hat == '1':
-			if not 'pypilot_hat' in running:
-				msg = _('HAT control not running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('HAT control running')
-				if not green: green = msg
-				else: green+= ' | '+msg
-			if not 'pypilot' in running2:
-				msg = _('Autopilot not running')
-				if red: red += '\n   '+msg
-				else: red = msg
-		else:
-			if 'pypilot_hat' in running:
-				msg = _('HAT control running')
-				if red: red += '\n   '+msg
-				else: red = msg
-			else:
-				msg = _('HAT control not running')
-				if not black: black = msg
-				else: black+= ' | '+msg
 
 		return {'green': green,'black': black,'red': red}
-
