@@ -20,17 +20,23 @@ import sys, subprocess
 
 if sys.argv[1]=='disable':
 	subprocess.call(['systemctl', 'disable', 'pypilot'])
-	subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'stop', 'pypilot'])
+	subprocess.call(['systemctl', 'disable', 'openplotter-pypilot-read'])
+	subprocess.call(['systemctl', 'stop', 'openplotter-pypilot-read'])
+	subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
 
 if sys.argv[1]=='boatimu':
 	subprocess.call(['systemctl', 'disable', 'pypilot'])
-	subprocess.call(['systemctl', 'enable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'stop', 'pypilot'])
+	subprocess.call(['systemctl', 'enable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'restart', 'pypilot_boatimu'])
+	subprocess.call(['systemctl', 'enable', 'openplotter-pypilot-read'])
+	subprocess.call(['systemctl', 'restart', 'openplotter-pypilot-read'])
 
 if sys.argv[1]=='pypilot':
+	subprocess.call(['systemctl', 'disable', 'openplotter-pypilot-read'])
+	subprocess.call(['systemctl', 'stop', 'openplotter-pypilot-read'])
 	subprocess.call(['systemctl', 'disable', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'stop', 'pypilot_boatimu'])
 	subprocess.call(['systemctl', 'enable', 'pypilot'])

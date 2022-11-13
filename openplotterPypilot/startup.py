@@ -103,6 +103,10 @@ class Check():
 				addgreen('pypilot' + running)
 		elif active('pypilot_boatimu'):
 			addgreen('pypilot_boatimu' + running)
+			if active('openplotter-pypilot-read'):
+				addgreen('openplotter-pypilot-read' + running)
+			else:
+				addred('openplotter-pypilot-read' + notrunning)
 		else:
 			addblack('pypilot' + notrunning)
 
