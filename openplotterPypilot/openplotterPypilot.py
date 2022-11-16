@@ -299,11 +299,11 @@ class pypilotFrame(wx.Frame):
 			if self.debug: print(str(e))
 
 	def stopServices(self):
-		subprocess.call(['pkill', '-x', 'pypilot'])
-		subprocess.call(['pkill', '-f', 'openplotter-pypilot-read'])
-		subprocess.call(['pkill', '-f', 'pypilot_boatimu'])
-		subprocess.call(['pkill', '-f', 'pypilot_web'])
-		subprocess.call(['pkill', '-f', 'pypilot_hat'])
+		subprocess.call(['sudo', 'pkill', '-x', 'pypilot'])
+		subprocess.call(['sudo', 'pkill', '-f', 'openplotter-pypilot-read'])
+		subprocess.call(['sudo', 'pkill', '-f', 'pypilot_boatimu'])
+		subprocess.call(['sudo', 'pkill', '-f', 'pypilot_web'])
+		subprocess.call(['sudo', 'pkill', '-f', 'pypilot_hat'])
 
 	def ShowStatusBar(self, w_msg, colour):
 		self.GetStatusBar().SetForegroundColour(colour)
