@@ -17,45 +17,28 @@
 
 import os, sys, subprocess
 from openplotterSettings import language
+from openplotterSettings import platform
 from openplotterSignalkInstaller import connections
 
 class Start():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
-		self.initialMessage = _('Starting pypilot...')
+		self.initialMessage = ''
 
 	def start(self):
 		green = '' 
 		black = '' 
 		red = '' 
 
-		skConnections = connections.Connections('PYPILOT')
-		result = skConnections.checkConnection()
-		if result[0] == 'approved' or result[0] == 'validated':
-			token = self.conf.get('PYPILOT', 'token')
-			try:
-				file = open(self.conf.home+'/.pypilot/signalk-token', 'r')
-				token2 = file.read()
-				token2 = token2.rstrip()
-				file.close()
-				if token != token2:
-					file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
-					file.write(token)
-					file.close()
-			except:
-				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
-				file.write(token)
-				file.close()
-
 		return {'green': green,'black': black,'red': red}
 
 class Check():
 	def __init__(self, conf, currentLanguage):
 		self.conf = conf
+		self.platform = platform.Platform()
 		currentdir = os.path.dirname(os.path.abspath(__file__))
 		language.Language(currentdir,'openplotter-pypilot',currentLanguage)
 		self.initialMessage = _('Checking pypilot...')
-
 
 	def check(self):
 		green = '' 
@@ -74,7 +57,7 @@ class Check():
 		def addred(n):
 			nonlocal red
 			if red:
-				n = '\n' + n
+				n = '\n   ' + n
 			red += n
 
 		def addblack(n):
@@ -88,29 +71,44 @@ class Check():
 		result = skConnections.checkConnection()
 		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions':
 			addred(result[1])
+			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'stop', 'pypilot'])
+			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'stop', 'pypilot_boatimu'])
 		if result[0] == 'approved' or result[0] == 'validated':
+			token = self.conf.get('PYPILOT', 'token')
+			try:
+				file = open(self.conf.home+'/.pypilot/signalk-token', 'r')
+				token2 = file.read()
+				token2 = token2.rstrip()
+				file.close()
+				if token != token2:
+					file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
+					file.write(token)
+					file.close()
+			except:
+				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
+				file.write(token)
+				file.close()
 			addblack(_('Access to Signal K server validated'))
+			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot'])
+			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot_boatimu'])
 
 		#services status
-		pypilot = self.conf.get('PYPILOT', 'pypilot')
-		pypilot_boatimu = self.conf.get('PYPILOT', 'pypilot_boatimu')
-		pypilot_web = self.conf.get('PYPILOT', 'pypilot_web')
-		pypilot_hat = self.conf.get('PYPILOT', 'pypilot_hat')
-
-
 		running = ' ' + _('running')
 		notrunning = ' ' + _('not running')
 
 		if active('pypilot'):
 			if active('pypilot_boatimu'):
-				addred(_('CONFLICT: pypilot and pypilot_boatimu running'))
+				addred(_('both pypilot and pypilot_boatimu services are running'))
 			else:
 				addgreen('pypilot' + running)
 		elif active('pypilot_boatimu'):
 			addgreen('pypilot_boatimu' + running)
+			if active('openplotter-pypilot-read'):
+				addgreen('openplotter-pypilot-read' + running)
+			else:
+				addred('openplotter-pypilot-read' + notrunning)
 		else:
-			addblack('pypilot_boatimu' + notrunning)
-
+			addblack('pypilot' + notrunning)
 
 		def showservice(name):
 			if active(name):

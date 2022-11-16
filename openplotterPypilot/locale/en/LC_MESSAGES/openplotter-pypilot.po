@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-pypilot\n"
-"POT-Creation-Date: 2022-09-10 14:31+0200\n"
-"PO-Revision-Date: 2022-09-10 14:32+0200\n"
+"POT-Creation-Date: 2022-11-13 13:36+0100\n"
+"PO-Revision-Date: 2022-11-13 13:36+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -23,24 +23,20 @@ msgstr ""
 msgid "openplotter-pypilot"
 msgstr ""
 
-#: openplotterPypilot.py:50
+#: openplotterPypilot.py:54
 msgid "Help"
 msgstr ""
 
-#: openplotterPypilot.py:53
+#: openplotterPypilot.py:57
 msgid "Settings"
 msgstr ""
 
-#: openplotterPypilot.py:56
+#: openplotterPypilot.py:60
 msgid "Approve"
 msgstr ""
 
-#: openplotterPypilot.py:58
+#: openplotterPypilot.py:62
 msgid "Allowed"
-msgstr ""
-
-#: openplotterPypilot.py:61
-msgid "Rescue"
 msgstr ""
 
 #: openplotterPypilot.py:65
@@ -55,136 +51,138 @@ msgstr ""
 msgid "Web Control"
 msgstr ""
 
-#: openplotterPypilot.py:73
-msgid "HAT Control"
-msgstr ""
-
-#: openplotterPypilot.py:76
+#: openplotterPypilot.py:74
 msgid "Calibration"
 msgstr ""
 
-#: openplotterPypilot.py:79
+#: openplotterPypilot.py:77
 msgid "Scope"
 msgstr ""
 
-#: openplotterPypilot.py:81
+#: openplotterPypilot.py:79
 msgid "Client"
 msgstr ""
 
-#: openplotterPypilot.py:88
+#: openplotterPypilot.py:86
 msgid "Services"
 msgstr ""
 
-#: openplotterPypilot.py:89
+#: openplotterPypilot.py:87
 msgid "Serial"
 msgstr ""
 
-#: openplotterPypilot.py:140 openplotterPypilot.py:142
+#: openplotterPypilot.py:131
+msgid " Press \"Approve\" and then \"Refresh\"."
+msgstr ""
+
+#: openplotterPypilot.py:141
+msgid " Press \"Refresh\"."
+msgstr ""
+
+#: openplotterPypilot.py:146
+msgid " Press \"Allowed\"."
+msgstr ""
+
+#: openplotterPypilot.py:174 openplotterPypilot.py:176
 msgid "pypilot version:"
 msgstr ""
 
-#: openplotterPypilot.py:145
+#: openplotterPypilot.py:191
 msgid "Detected IMU:"
 msgstr ""
 
-#: openplotterPypilot.py:149
+#: openplotterPypilot.py:195
 msgid ""
 "I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi "
 "configuration -> Interfaces"
 msgstr ""
 
-#: openplotterPypilot.py:150
+#: openplotterPypilot.py:196
 msgid "Failed"
 msgstr ""
 
-#: openplotterPypilot.py:153
+#: openplotterPypilot.py:204
 msgid "None"
 msgstr ""
 
-#: openplotterPypilot.py:171
-msgid "unknown: "
-msgstr ""
-
-#: openplotterPypilot.py:178
+#: openplotterPypilot.py:209
 msgid "Detected Hardware:"
 msgstr ""
 
-#: openplotterPypilot.py:186
+#: openplotterPypilot.py:217
 msgid "Detected pypilot HAT, but the service is not enabled"
 msgstr ""
 
-#: openplotterPypilot.py:188
+#: openplotterPypilot.py:219
 msgid "no pypilot HAT detected"
 msgstr ""
 
-#: openplotterPypilot.py:195
-msgid " Press \"Approve\" and then \"Refresh\"."
+#: openplotterPypilot.py:225
+msgid "No UART0 port detected"
 msgstr ""
 
-#: openplotterPypilot.py:203
-msgid " Press \"Refresh\"."
-msgstr ""
-
-#: openplotterPypilot.py:207
-msgid " Press \"Allowed\"."
-msgstr ""
-
-#: openplotterPypilot.py:231
-msgid "pypilot is in rescue mode"
-msgstr ""
-
-#: openplotterPypilot.py:358
-msgid "Disable"
-msgstr ""
-
-#: openplotterPypilot.py:358
-msgid "Enable IMU Only"
-msgstr ""
-
-#: openplotterPypilot.py:358
-msgid "Enable Autopilot"
-msgstr ""
-
-#: openplotterPypilot.py:360
-msgid "Enable Web Control"
-msgstr ""
-
-#: openplotterPypilot.py:362
-msgid "Enable HAT Control"
-msgstr ""
-
-#: openplotterPypilot.py:393
+#: openplotterPypilot.py:227
 msgid ""
-"UART0 must be enabled for motor controller communication. You can do it "
+"UART0 port must be enabled for motor controller communication. You can do it "
 "using the OpenPlotter Serial app."
 msgstr ""
 
-#: openplotterPypilot.py:393 openplotterPypilot.py:416
+#: openplotterPypilot.py:227 openplotterPypilot.py:240
 msgid "warning"
 msgstr ""
 
-#: openplotterPypilot.py:416
-msgid "No pypilot HAT detected."
+#: openplotterPypilot.py:229
+msgid "UART0 port detected"
 msgstr ""
 
-#: openplotterPypilot.py:427
+#: openplotterPypilot.py:240
+msgid ""
+"The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports "
+"pypilot manages"
+msgstr ""
+
+#: openplotterPypilot.py:301
+msgid "Disable"
+msgstr ""
+
+#: openplotterPypilot.py:301
+msgid "Enable IMU Only"
+msgstr ""
+
+#: openplotterPypilot.py:301
+msgid "Enable Autopilot"
+msgstr ""
+
+#: openplotterPypilot.py:303
+msgid "Enable Web Control"
+msgstr ""
+
+#: openplotterPypilot.py:305
+msgid "Enable HAT Control"
+msgstr ""
+
+#: openplotterPypilot.py:307
+msgid "Configure"
+msgstr ""
+
+#: openplotterPypilot.py:355 openplotterPypilot.py:406
+msgid "Applying changes ..."
+msgstr ""
+
+#: openplotterPypilot.py:367
 msgid "Add"
 msgstr ""
 
-#: openplotterPypilot.py:430
+#: openplotterPypilot.py:370
 msgid "Delete"
 msgstr ""
 
-#: openplotterPypilot.py:446
+#: openplotterPypilot.py:398
 msgid "You have to select a device"
 msgstr ""
 
-#: openplotterPypilot.py:451
+#: openplotterPypilot.py:403
 msgid "This device already exists"
-msgstr ""
-
-#: openplotterPypilot.py:454
-msgid "Applying changes ..."
 msgstr ""
 
 #: ports.py:35
@@ -203,35 +201,35 @@ msgstr ""
 msgid "Pypilot HAT Control"
 msgstr ""
 
-#: pypilotPostInstall.py:35
+#: pypilotPostInstall.py:31
 msgid "Removing incompatible packages..."
 msgstr ""
 
-#: pypilotPostInstall.py:38 pypilotPostInstall.py:44 pypilotPostInstall.py:59
-#: pypilotPostInstall.py:68 pypilotPostInstall.py:74 pypilotPreUninstall.py:37
-#: pypilotPreUninstall.py:43
+#: pypilotPostInstall.py:34 pypilotPostInstall.py:59 pypilotPostInstall.py:90
+#: pypilotPostInstall.py:99 pypilotPostInstall.py:105 pypilotPreUninstall.py:45
+#: pypilotPreUninstall.py:51
 msgid "DONE"
 msgstr ""
 
-#: pypilotPostInstall.py:39 pypilotPostInstall.py:45 pypilotPostInstall.py:60
-#: pypilotPostInstall.py:69 pypilotPostInstall.py:75 pypilotPreUninstall.py:38
-#: pypilotPreUninstall.py:44
+#: pypilotPostInstall.py:35 pypilotPostInstall.py:60 pypilotPostInstall.py:91
+#: pypilotPostInstall.py:100 pypilotPostInstall.py:106
+#: pypilotPreUninstall.py:46 pypilotPreUninstall.py:52
 msgid "FAILED: "
 msgstr ""
 
-#: pypilotPostInstall.py:41
-msgid "Installing python packages..."
-msgstr ""
-
-#: pypilotPostInstall.py:47
+#: pypilotPostInstall.py:37
 msgid "Installing Pypilot..."
 msgstr ""
 
 #: pypilotPostInstall.py:62
+msgid "Creating services..."
+msgstr ""
+
+#: pypilotPostInstall.py:93
 msgid "Checking access to Signal K server..."
 msgstr ""
 
-#: pypilotPostInstall.py:71
+#: pypilotPostInstall.py:102
 msgid "Setting version..."
 msgstr ""
 
@@ -239,78 +237,26 @@ msgstr ""
 msgid "Removing Pypilot..."
 msgstr ""
 
-#: pypilotPreUninstall.py:40
+#: pypilotPreUninstall.py:48
 msgid "Removing version..."
 msgstr ""
 
-#: startup.py:25
-msgid "Starting pypilot..."
-msgstr ""
-
-#: startup.py:56
-msgid "starting IMU only..."
-msgstr ""
-
-#: startup.py:62
-msgid "starting autopilot..."
-msgstr ""
-
-#: startup.py:67
-msgid "starting web control..."
-msgstr ""
-
-#: startup.py:72
-msgid "starting HAT control..."
-msgstr ""
-
-#: startup.py:84
+#: startup.py:41
 msgid "Checking pypilot..."
 msgstr ""
 
-#: startup.py:99
+#: startup.py:91
 msgid "Access to Signal K server validated"
 msgstr ""
 
-#: startup.py:118 startup.py:143
-msgid "IMU only not running"
+#: startup.py:96
+msgid "running"
 msgstr ""
 
-#: startup.py:122 startup.py:139
-msgid "IMU only running"
+#: startup.py:97
+msgid "not running"
 msgstr ""
 
-#: startup.py:126
-msgid "IMU only and Autopilot running"
-msgstr ""
-
-#: startup.py:130 startup.py:151
-msgid "openplotter-pypilot-read not running"
-msgstr ""
-
-#: startup.py:134 startup.py:147
-msgid "openplotter-pypilot-read running"
-msgstr ""
-
-#: startup.py:156 startup.py:169 startup.py:183 startup.py:206
-msgid "Autopilot not running"
-msgstr ""
-
-#: startup.py:160 startup.py:165
-msgid "Autopilot running"
-msgstr ""
-
-#: startup.py:175 startup.py:192
-msgid "Web control not running"
-msgstr ""
-
-#: startup.py:179 startup.py:188
-msgid "Web control running"
-msgstr ""
-
-#: startup.py:198 startup.py:215
-msgid "HAT control not running"
-msgstr ""
-
-#: startup.py:202 startup.py:211
-msgid "HAT control running"
+#: startup.py:101
+msgid "both pypilot and pypilot_boatimu services are running"
 msgstr ""
