@@ -69,10 +69,8 @@ class Check():
 		#access
 		skConnections = connections.Connections('PYPILOT')
 		result = skConnections.checkConnection()
-		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions':
+		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions': 
 			addred(result[1])
-			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'stop', 'pypilot'])
-			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'stop', 'pypilot_boatimu'])
 		if result[0] == 'approved' or result[0] == 'validated':
 			token = self.conf.get('PYPILOT', 'token')
 			try:
@@ -91,6 +89,7 @@ class Check():
 			addblack(_('Access to Signal K server validated'))
 			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot'])
 			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot_boatimu'])
+			if active('openplotter-pypilot-read'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'openplotter-pypilot-read'])
 
 		#services status
 		running = ' ' + _('running')
