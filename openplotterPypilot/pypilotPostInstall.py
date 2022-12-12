@@ -60,36 +60,32 @@ def main():
 	except Exception as e: print(_('FAILED: ')+str(e))
 
 	print(_('Creating services...'))
-	try:
-		fo = open('/etc/systemd/system/pypilot.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot\nDefaultDependencies=false\nConflicts=pypilot_boatimu.service\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=/usr/local/bin/pypilot\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
-		fo.write('[Install]\nWantedBy=local-fs.target')
-		fo.close()
-		fo = open('/etc/systemd/system/pypilot_boatimu.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot boatimu\nDefaultDependencies=false\nConflicts=pypilot.service\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=pypilot_boatimu -q\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
-		fo.write('[Install]\nWantedBy=local-fs.target')
-		fo.close()
-		fo = open('/etc/systemd/system/pypilot_hat.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot hat\nDefaultDependencies=false\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=pypilot_hat\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=3\n\n')
-		fo.write('[Install]\nWantedBy=local-fs.target')
-		fo.close()
-		fo = open('/etc/systemd/system/pypilot_web.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot web\nDefaultDependencies=false\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=pypilot_web 8000\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=3\n\n')
-		fo.write('[Install]\nWantedBy=local-fs.target')
-		fo.close()
-		fo = open('/etc/systemd/system/openplotter-pypilot-read.service', 'w')
-		fo.write( '[Unit]\nDescription=openplotter-pypilot-read\nDefaultDependencies=false\nConflicts=pypilot.service\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=openplotter-pypilot-read\nStandardOutput=syslog\nStandardError=syslog\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
-		fo.write('[Install]\nWantedBy=local-fs.target')
-		fo.close()
+        try:
+	        os.system('sudo cp -rv scripts/debian/etc/systemd /etc')
 		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
+	print(_('Creating config files...'))
+	try:
+		pypilotFolder = conf2.home+'/.pypilot'
+		if not os.path.exists(pypilotFolder):
+			os.mkdir(pypilotFolder)
+		skConfFile = pypilotFolder+'/pypilot_client.conf'
+		if not os.path.exists(skConfFile):
+			fo = open(skConfFile, "w")
+			fo.write( '{"host": "localhost"}')
+			fo.close()
+		serialPorts = pypilotFolder+'/serial_ports'
+		if not os.path.exists(serialPorts):
+			fo = open(skConfFile, "w")
+			fo.write('/dev/ttyAMA0\n')
+			fo.close()
+		subprocess.call(['chown', '-R', conf2.user, pypilotFolder])
+		print(_('DONE'))
+	except Exception as e:
+		print(_('FAILED: ')+str(e))
+        
 	print(_('Checking access to Signal K server...'))
 	try:
 		from openplotterSignalkInstaller import connections
