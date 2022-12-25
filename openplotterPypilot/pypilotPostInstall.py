@@ -60,8 +60,8 @@ def main():
 	except Exception as e: print(_('FAILED: ')+str(e))
 
 	print(_('Creating services...'))
-        try:
-	        os.system('sudo cp -rv scripts/debian/etc/systemd /etc')
+	try:
+		os.system('sudo cp -rv scripts/debian/etc/systemd /etc')
 		subprocess.call(['systemctl', 'daemon-reload'])
 		print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
@@ -85,7 +85,7 @@ def main():
 		print(_('DONE'))
 	except Exception as e:
 		print(_('FAILED: ')+str(e))
-        
+	
 	print(_('Checking access to Signal K server...'))
 	try:
 		from openplotterSignalkInstaller import connections
