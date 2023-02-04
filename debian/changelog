@@ -1,3 +1,10 @@
+openplotter-pypilot (3.2.9-stable) bullseye; urgency=medium
+
+  * Fix minor bugs
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Sat, 04 Feb 2023 13:21:53 +0100
+
 openplotter-pypilot (3.2.8-stable) bullseye; urgency=medium
 
   * v3 stable
