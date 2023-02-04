@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-11-13 13:36+0100\n"
-"PO-Revision-Date: 2022-11-18 18:30+0100\n"
+"PO-Revision-Date: 2023-02-04 13:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: Czech\n"
 "Language: cs\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: data/openplotter-pypilot.desktop:3
 msgid "Pypilot"
-msgstr ""
+msgstr "Pypilot"
 
 #: data/openplotter-pypilot.desktop:5
 msgid "openplotter-pypilot"
-msgstr ""
+msgstr "openplotter-pypilot"
 
 #: openplotterPypilot.py:54
 msgid "Help"
@@ -38,11 +38,11 @@ msgstr "Nastavení"
 
 #: openplotterPypilot.py:60
 msgid "Approve"
-msgstr ""
+msgstr "Schválit"
 
 #: openplotterPypilot.py:62
 msgid "Allowed"
-msgstr ""
+msgstr "Povoleno"
 
 #: openplotterPypilot.py:65
 msgid "Refresh"
@@ -54,7 +54,7 @@ msgstr "Ovládání"
 
 #: openplotterPypilot.py:71
 msgid "Web Control"
-msgstr ""
+msgstr "Webové ovládání"
 
 #: openplotterPypilot.py:74
 msgid "Calibration"
@@ -70,27 +70,27 @@ msgstr "Klient"
 
 #: openplotterPypilot.py:86
 msgid "Services"
-msgstr ""
+msgstr "Služby"
 
 #: openplotterPypilot.py:87
 msgid "Serial"
-msgstr ""
+msgstr "Sériová linka"
 
 #: openplotterPypilot.py:131
 msgid " Press \"Approve\" and then \"Refresh\"."
-msgstr ""
+msgstr " Stiskněte \"Approve\" a pak \"Obnovit\"."
 
 #: openplotterPypilot.py:141
 msgid " Press \"Refresh\"."
-msgstr ""
+msgstr " Stiskněte Aktualizovat."
 
 #: openplotterPypilot.py:146
 msgid " Press \"Allowed\"."
-msgstr ""
+msgstr " Stiskněte \"Allowed\"."
 
 #: openplotterPypilot.py:174 openplotterPypilot.py:176
 msgid "pypilot version:"
-msgstr ""
+msgstr "pypilot verze:"
 
 #: openplotterPypilot.py:191
 msgid "Detected IMU:"
@@ -106,63 +106,63 @@ msgstr "Chyba"
 
 #: openplotterPypilot.py:204
 msgid "None"
-msgstr ""
+msgstr "Žádné"
 
 #: openplotterPypilot.py:209
 msgid "Detected Hardware:"
-msgstr ""
+msgstr "Detekovaný hardware:"
 
 #: openplotterPypilot.py:217
 msgid "Detected pypilot HAT, but the service is not enabled"
-msgstr ""
+msgstr "Zjištěn pypilot HAT, ale služba není povolena"
 
 #: openplotterPypilot.py:219
 msgid "no pypilot HAT detected"
-msgstr ""
+msgstr "nebyl zjištěn žádný pypilot HAT"
 
 #: openplotterPypilot.py:225
 msgid "No UART0 port detected"
-msgstr ""
+msgstr "Nebyl zjištěn port UART0"
 
 #: openplotterPypilot.py:227
 msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr ""
+msgstr "Pro komunikaci s ovladači motoru musí být povolen port UART0. Můžete to udělat pomocí OpenPlotter Serial aplikace."
 
 #: openplotterPypilot.py:227 openplotterPypilot.py:240
 msgid "warning"
-msgstr ""
+msgstr "upozornění"
 
 #: openplotterPypilot.py:229
 msgid "UART0 port detected"
-msgstr ""
+msgstr "Byl zjištěn port UART0"
 
 #: openplotterPypilot.py:240
 msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr ""
+msgstr "Zařízení /dev/ttyAMA0 v UART0 by mělo být přidáno do seznamu sériových portů, které pypilot spravuje"
 
 #: openplotterPypilot.py:301
 msgid "Disable"
-msgstr ""
+msgstr "Zakázat"
 
 #: openplotterPypilot.py:301
 msgid "Enable IMU Only"
-msgstr ""
+msgstr "Povolit pouze IMU"
 
 #: openplotterPypilot.py:301
 msgid "Enable Autopilot"
-msgstr ""
+msgstr "Povolit Autopilot"
 
 #: openplotterPypilot.py:303
 msgid "Enable Web Control"
-msgstr ""
+msgstr "Povolit webové rozhraní"
 
 #: openplotterPypilot.py:305
 msgid "Enable HAT Control"
-msgstr ""
+msgstr "Povolit ovládání HAT"
 
 #: openplotterPypilot.py:307
 msgid "Configure"
-msgstr ""
+msgstr "Nastavit"
 
 #: openplotterPypilot.py:355 openplotterPypilot.py:406
 msgid "Applying changes ..."
@@ -170,11 +170,11 @@ msgstr "Aplikování změn..."
 
 #: openplotterPypilot.py:367
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: openplotterPypilot.py:370
 msgid "Delete"
-msgstr ""
+msgstr "Smazat"
 
 #: openplotterPypilot.py:398
 msgid "You have to select a device"
@@ -186,19 +186,19 @@ msgstr "Toto zařízení již existuje"
 
 #: ports.py:35
 msgid "Pypilot Server"
-msgstr ""
+msgstr "Pypilot server"
 
 #: ports.py:37
 msgid "Pypilot NMEA 0183 Server"
-msgstr ""
+msgstr "Pypilot NMEA 0183 server"
 
 #: ports.py:39
 msgid "Pypilot Web Control"
-msgstr ""
+msgstr "Pypilot webové ovládání"
 
 #: ports.py:41
 msgid "Pypilot HAT Control"
-msgstr ""
+msgstr "Pypilot HAT řízení"
 
 #: pypilotPostInstall.py:31
 msgid "Removing incompatible packages..."
@@ -218,15 +218,15 @@ msgstr "Chyba: "
 
 #: pypilotPostInstall.py:37
 msgid "Installing Pypilot..."
-msgstr ""
+msgstr "Instaluji Pypilot..."
 
 #: pypilotPostInstall.py:62
 msgid "Creating services..."
-msgstr ""
+msgstr "Vytváření služeb..."
 
 #: pypilotPostInstall.py:93
 msgid "Checking access to Signal K server..."
-msgstr ""
+msgstr "Kontrola přístupu k serveru Signal K..."
 
 #: pypilotPostInstall.py:102
 msgid "Setting version..."
@@ -234,7 +234,7 @@ msgstr "Nastavuji verzi..."
 
 #: pypilotPreUninstall.py:29
 msgid "Removing Pypilot..."
-msgstr ""
+msgstr "Odstraňování Pypilota..."
 
 #: pypilotPreUninstall.py:48
 msgid "Removing version..."
@@ -242,20 +242,20 @@ msgstr "Odstraňuji verzi..."
 
 #: startup.py:41
 msgid "Checking pypilot..."
-msgstr ""
+msgstr "Kontrola pypilota..."
 
 #: startup.py:91
 msgid "Access to Signal K server validated"
-msgstr ""
+msgstr "Přístup k serveru Signal K byl ověřen"
 
 #: startup.py:96
 msgid "running"
-msgstr ""
+msgstr "spuštěno"
 
 #: startup.py:97
 msgid "not running"
-msgstr ""
+msgstr "není spuštěno"
 
 #: startup.py:101
 msgid "both pypilot and pypilot_boatimu services are running"
-msgstr ""
+msgstr "služby pypilot i pypilot_boatimu jsou spuštěny"

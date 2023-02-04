@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-11-13 13:36+0100\n"
-"PO-Revision-Date: 2022-11-18 18:30+0100\n"
+"PO-Revision-Date: 2023-02-04 13:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: Spanish\n"
 "Language: es\n"
@@ -122,11 +122,11 @@ msgstr "Pypilot HAT no detectado."
 
 #: openplotterPypilot.py:225
 msgid "No UART0 port detected"
-msgstr ""
+msgstr "No se detectó el puerto UART0"
 
 #: openplotterPypilot.py:227
 msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr ""
+msgstr "El puerto UART0 debe estar habilitado para la comunicación del controlador de motor. Puede hacerlo usando la aplicación OpenPlotter Serial."
 
 #: openplotterPypilot.py:227 openplotterPypilot.py:240
 msgid "warning"
@@ -134,11 +134,11 @@ msgstr "advertencia"
 
 #: openplotterPypilot.py:229
 msgid "UART0 port detected"
-msgstr ""
+msgstr "Puerto UART0 detectado"
 
 #: openplotterPypilot.py:240
 msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr ""
+msgstr "El dispositivo /dev/ttyAMA0 en UART0 debe añadirse a la lista de puertos serie que administra pypilot"
 
 #: openplotterPypilot.py:301
 msgid "Disable"
@@ -162,7 +162,7 @@ msgstr "Habilitar HAT Control"
 
 #: openplotterPypilot.py:307
 msgid "Configure"
-msgstr ""
+msgstr "Configurar"
 
 #: openplotterPypilot.py:355 openplotterPypilot.py:406
 msgid "Applying changes ..."
@@ -222,7 +222,7 @@ msgstr "Instalando pypilot..."
 
 #: pypilotPostInstall.py:62
 msgid "Creating services..."
-msgstr ""
+msgstr "Creando servicios..."
 
 #: pypilotPostInstall.py:93
 msgid "Checking access to Signal K server..."
@@ -242,20 +242,20 @@ msgstr "Eliminando versión..."
 
 #: startup.py:41
 msgid "Checking pypilot..."
-msgstr ""
+msgstr "Comprobando pypilot..."
 
 #: startup.py:91
 msgid "Access to Signal K server validated"
-msgstr ""
+msgstr "Acceso al servidor Signal K validado"
 
 #: startup.py:96
 msgid "running"
-msgstr ""
+msgstr "ejecutándose"
 
 #: startup.py:97
 msgid "not running"
-msgstr ""
+msgstr "sin ejecutar"
 
 #: startup.py:101
 msgid "both pypilot and pypilot_boatimu services are running"
-msgstr ""
+msgstr "se están ejecutando los servicios pypilot y pypilot_boatimu"

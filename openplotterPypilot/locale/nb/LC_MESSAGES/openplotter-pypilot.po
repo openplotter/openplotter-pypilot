@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
 "POT-Creation-Date: 2022-11-13 13:36+0100\n"
-"PO-Revision-Date: 2022-11-18 18:29+0100\n"
+"PO-Revision-Date: 2023-02-04 13:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -122,11 +122,11 @@ msgstr "ingen pypilot HAT detektert"
 
 #: openplotterPypilot.py:225
 msgid "No UART0 port detected"
-msgstr ""
+msgstr "Ingen UART0-port oppdaget"
 
 #: openplotterPypilot.py:227
 msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr ""
+msgstr "UART0 må være aktivert for motorkontrollers kommunikasjon. Du kan gjøre det ved hjelp av programmet OpenPlotter Serial."
 
 #: openplotterPypilot.py:227 openplotterPypilot.py:240
 msgid "warning"
@@ -134,11 +134,11 @@ msgstr "advarsel"
 
 #: openplotterPypilot.py:229
 msgid "UART0 port detected"
-msgstr ""
+msgstr "Ingen UART0-port oppdaget"
 
 #: openplotterPypilot.py:240
 msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr ""
+msgstr "Enheten /dev/ttyAMA0 i UART0 skal legges til i listen over serielle porter pypilot håndteres"
 
 #: openplotterPypilot.py:301
 msgid "Disable"
@@ -162,7 +162,7 @@ msgstr "Aktiver HAT-kontroll"
 
 #: openplotterPypilot.py:307
 msgid "Configure"
-msgstr ""
+msgstr "Konfigurer"
 
 #: openplotterPypilot.py:355 openplotterPypilot.py:406
 msgid "Applying changes ..."
@@ -222,7 +222,7 @@ msgstr "Installerer Pypilot..."
 
 #: pypilotPostInstall.py:62
 msgid "Creating services..."
-msgstr ""
+msgstr "Oppretter tjenester..."
 
 #: pypilotPostInstall.py:93
 msgid "Checking access to Signal K server..."
@@ -250,12 +250,12 @@ msgstr "Tilgang til Signal K-server validert"
 
 #: startup.py:96
 msgid "running"
-msgstr ""
+msgstr "kjører"
 
 #: startup.py:97
 msgid "not running"
-msgstr ""
+msgstr "kjører ikke"
 
 #: startup.py:101
 msgid "both pypilot and pypilot_boatimu services are running"
-msgstr ""
+msgstr "både pypilot og pypilot_boatimu tjenester kjører"
