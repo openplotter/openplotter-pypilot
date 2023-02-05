@@ -130,22 +130,22 @@ class pypilotFrame(wx.Frame):
 			self.toolbar1.EnableTool(107,True)
 			self.ShowStatusBarYELLOW(result[1]+_(' Press "Approve" and then "Refresh".'))
 			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
+				#self.service('disable')
 				enable_tools(0)
 		elif result[0] == 'error':
 			self.ShowStatusBarRED(result[1])
 			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
+				#self.service('disable')
 				enable_tools(0)
 		elif result[0] == 'repeat':
 			self.ShowStatusBarYELLOW(result[1]+_(' Press "Refresh".'))
 			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
+				#self.service('disable')
 				enable_tools(0)
 		elif result[0] == 'permissions':
 			self.ShowStatusBarYELLOW(result[1]+_(' Press "Allowed".'))
 			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
+				#self.service('disable')
 				enable_tools(0)
 		elif result[0] == 'approved' or result[0] == 'validated':
 			if result[1]: self.ShowStatusBarGREEN(result[1])
