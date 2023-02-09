@@ -59,7 +59,7 @@ class pypilotFrame(wx.Frame):
 		self.toolbar1.AddSeparator()
 		aproveSK = self.toolbar1.AddTool(107, _('Approve'), wx.Bitmap(self.currentdir+"/data/sk.png"))
 		self.Bind(wx.EVT_TOOL, self.onAproveSK, aproveSK)
-		connectionSK = self.toolbar1.AddTool(108, _('Allowed'), wx.Bitmap(self.currentdir+"/data/sk.png"))
+		connectionSK = self.toolbar1.AddTool(108, _('Reconnect'), wx.Bitmap(self.currentdir+"/data/sk.png"))
 		self.Bind(wx.EVT_TOOL, self.onConnectionSK, connectionSK)
 		self.toolbar1.AddSeparator()
 		toolRefresh = self.toolbar1.AddTool(103, _('Refresh'), wx.Bitmap(self.currentdir+"/data/refresh.png"))
@@ -133,7 +133,7 @@ class pypilotFrame(wx.Frame):
 				self.service('disable')
 				enable_tools(0)
 		elif result[0] == 'error':
-			self.ShowStatusBarRED(result[1])
+			self.ShowStatusBarRED(result[1]+_(' Try "Reconnect".'))
 			if self.active('pypilot') or self.active('pypilot_boatimu'): 
 				self.service('disable')
 				enable_tools(0)
@@ -143,7 +143,7 @@ class pypilotFrame(wx.Frame):
 				self.service('disable')
 				enable_tools(0)
 		elif result[0] == 'permissions':
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Allowed".'))
+			self.ShowStatusBarYELLOW(result[1])
 			if self.active('pypilot') or self.active('pypilot_boatimu'): 
 				self.service('disable')
 				enable_tools(0)
@@ -293,9 +293,9 @@ class pypilotFrame(wx.Frame):
 			webbrowser.open(url, new=2)
 
 	def onConnectionSK(self, e):
-		if self.platform.skPort: 
-			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/security/devices'
-			webbrowser.open(url, new=2)
+		self.conf.set('PYPILOT', 'href', '')
+		self.conf.set('PYPILOT', 'token', '')
+		self.onRead()
 
 	def pageServices(self):
 		self.systemd_services = wx.Choice(self.services, choices = (_("Disable"),_("Enable IMU Only"),_("Enable Autopilot")), style=wx.CB_READONLY)
