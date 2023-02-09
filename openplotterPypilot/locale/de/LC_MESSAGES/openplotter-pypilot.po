@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2022-11-13 13:36+0100\n"
-"PO-Revision-Date: 2023-02-04 13:25+0100\n"
+"POT-Creation-Date: 2023-02-08 21:06+0100\n"
+"PO-Revision-Date: 2023-02-09 19:25+0100\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -41,8 +41,8 @@ msgid "Approve"
 msgstr "Genehmigen"
 
 #: openplotterPypilot.py:62
-msgid "Allowed"
-msgstr "Erlaubt"
+msgid "Reconnect"
+msgstr ""
 
 #: openplotterPypilot.py:65
 msgid "Refresh"
@@ -80,13 +80,13 @@ msgstr "Seriell"
 msgid " Press \"Approve\" and then \"Refresh\"."
 msgstr " Drücken Sie \"Genehmigen\" und dann \"Aktualisieren\"."
 
+#: openplotterPypilot.py:136
+msgid " Try \"Reconnect\"."
+msgstr ""
+
 #: openplotterPypilot.py:141
 msgid " Press \"Refresh\"."
 msgstr " Drücke \"Aktualisieren\"."
-
-#: openplotterPypilot.py:146
-msgid " Press \"Allowed\"."
-msgstr " Drücke \"Erlaubt\"."
 
 #: openplotterPypilot.py:174 openplotterPypilot.py:176
 msgid "pypilot version:"
@@ -205,14 +205,14 @@ msgid "Removing incompatible packages..."
 msgstr "Entferne inkompatible Pakete..."
 
 #: pypilotPostInstall.py:34 pypilotPostInstall.py:59 pypilotPostInstall.py:90
-#: pypilotPostInstall.py:99 pypilotPostInstall.py:105 pypilotPreUninstall.py:45
-#: pypilotPreUninstall.py:51
+#: pypilotPostInstall.py:99 pypilotPostInstall.py:105 pypilotPreUninstall.py:49
+#: pypilotPreUninstall.py:55
 msgid "DONE"
 msgstr "Fertig"
 
 #: pypilotPostInstall.py:35 pypilotPostInstall.py:60 pypilotPostInstall.py:91
 #: pypilotPostInstall.py:100 pypilotPostInstall.py:106
-#: pypilotPreUninstall.py:46 pypilotPreUninstall.py:52
+#: pypilotPreUninstall.py:50 pypilotPreUninstall.py:56
 msgid "FAILED: "
 msgstr "FEHLGESCHLAGEN: "
 
@@ -236,7 +236,7 @@ msgstr "Setze Version..."
 msgid "Removing Pypilot..."
 msgstr "Entferne Pypilot..."
 
-#: pypilotPreUninstall.py:48
+#: pypilotPreUninstall.py:52
 msgid "Removing version..."
 msgstr "Entferne Version..."
 
@@ -244,18 +244,18 @@ msgstr "Entferne Version..."
 msgid "Checking pypilot..."
 msgstr "Überprüfe Pypilot..."
 
-#: startup.py:91
+#: startup.py:89
 msgid "Access to Signal K server validated"
 msgstr "Zugriff auf Signal K Server geprüft"
 
-#: startup.py:96
+#: startup.py:95
 msgid "running"
 msgstr "läuft"
 
-#: startup.py:97
+#: startup.py:96
 msgid "not running"
 msgstr "läuft nicht"
 
-#: startup.py:101
+#: startup.py:100
 msgid "both pypilot and pypilot_boatimu services are running"
 msgstr "pypilot und pypilot_boatimu Dienste laufen"

@@ -1,3 +1,10 @@
+openplotter-pypilot (3.2.11-stable) bullseye; urgency=medium
+
+  * Add Signal K reconnection option
+  * Update translations
+
+ -- Sailoog <info@sailoog.com>  Wed, 08 Feb 2023 20:48:36 +0100
+
 openplotter-pypilot (3.2.9-stable) bullseye; urgency=medium
 
   * Fix minor bugs

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2022-11-13 13:36+0100\n"
-"PO-Revision-Date: 2023-02-04 13:25+0100\n"
+"POT-Creation-Date: 2023-02-08 21:06+0100\n"
+"PO-Revision-Date: 2023-02-09 19:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: Greek\n"
 "Language: el\n"
@@ -41,7 +41,7 @@ msgid "Approve"
 msgstr ""
 
 #: openplotterPypilot.py:62
-msgid "Allowed"
+msgid "Reconnect"
 msgstr ""
 
 #: openplotterPypilot.py:65
@@ -80,12 +80,12 @@ msgstr ""
 msgid " Press \"Approve\" and then \"Refresh\"."
 msgstr ""
 
-#: openplotterPypilot.py:141
-msgid " Press \"Refresh\"."
+#: openplotterPypilot.py:136
+msgid " Try \"Reconnect\"."
 msgstr ""
 
-#: openplotterPypilot.py:146
-msgid " Press \"Allowed\"."
+#: openplotterPypilot.py:141
+msgid " Press \"Refresh\"."
 msgstr ""
 
 #: openplotterPypilot.py:174 openplotterPypilot.py:176
@@ -205,14 +205,14 @@ msgid "Removing incompatible packages..."
 msgstr ""
 
 #: pypilotPostInstall.py:34 pypilotPostInstall.py:59 pypilotPostInstall.py:90
-#: pypilotPostInstall.py:99 pypilotPostInstall.py:105 pypilotPreUninstall.py:45
-#: pypilotPreUninstall.py:51
+#: pypilotPostInstall.py:99 pypilotPostInstall.py:105 pypilotPreUninstall.py:49
+#: pypilotPreUninstall.py:55
 msgid "DONE"
 msgstr ""
 
 #: pypilotPostInstall.py:35 pypilotPostInstall.py:60 pypilotPostInstall.py:91
 #: pypilotPostInstall.py:100 pypilotPostInstall.py:106
-#: pypilotPreUninstall.py:46 pypilotPreUninstall.py:52
+#: pypilotPreUninstall.py:50 pypilotPreUninstall.py:56
 msgid "FAILED: "
 msgstr ""
 
@@ -236,7 +236,7 @@ msgstr ""
 msgid "Removing Pypilot..."
 msgstr ""
 
-#: pypilotPreUninstall.py:48
+#: pypilotPreUninstall.py:52
 msgid "Removing version..."
 msgstr ""
 
@@ -244,18 +244,18 @@ msgstr ""
 msgid "Checking pypilot..."
 msgstr ""
 
-#: startup.py:91
+#: startup.py:89
 msgid "Access to Signal K server validated"
 msgstr ""
 
-#: startup.py:96
+#: startup.py:95
 msgid "running"
 msgstr ""
 
-#: startup.py:97
+#: startup.py:96
 msgid "not running"
 msgstr ""
 
-#: startup.py:101
+#: startup.py:100
 msgid "both pypilot and pypilot_boatimu services are running"
 msgstr ""

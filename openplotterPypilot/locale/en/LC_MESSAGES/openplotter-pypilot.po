@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter-pypilot\n"
-"POT-Creation-Date: 2023-02-04 13:23+0100\n"
-"PO-Revision-Date: 2023-02-04 13:24+0100\n"
+"POT-Creation-Date: 2023-02-08 21:06+0100\n"
+"PO-Revision-Date: 2023-02-09 19:24+0100\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -36,7 +36,7 @@ msgid "Approve"
 msgstr ""
 
 #: openplotterPypilot.py:62
-msgid "Allowed"
+msgid "Reconnect"
 msgstr ""
 
 #: openplotterPypilot.py:65
@@ -75,12 +75,12 @@ msgstr ""
 msgid " Press \"Approve\" and then \"Refresh\"."
 msgstr ""
 
-#: openplotterPypilot.py:141
-msgid " Press \"Refresh\"."
+#: openplotterPypilot.py:136
+msgid " Try \"Reconnect\"."
 msgstr ""
 
-#: openplotterPypilot.py:146
-msgid " Press \"Allowed\"."
+#: openplotterPypilot.py:141
+msgid " Press \"Refresh\"."
 msgstr ""
 
 #: openplotterPypilot.py:174 openplotterPypilot.py:176
