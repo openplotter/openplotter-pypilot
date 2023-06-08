@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-02-08 21:06+0100\n"
-"PO-Revision-Date: 2023-02-09 19:24+0100\n"
+"POT-Creation-Date: 2023-06-05 13:25+0200\n"
+"PO-Revision-Date: 2023-06-08 13:13+0200\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -120,67 +120,55 @@ msgstr "Oppdaget pypilot HAT, men tjenesten er ikke aktivert"
 msgid "no pypilot HAT detected"
 msgstr "ingen pypilot HAT detektert"
 
-#: openplotterPypilot.py:225
-msgid "No UART0 port detected"
-msgstr "Ingen UART0-port oppdaget"
+#: openplotterPypilot.py:234
+msgid "At least one UART interface for the pypilot controller must be added to the list of serial devices"
+msgstr "Minst ett grensesnitt ved UART for pypilot-kontrolleren må legges til listen over serielle enheter"
 
-#: openplotterPypilot.py:227
-msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr "UART0 må være aktivert for motorkontrollers kommunikasjon. Du kan gjøre det ved hjelp av programmet OpenPlotter Serial."
-
-#: openplotterPypilot.py:227 openplotterPypilot.py:240
+#: openplotterPypilot.py:234
 msgid "warning"
 msgstr "advarsel"
 
-#: openplotterPypilot.py:229
-msgid "UART0 port detected"
-msgstr "Ingen UART0-port oppdaget"
-
-#: openplotterPypilot.py:240
-msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr "Enheten /dev/ttyAMA0 i UART0 skal legges til i listen over serielle porter pypilot håndteres"
-
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Disable"
 msgstr "Deaktiver"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable IMU Only"
 msgstr "Aktiver kun IMU"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable Autopilot"
 msgstr "Aktiver Autopilot"
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:297
 msgid "Enable Web Control"
 msgstr "Aktiver web-kontroll"
 
-#: openplotterPypilot.py:305
+#: openplotterPypilot.py:299
 msgid "Enable HAT Control"
 msgstr "Aktiver HAT-kontroll"
 
-#: openplotterPypilot.py:307
+#: openplotterPypilot.py:301
 msgid "Configure"
 msgstr "Konfigurer"
 
-#: openplotterPypilot.py:355 openplotterPypilot.py:406
+#: openplotterPypilot.py:347 openplotterPypilot.py:398
 msgid "Applying changes ..."
 msgstr "Bruker endringer ..."
 
-#: openplotterPypilot.py:367
+#: openplotterPypilot.py:359
 msgid "Add"
 msgstr "Legg til"
 
-#: openplotterPypilot.py:370
+#: openplotterPypilot.py:362
 msgid "Delete"
 msgstr "Slett"
 
-#: openplotterPypilot.py:398
+#: openplotterPypilot.py:390
 msgid "You have to select a device"
 msgstr "Du må velge en enhet"
 
-#: openplotterPypilot.py:403
+#: openplotterPypilot.py:395
 msgid "This device already exists"
 msgstr "Denne enheten finnes allerede"
 

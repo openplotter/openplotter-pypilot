@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-02-08 21:06+0100\n"
-"PO-Revision-Date: 2023-02-09 19:25+0100\n"
+"POT-Creation-Date: 2023-06-05 13:25+0200\n"
+"PO-Revision-Date: 2023-06-08 13:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de\n"
@@ -42,7 +42,7 @@ msgstr "Genehmigen"
 
 #: openplotterPypilot.py:62
 msgid "Reconnect"
-msgstr ""
+msgstr "Neu verbinden"
 
 #: openplotterPypilot.py:65
 msgid "Refresh"
@@ -82,7 +82,7 @@ msgstr " Drücken Sie \"Genehmigen\" und dann \"Aktualisieren\"."
 
 #: openplotterPypilot.py:136
 msgid " Try \"Reconnect\"."
-msgstr ""
+msgstr " Versuchen Sie \"Erneut verbinden\"."
 
 #: openplotterPypilot.py:141
 msgid " Press \"Refresh\"."
@@ -120,67 +120,55 @@ msgstr "Pypilot-HAT erkannt, aber der Dienst ist nicht aktiviert"
 msgid "no pypilot HAT detected"
 msgstr "kein Pypilot HAT erkannt"
 
-#: openplotterPypilot.py:225
-msgid "No UART0 port detected"
-msgstr "Kein UART0-Port erkannt"
+#: openplotterPypilot.py:234
+msgid "At least one UART interface for the pypilot controller must be added to the list of serial devices"
+msgstr "Mindestens eine UART-Schnittstelle für den pypilot-Controller muss der Liste der seriellen Geräte hinzugefügt werden"
 
-#: openplotterPypilot.py:227
-msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr "UART0-Port muss für die Motorsteuerungskommunikation aktiviert werden. Sie können dies mit der OpenPlotter Serial App tun."
-
-#: openplotterPypilot.py:227 openplotterPypilot.py:240
+#: openplotterPypilot.py:234
 msgid "warning"
 msgstr "Warnung"
 
-#: openplotterPypilot.py:229
-msgid "UART0 port detected"
-msgstr "UART0-Port erkannt"
-
-#: openplotterPypilot.py:240
-msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr "Das Gerät /dev/ttyAMA0 in UART0 sollte der Liste der seriellen Ports hinzugefügt werden, die pypilot verwaltet"
-
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Disable"
 msgstr "Deaktivieren"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable IMU Only"
 msgstr "Nur IMU aktivieren"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable Autopilot"
 msgstr "Autopilot aktivieren"
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:297
 msgid "Enable Web Control"
 msgstr "Web-Steuerung aktivieren"
 
-#: openplotterPypilot.py:305
+#: openplotterPypilot.py:299
 msgid "Enable HAT Control"
 msgstr "HAT-Steuerung aktivieren"
 
-#: openplotterPypilot.py:307
+#: openplotterPypilot.py:301
 msgid "Configure"
 msgstr "Konfigurieren"
 
-#: openplotterPypilot.py:355 openplotterPypilot.py:406
+#: openplotterPypilot.py:347 openplotterPypilot.py:398
 msgid "Applying changes ..."
 msgstr "Änderungen werden übernommen ..."
 
-#: openplotterPypilot.py:367
+#: openplotterPypilot.py:359
 msgid "Add"
 msgstr "Hinzufügen"
 
-#: openplotterPypilot.py:370
+#: openplotterPypilot.py:362
 msgid "Delete"
 msgstr "Löschen"
 
-#: openplotterPypilot.py:398
+#: openplotterPypilot.py:390
 msgid "You have to select a device"
 msgstr "Sie müssen ein Gerät auswählen"
 
-#: openplotterPypilot.py:403
+#: openplotterPypilot.py:395
 msgid "This device already exists"
 msgstr "Dieses Gerät existiert bereits"
 

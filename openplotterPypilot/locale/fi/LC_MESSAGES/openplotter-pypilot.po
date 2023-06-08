@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-02-08 21:06+0100\n"
-"PO-Revision-Date: 2023-02-09 19:24+0100\n"
+"POT-Creation-Date: 2023-06-05 13:25+0200\n"
+"PO-Revision-Date: 2023-06-08 13:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: Finnish\n"
 "Language: fi\n"
@@ -42,7 +42,7 @@ msgstr "Hyväksy"
 
 #: openplotterPypilot.py:62
 msgid "Reconnect"
-msgstr ""
+msgstr "Yhdistä Uudelleen"
 
 #: openplotterPypilot.py:65
 msgid "Refresh"
@@ -82,7 +82,7 @@ msgstr " Paina \"Hyväksy\" ja sitten \"Päivitä \"."
 
 #: openplotterPypilot.py:136
 msgid " Try \"Reconnect\"."
-msgstr ""
+msgstr " Yritä \"yhdistä uudelleen\"."
 
 #: openplotterPypilot.py:141
 msgid " Press \"Refresh\"."
@@ -120,67 +120,55 @@ msgstr "Havaittu pypilot HAT, mutta palvelu ei ole käytössä"
 msgid "no pypilot HAT detected"
 msgstr "pypilot HAT ei havaittu"
 
-#: openplotterPypilot.py:225
-msgid "No UART0 port detected"
-msgstr "UART0-porttia ei havaittu"
+#: openplotterPypilot.py:234
+msgid "At least one UART interface for the pypilot controller must be added to the list of serial devices"
+msgstr ""
 
-#: openplotterPypilot.py:227
-msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr "UART0:n on oltava käytössä moottoriohjainta varten. Voit tehdä sen OpenPlotter Serial -sovelluksella."
-
-#: openplotterPypilot.py:227 openplotterPypilot.py:240
+#: openplotterPypilot.py:234
 msgid "warning"
 msgstr "varoitus"
 
-#: openplotterPypilot.py:229
-msgid "UART0 port detected"
-msgstr "UART0 portti on havaittu"
-
-#: openplotterPypilot.py:240
-msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr "Laite /dev/ttyAMA0 UART0 on lisättävä pypilotin sarjanumerohallinnan luetteloon"
-
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Disable"
 msgstr "Poista käytöstä"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable IMU Only"
 msgstr "Ota Vain Imu Käyttöön"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable Autopilot"
 msgstr "Ota Automaattiohjaus Käyttöön"
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:297
 msgid "Enable Web Control"
 msgstr "Ota Web-Ohjaus Käyttöön"
 
-#: openplotterPypilot.py:305
+#: openplotterPypilot.py:299
 msgid "Enable HAT Control"
 msgstr "Ota Hat- Ohjaus Käyttöön"
 
-#: openplotterPypilot.py:307
+#: openplotterPypilot.py:301
 msgid "Configure"
 msgstr "Määritä"
 
-#: openplotterPypilot.py:355 openplotterPypilot.py:406
+#: openplotterPypilot.py:347 openplotterPypilot.py:398
 msgid "Applying changes ..."
 msgstr "Toteutaan muutoksia..."
 
-#: openplotterPypilot.py:367
+#: openplotterPypilot.py:359
 msgid "Add"
 msgstr "Lisää"
 
-#: openplotterPypilot.py:370
+#: openplotterPypilot.py:362
 msgid "Delete"
 msgstr "Poista"
 
-#: openplotterPypilot.py:398
+#: openplotterPypilot.py:390
 msgid "You have to select a device"
 msgstr "Valitse laite"
 
-#: openplotterPypilot.py:403
+#: openplotterPypilot.py:395
 msgid "This device already exists"
 msgstr "Tämä laite on jo olemassa"
 

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-02-08 21:06+0100\n"
-"PO-Revision-Date: 2023-02-09 19:25+0100\n"
+"POT-Creation-Date: 2023-06-05 13:25+0200\n"
+"PO-Revision-Date: 2023-06-08 13:14+0200\n"
 "Last-Translator: \n"
 "Language-Team: Catalan\n"
 "Language: ca\n"
@@ -90,7 +90,7 @@ msgstr ""
 
 #: openplotterPypilot.py:174 openplotterPypilot.py:176
 msgid "pypilot version:"
-msgstr ""
+msgstr "versió de pypilot:"
 
 #: openplotterPypilot.py:191
 msgid "Detected IMU:"
@@ -106,11 +106,11 @@ msgstr "Error"
 
 #: openplotterPypilot.py:204
 msgid "None"
-msgstr ""
+msgstr "Cap"
 
 #: openplotterPypilot.py:209
 msgid "Detected Hardware:"
-msgstr ""
+msgstr "Maquinari detectat:"
 
 #: openplotterPypilot.py:217
 msgid "Detected pypilot HAT, but the service is not enabled"
@@ -120,73 +120,61 @@ msgstr ""
 msgid "no pypilot HAT detected"
 msgstr ""
 
-#: openplotterPypilot.py:225
-msgid "No UART0 port detected"
+#: openplotterPypilot.py:234
+msgid "At least one UART interface for the pypilot controller must be added to the list of serial devices"
 msgstr ""
 
-#: openplotterPypilot.py:227
-msgid "UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app."
-msgstr ""
-
-#: openplotterPypilot.py:227 openplotterPypilot.py:240
+#: openplotterPypilot.py:234
 msgid "warning"
 msgstr ""
 
-#: openplotterPypilot.py:229
-msgid "UART0 port detected"
-msgstr ""
-
-#: openplotterPypilot.py:240
-msgid "The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages"
-msgstr ""
-
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Disable"
 msgstr ""
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable IMU Only"
 msgstr ""
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:295
 msgid "Enable Autopilot"
 msgstr ""
 
-#: openplotterPypilot.py:303
+#: openplotterPypilot.py:297
 msgid "Enable Web Control"
 msgstr ""
 
-#: openplotterPypilot.py:305
+#: openplotterPypilot.py:299
 msgid "Enable HAT Control"
 msgstr ""
 
-#: openplotterPypilot.py:307
+#: openplotterPypilot.py:301
 msgid "Configure"
-msgstr ""
+msgstr "Configura"
 
-#: openplotterPypilot.py:355 openplotterPypilot.py:406
+#: openplotterPypilot.py:347 openplotterPypilot.py:398
 msgid "Applying changes ..."
 msgstr "Aplicant els canvis..."
 
-#: openplotterPypilot.py:367
+#: openplotterPypilot.py:359
 msgid "Add"
-msgstr ""
+msgstr "Afegeix"
 
-#: openplotterPypilot.py:370
+#: openplotterPypilot.py:362
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
-#: openplotterPypilot.py:398
+#: openplotterPypilot.py:390
 msgid "You have to select a device"
 msgstr "Has de seleccionar un dispositiu"
 
-#: openplotterPypilot.py:403
+#: openplotterPypilot.py:395
 msgid "This device already exists"
 msgstr "Aquest dispositiu ja existeix"
 
 #: ports.py:35
 msgid "Pypilot Server"
-msgstr ""
+msgstr "Servidor Pypilot"
 
 #: ports.py:37
 msgid "Pypilot NMEA 0183 Server"
