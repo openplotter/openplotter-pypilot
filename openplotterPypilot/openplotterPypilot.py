@@ -220,24 +220,18 @@ class pypilotFrame(wx.Frame):
 
 		#serial
 		self.relistSerial()
-		
-		if os.path.realpath('/dev/serial0') != '/dev/ttyAMA0':
-			self.hardwareSerial.SetLabel(_('No UART0 port detected'))
-			if self.active('pypilot'):
-				wx.MessageBox(_('UART0 port must be enabled for motor controller communication. You can do it using the OpenPlotter Serial app.'), _('warning'), wx.OK | wx.ICON_WARNING)
-		else: 
-			self.hardwareSerial.SetLabel(_('UART0 port detected'))
-			if self.active('pypilot'):
-				path = self.conf.home + '/.pypilot/serial_ports'
-				exists = False
-				if os.path.exists(path):
-					with open(path, 'r') as f:
-						for line in f:
-							line = line.replace('\n', '')
-							line = line.strip()
-							if os.path.realpath(line) == '/dev/ttyAMA0': exists = True
-				if not exists:
-					wx.MessageBox(_('The device /dev/ttyAMA0 in UART0 should be added to the list of serial ports pypilot manages'), _('warning'), wx.OK | wx.ICON_WARNING)
+
+		if self.active('pypilot'):
+			path = self.conf.home + '/.pypilot/serial_ports'
+			exists = False
+			if os.path.exists(path):
+				with open(path, 'r') as f:
+					for line in f:
+						line = line.replace('\n', '')
+						line = line.strip()
+						if '/dev/ttyAMA' in os.path.realpath(line) : exists = True
+			if not exists:
+				wx.MessageBox(_('At least one UART interface for the pypilot controller must be added to the list of serial devices'), _('warning'), wx.OK | wx.ICON_WARNING)
 
 	def ShowStatusBar(self, w_msg, colour):
 		self.GetStatusBar().SetForegroundColour(colour)
@@ -309,7 +303,6 @@ class pypilotFrame(wx.Frame):
 		self.pypilotVersion = wx.StaticText(self.services, label='')
 		self.imuDetected = wx.StaticText(self.services, label='')
 		self.hardware = wx.StaticText(self.services, label='')
-		self.hardwareSerial = wx.StaticText(self.services, label='')
 
 		vbox = wx.BoxSizer(wx.VERTICAL)
 		vbox.Add(self.systemd_services, 0, wx.ALL, 7)
@@ -322,7 +315,6 @@ class pypilotFrame(wx.Frame):
 		vbox.Add(self.pypilotVersion, 0, wx.ALL, 5)
 		vbox.Add(self.imuDetected, 0, wx.ALL, 5)
 		vbox.Add(self.hardware, 0, wx.ALL, 5)
-		vbox.Add(self.hardwareSerial, 0, wx.ALL, 5)
 		
 		self.services.SetSizer(vbox)
 
