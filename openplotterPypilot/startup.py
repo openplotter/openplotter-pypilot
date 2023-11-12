@@ -87,9 +87,6 @@ class Check():
 				file.write(token)
 				file.close()
 			addblack(_('Access to Signal K server validated'))
-			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot'])
-			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot_boatimu'])
-			if active('openplotter-pypilot-read'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'openplotter-pypilot-read'])
 
 		#services status
 		running = ' ' + _('running')
