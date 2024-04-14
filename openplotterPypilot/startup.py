@@ -65,31 +65,17 @@ class Check():
 			if black:
 				n = ' | ' + n
 			black += n
-			
+
 		#access
 		skConnections = connections.Connections('PYPILOT')
 		result = skConnections.checkConnection()
-		if result[0] == 'pending' or result[0] == 'error' or result[0] == 'repeat' or result[0] == 'permissions': 
-			addred(result[1])
-		if result[0] == 'approved' or result[0] == 'validated':
-			token = self.conf.get('PYPILOT', 'token')
-			try:
-				file = open(self.conf.home+'/.pypilot/signalk-token', 'r')
-				token2 = file.read()
-				token2 = token2.rstrip()
-				file.close()
-				if token != token2:
-					file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
-					file.write(token)
-					file.close()
-			except:
-				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
-				file.write(token)
-				file.close()
-			addblack(_('Access to Signal K server validated'))
-			if active('pypilot'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot'])
-			if active('pypilot_boatimu'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'pypilot_boatimu'])
-			if active('openplotter-pypilot-read'): subprocess.call([self.platform.admin, 'systemctl', 'restart', 'openplotter-pypilot-read'])
+		if result[0] =='error':
+			if not red: red = result[1]
+			else: red+= '\n    '+result[1]
+		if result[0] =='validated':
+			msg = _('Access to Signal K server validated')
+			if not black: black = msg
+			else: black+= ' | '+msg
 
 		#services status
 		running = ' ' + _('running')

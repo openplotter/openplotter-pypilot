@@ -57,11 +57,6 @@ class pypilotFrame(wx.Frame):
 		toolSettings = self.toolbar1.AddTool(102, _('Settings'), wx.Bitmap(self.currentdir+"/data/settings.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolSettings, toolSettings)
 		self.toolbar1.AddSeparator()
-		aproveSK = self.toolbar1.AddTool(107, _('Approve'), wx.Bitmap(self.currentdir+"/data/sk.png"))
-		self.Bind(wx.EVT_TOOL, self.onAproveSK, aproveSK)
-		connectionSK = self.toolbar1.AddTool(108, _('Reconnect'), wx.Bitmap(self.currentdir+"/data/sk.png"))
-		self.Bind(wx.EVT_TOOL, self.onConnectionSK, connectionSK)
-		self.toolbar1.AddSeparator()
 		toolRefresh = self.toolbar1.AddTool(103, _('Refresh'), wx.Bitmap(self.currentdir+"/data/refresh.png"))
 		self.Bind(wx.EVT_TOOL, self.OnToolRefresh, toolRefresh)
 
@@ -95,7 +90,6 @@ class pypilotFrame(wx.Frame):
 		vbox = wx.BoxSizer(wx.VERTICAL)
 		vbox.Add(self.toolbar1, 0, wx.EXPAND)
 		vbox.Add(self.toolbar2, 0, wx.EXPAND)
-		#vbox.Add(self.pypilot, 1, wx.EXPAND)
 		vbox.Add(self.notebook, 1, wx.EXPAND)
 		self.SetSizer(vbox)
 
@@ -122,52 +116,6 @@ class pypilotFrame(wx.Frame):
 			self.toolbar2.EnableTool(203,v)
 			self.toolbar2.EnableTool(204,v)
 
-		#SK connection
-		self.toolbar1.EnableTool(107,False)
-		skConnections = connections.Connections('PYPILOT')
-		result = skConnections.checkConnection()
-		if result[0] == 'pending':
-			self.toolbar1.EnableTool(107,True)
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Approve" and then "Refresh".'))
-			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
-				enable_tools(0)
-		elif result[0] == 'error':
-			self.ShowStatusBarRED(result[1]+_(' Try "Reconnect".'))
-			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
-				enable_tools(0)
-		elif result[0] == 'repeat':
-			self.ShowStatusBarYELLOW(result[1]+_(' Press "Refresh".'))
-			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
-				enable_tools(0)
-		elif result[0] == 'permissions':
-			self.ShowStatusBarYELLOW(result[1])
-			if self.active('pypilot') or self.active('pypilot_boatimu'): 
-				self.service('disable')
-				enable_tools(0)
-		elif result[0] == 'approved' or result[0] == 'validated':
-			if result[1]: self.ShowStatusBarGREEN(result[1])
-			token = self.conf.get('PYPILOT', 'token')
-			try:
-				file = open(self.conf.home+'/.pypilot/signalk-token', 'r')
-				token2 = file.read()
-				token2 = token2.rstrip()
-				file.close()
-				if token != token2:
-					file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
-					file.write(token)
-					file.close()
-					if self.active('pypilot'): self.service('pypilot')
-					elif self.active('pypilot_boatimu'): self.service('boatimu')
-			except:
-				file = open(self.conf.home+'/.pypilot/signalk-token', 'w')
-				file.write(token)
-				file.close()
-				if self.active('pypilot'): self.service('pypilot')
-				elif self.active('pypilot_boatimu'): self.service('boatimu')
-
 		#pypilot version
 		try:
 			from pypilot.version import strversion
@@ -176,9 +124,21 @@ class pypilotFrame(wx.Frame):
 			self.pypilotVersion.SetLabel(_('pypilot version:')+' '+str(e))
 
 		#check services
-		if self.active('pypilot'): enable_tools(2)
-		elif self.active('pypilot_boatimu'): enable_tools(1)
-		else: enable_tools(0)
+		if self.active('pypilot'):
+			self.WebControl.Enable()
+			self.HatControl.Enable()
+			enable_tools(2)
+			self.ShowStatusBarGREEN(_('Autopilot service enabled'))
+		elif self.active('pypilot_boatimu'):
+			self.WebControl.Disable()
+			self.HatControl.Disable()
+			enable_tools(1)
+			self.ShowStatusBarGREEN(_('IMU service enabled'))
+		else: 
+			self.WebControl.Disable()
+			self.HatControl.Disable()
+			enable_tools(0)
+			self.ShowStatusBarBLACK(_('All services disabled'))
 
 		self.WebControl.SetValue(self.active('pypilot_web'))
 		self.HatControl.SetValue(self.active('pypilot_hat'))
@@ -189,22 +149,24 @@ class pypilotFrame(wx.Frame):
 
 		#IMU
 		label = _('Detected IMU:')+' '
-		try:
-			subprocess.check_output(['i2cdetect', '-y', '1']).decode(sys.stdin.encoding)
-		except:
-			self.ShowStatusBarRED(_('I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces'))
-			self.imuDetected.SetLabel(label+_('Failed'))
-		else:
-			SETTINGS_FILE = "RTIMULibTemp"
-			s = RTIMU.Settings(SETTINGS_FILE)
-			imu = RTIMU.RTIMU(s)
-			imuname = imu.IMUName()
+		if self.platform.isRPI:
+			if self.platform.isInstalled('raspi-config'):
+				output = subprocess.check_output('raspi-config nonint get_i2c', shell=True).decode(sys.stdin.encoding)
+				if '1' in output:
+					msg = _('Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces.')
+					self.ShowStatusBarRED(msg)
+					self.imuDetected.SetLabel(label+_('Failed'))
+				else:
+					SETTINGS_FILE = "RTIMULibTemp"
+					s = RTIMU.Settings(SETTINGS_FILE)
+					imu = RTIMU.RTIMU(s)
+					imuname = imu.IMUName()
 
-			if imuname == 'Null IMU':
-				imuname = _('None')
-			self.imuDetected.SetLabel(label+imuname)
-			subprocess.call(['rm', '-f', 'RTIMULibTemp.ini'])
-
+					if imuname == 'Null IMU': imuname = _('None')
+					self.imuDetected.SetLabel(label+imuname)
+					subprocess.call(['rm', '-f', 'RTIMULibTemp.ini'])
+		else: self.imuDetected.SetLabel(label+_('Failed'))
+		
 		#hardware
 		label = _('Detected Hardware:')+' '
 		configfile = '/proc/device-tree/hat/custom_0'
@@ -220,18 +182,6 @@ class pypilotFrame(wx.Frame):
 
 		#serial
 		self.relistSerial()
-
-		if self.active('pypilot'):
-			path = self.conf.home + '/.pypilot/serial_ports'
-			exists = False
-			if os.path.exists(path):
-				with open(path, 'r') as f:
-					for line in f:
-						line = line.replace('\n', '')
-						line = line.strip()
-						if '/dev/ttyAMA' in os.path.realpath(line) : exists = True
-			if not exists:
-				wx.MessageBox(_('At least one UART interface for the pypilot controller must be added to the list of serial devices'), _('warning'), wx.OK | wx.ICON_WARNING)
 
 	def ShowStatusBar(self, w_msg, colour):
 		self.GetStatusBar().SetForegroundColour(colour)
@@ -281,15 +231,7 @@ class pypilotFrame(wx.Frame):
 		url = "http://localhost:8000"
 		webbrowser.open(url, new=2)
 
-	def onAproveSK(self, e):
-		if self.platform.skPort: 
-			url = self.platform.http+'localhost:'+self.platform.skPort+'/admin/#/security/access/requests'
-			webbrowser.open(url, new=2)
-
-	def onConnectionSK(self, e):
-		self.conf.set('PYPILOT', 'href', '')
-		self.conf.set('PYPILOT', 'token', '')
-		self.onRead()
+	############################################################################
 
 	def pageServices(self):
 		self.systemd_services = wx.Choice(self.services, choices = (_("Disable"),_("Enable IMU Only"),_("Enable Autopilot")), style=wx.CB_READONLY)

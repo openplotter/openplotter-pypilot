@@ -20,13 +20,15 @@ from openplotterSettings import conf
 from openplotterSettings import platform
 from pypilot.client import pypilotClient
 from websocket import create_connection
+from openplotterSignalkInstaller import connections
 
 def main():
 	conf2 = conf.Conf()
 	platform2 = platform.Platform()
 	if conf2.get('GENERAL', 'debug') == 'yes': debug = True
 	else: debug = False
-	token = conf2.get('PYPILOT', 'token')
+	skConnections = connections.Connections('PYPILOT')
+	token = skConnections.token
 
 	if not os.system('systemctl is-active pypilot_boatimu'):
 		if token:
