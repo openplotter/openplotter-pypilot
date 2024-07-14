@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2023-06-05 13:25+0200\n"
-"PO-Revision-Date: 2023-06-08 13:14+0200\n"
+"POT-Creation-Date: 2024-05-20 11:45+0200\n"
+"PO-Revision-Date: 2024-07-14 12:51+0200\n"
 "Last-Translator: \n"
 "Language-Team: Italian\n"
 "Language: it\n"
@@ -22,11 +22,11 @@ msgstr ""
 
 #: data/openplotter-pypilot.desktop:3
 msgid "Pypilot"
-msgstr ""
+msgstr "Pypilot"
 
 #: data/openplotter-pypilot.desktop:5
 msgid "openplotter-pypilot"
-msgstr ""
+msgstr "openplotter-pypilot"
 
 #: openplotterPypilot.py:54
 msgid "Help"
@@ -37,213 +37,193 @@ msgid "Settings"
 msgstr "Impostazioni"
 
 #: openplotterPypilot.py:60
-msgid "Approve"
-msgstr ""
-
-#: openplotterPypilot.py:62
-msgid "Reconnect"
-msgstr ""
-
-#: openplotterPypilot.py:65
 msgid "Refresh"
 msgstr "Aggiorna"
 
-#: openplotterPypilot.py:69
+#: openplotterPypilot.py:64
 msgid "Control"
 msgstr "Controllo"
 
-#: openplotterPypilot.py:71
+#: openplotterPypilot.py:66
 msgid "Web Control"
-msgstr ""
+msgstr "Controllo Web"
 
-#: openplotterPypilot.py:74
+#: openplotterPypilot.py:69
 msgid "Calibration"
 msgstr "Calibrazione"
 
-#: openplotterPypilot.py:77
+#: openplotterPypilot.py:72
 msgid "Scope"
 msgstr "Ambito"
 
-#: openplotterPypilot.py:79
+#: openplotterPypilot.py:74
 msgid "Client"
 msgstr "Cliente"
 
-#: openplotterPypilot.py:86
+#: openplotterPypilot.py:81
 msgid "Services"
-msgstr ""
+msgstr "Servizi"
 
-#: openplotterPypilot.py:87
+#: openplotterPypilot.py:82
 msgid "Serial"
-msgstr ""
+msgstr "Seriale"
+
+#: openplotterPypilot.py:122 openplotterPypilot.py:124
+msgid "pypilot version:"
+msgstr "versione pypilot:"
 
 #: openplotterPypilot.py:131
-msgid " Press \"Approve\" and then \"Refresh\"."
-msgstr ""
+msgid "Autopilot service enabled"
+msgstr "Servizio di Autopilota abilitato"
 
 #: openplotterPypilot.py:136
-msgid " Try \"Reconnect\"."
-msgstr ""
+msgid "IMU service enabled"
+msgstr "Servizio IMU abilitato"
 
 #: openplotterPypilot.py:141
-msgid " Press \"Refresh\"."
-msgstr ""
+msgid "All services disabled"
+msgstr "Tutti i servizi disabilitati"
 
-#: openplotterPypilot.py:174 openplotterPypilot.py:176
-msgid "pypilot version:"
-msgstr ""
-
-#: openplotterPypilot.py:191
+#: openplotterPypilot.py:151
 msgid "Detected IMU:"
 msgstr "Dispositivi IMU rilevati:"
 
-#: openplotterPypilot.py:195
-msgid "I2C is disabled. Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces"
-msgstr "I2C è disattivato. Abilita l'interfaccia I2C in Preferenze -> Raspberry Pi configurazione -> Interfacce"
+#: openplotterPypilot.py:156
+msgid "Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces."
+msgstr "Abilita l'interfaccia I2C in Preferenze -> Configurazione Raspberry Pi -> Interfacce."
 
-#: openplotterPypilot.py:196
+#: openplotterPypilot.py:158 openplotterPypilot.py:168
 msgid "Failed"
 msgstr "Errore"
 
-#: openplotterPypilot.py:204
+#: openplotterPypilot.py:165
 msgid "None"
-msgstr ""
+msgstr "Nessuno"
 
-#: openplotterPypilot.py:209
+#: openplotterPypilot.py:171
 msgid "Detected Hardware:"
-msgstr ""
+msgstr "Hardware Rilevato:"
 
-#: openplotterPypilot.py:217
+#: openplotterPypilot.py:179
 msgid "Detected pypilot HAT, but the service is not enabled"
-msgstr ""
+msgstr "Rilevato pypilot HAT, ma il servizio non è attivato"
 
-#: openplotterPypilot.py:219
+#: openplotterPypilot.py:181
 msgid "no pypilot HAT detected"
-msgstr ""
+msgstr "nessun pypilot HAT rilevato"
 
-#: openplotterPypilot.py:234
-msgid "At least one UART interface for the pypilot controller must be added to the list of serial devices"
-msgstr ""
-
-#: openplotterPypilot.py:234
-msgid "warning"
-msgstr ""
-
-#: openplotterPypilot.py:295
+#: openplotterPypilot.py:237
 msgid "Disable"
-msgstr ""
+msgstr "Disabilita"
 
-#: openplotterPypilot.py:295
+#: openplotterPypilot.py:237
 msgid "Enable IMU Only"
-msgstr ""
+msgstr "Abilita Solo IMU"
 
-#: openplotterPypilot.py:295
+#: openplotterPypilot.py:237
 msgid "Enable Autopilot"
-msgstr ""
+msgstr "Abilita Autopilota"
 
-#: openplotterPypilot.py:297
+#: openplotterPypilot.py:239
 msgid "Enable Web Control"
-msgstr ""
+msgstr "Abilita Controllo Web"
 
-#: openplotterPypilot.py:299
+#: openplotterPypilot.py:241
 msgid "Enable HAT Control"
-msgstr ""
+msgstr "Abilita Controllo HAT"
 
-#: openplotterPypilot.py:301
+#: openplotterPypilot.py:243
 msgid "Configure"
-msgstr ""
+msgstr "Configura"
 
-#: openplotterPypilot.py:347 openplotterPypilot.py:398
+#: openplotterPypilot.py:289 openplotterPypilot.py:340
 msgid "Applying changes ..."
 msgstr "Applico le modifiche ..."
 
-#: openplotterPypilot.py:359
+#: openplotterPypilot.py:301
 msgid "Add"
-msgstr ""
+msgstr "Aggiungi"
 
-#: openplotterPypilot.py:362
+#: openplotterPypilot.py:304
 msgid "Delete"
-msgstr ""
+msgstr "Elimina"
 
-#: openplotterPypilot.py:390
+#: openplotterPypilot.py:332
 msgid "You have to select a device"
 msgstr "Devi selezionare un dispositivo"
 
-#: openplotterPypilot.py:395
+#: openplotterPypilot.py:337
 msgid "This device already exists"
 msgstr "Questo dispositivo esiste già"
 
 #: ports.py:35
 msgid "Pypilot Server"
-msgstr ""
+msgstr "Server Pypilot"
 
 #: ports.py:37
 msgid "Pypilot NMEA 0183 Server"
-msgstr ""
+msgstr "Server Pypilot Nmea 0183"
 
 #: ports.py:39
 msgid "Pypilot Web Control"
-msgstr ""
+msgstr "Controllo Web Pypilot"
 
 #: ports.py:41
 msgid "Pypilot HAT Control"
-msgstr ""
+msgstr "Pypilot HAT Control"
 
-#: pypilotPostInstall.py:31
+#: pypilotPostInstall.py:32
 msgid "Removing incompatible packages..."
 msgstr "Rimozione pacchetti incompatibili..."
 
-#: pypilotPostInstall.py:34 pypilotPostInstall.py:59 pypilotPostInstall.py:90
-#: pypilotPostInstall.py:99 pypilotPostInstall.py:105 pypilotPreUninstall.py:49
-#: pypilotPreUninstall.py:55
+#: pypilotPostInstall.py:35 pypilotPostInstall.py:60 pypilotPostInstall.py:96
+#: pypilotPostInstall.py:102 pypilotPreUninstall.py:52
+#: pypilotPreUninstall.py:58
 msgid "DONE"
 msgstr "FATTO"
 
-#: pypilotPostInstall.py:35 pypilotPostInstall.py:60 pypilotPostInstall.py:91
-#: pypilotPostInstall.py:100 pypilotPostInstall.py:106
-#: pypilotPreUninstall.py:50 pypilotPreUninstall.py:56
+#: pypilotPostInstall.py:36 pypilotPostInstall.py:61 pypilotPostInstall.py:97
+#: pypilotPostInstall.py:103 pypilotPreUninstall.py:53
+#: pypilotPreUninstall.py:59
 msgid "FAILED: "
 msgstr "NON RIUSCITO: "
 
-#: pypilotPostInstall.py:37
+#: pypilotPostInstall.py:38
 msgid "Installing Pypilot..."
-msgstr ""
+msgstr "Installing Pypilot..."
 
-#: pypilotPostInstall.py:62
+#: pypilotPostInstall.py:63
 msgid "Creating services..."
-msgstr ""
+msgstr "Creazione servizi..."
 
-#: pypilotPostInstall.py:93
-msgid "Checking access to Signal K server..."
-msgstr ""
-
-#: pypilotPostInstall.py:102
+#: pypilotPostInstall.py:99
 msgid "Setting version..."
 msgstr "Impostazione versione..."
 
 #: pypilotPreUninstall.py:29
 msgid "Removing Pypilot..."
-msgstr ""
+msgstr "Rimozione Pypilot..."
 
-#: pypilotPreUninstall.py:52
+#: pypilotPreUninstall.py:55
 msgid "Removing version..."
 msgstr "Rimozione versione..."
 
 #: startup.py:41
 msgid "Checking pypilot..."
-msgstr ""
+msgstr "Controllo pypilot..."
 
-#: startup.py:89
+#: startup.py:76
 msgid "Access to Signal K server validated"
-msgstr ""
+msgstr "Accesso al server Signal K validato"
 
-#: startup.py:95
+#: startup.py:81
 msgid "running"
-msgstr ""
+msgstr "in esecuzione"
 
-#: startup.py:96
+#: startup.py:82
 msgid "not running"
-msgstr ""
+msgstr "non in esecuzione"
 
-#: startup.py:100
+#: startup.py:86
 msgid "both pypilot and pypilot_boatimu services are running"
-msgstr ""
+msgstr "entrambi i servizi pypilot e pypilot_boatimu sono in esecuzione"
