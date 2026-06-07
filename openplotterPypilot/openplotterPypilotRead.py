@@ -38,7 +38,7 @@ def main():
 					if not ws:
 						uri = platform2.ws+'localhost:'+platform2.skPort+'/signalk/v1/stream?subscribe=none'
 						headers = {'Authorization': 'Bearer '+token}
-						ws = create_connection(uri, header=headers, sslopt={"cert_reqs": ssl.CERT_NONE})
+						ws = create_connection(uri, header=headers, sslopt={"cert_reqs": ssl.CERT_NONE}, timeout = 0.2)
 					if not client:
 						client = pypilotClient()
 						client.watch('imu.heading_lowpass')
@@ -59,6 +59,10 @@ def main():
 						SignalK = {"updates":[{"$source":"pypilot","values":keys}]}
 						SignalK = json.dumps(SignalK) 
 						ws.send(SignalK+'\r\n')
+					try:
+						ws.recv()
+					except Exception:
+						pass
 				except Exception as e: 
 					if debug: print('ERROR, pypilot-read: '+str(e))
 					if ws: ws.close()
