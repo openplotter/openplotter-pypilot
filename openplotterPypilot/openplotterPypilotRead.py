@@ -15,7 +15,7 @@
 # You should have received a copy of the GNU General Public License
 # along with Openplotter. If not, see <http://www.gnu.org/licenses/>.
 
-import time, ssl, json, os
+import time, ssl, json, os, select
 from openplotterSettings import conf
 from openplotterSettings import platform
 from pypilot.client import pypilotClient
@@ -61,6 +61,10 @@ def main():
 						SignalK = {"updates":[{"$source":"pypilot","values":keys}]}
 						SignalK = json.dumps(SignalK) 
 						ws.send(SignalK+'\r\n')
+					# Read what Signal K sends so its heartbeat pings get answered (recv_data_frame
+					# replies to a ping with a pong); without this the server drops the connection.
+					while select.select([ws.sock], [], [], 0)[0]:
+						ws.recv_data_frame(True)
 				except Exception as e: 
 					if debug: print('ERROR, pypilot-read: '+str(e))
 					if ws: ws.close()
