@@ -1,3 +1,3 @@
-version = '3.2.13'
-codeName = 'STOPmaremortum'
-state = 'stable'
+version = '4.0.11'
+codeName = 'shiptogaza'
+state = 'beta'

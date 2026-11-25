@@ -19,6 +19,7 @@
 import os, subprocess
 from openplotterSettings import conf
 from openplotterSettings import language
+from openplotterSignalkInstaller import connections
 try: from .version import version
 except: from version import version
 
@@ -61,42 +62,38 @@ def main():
 
 	print(_('Creating services...'))
 	try:
+		fo = open('/etc/systemd/system/check-pypilot-security.service', "w")
+		fo.write( '[Unit]\nBefore=pypilot.service\nBefore=pypilot_boatimu.service\nBefore=pypilot_hat.service\nBefore=pypilot_web.service\n[Service]\nExecStart=pypilot-check-security\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\n[Install]\nWantedBy=local-fs.target\n')
+		fo.close()
 		fo = open('/etc/systemd/system/pypilot.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot\nDefaultDependencies=false\nConflicts=pypilot_boatimu.service\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=/usr/local/bin/pypilot\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
+		fo.write( '[Unit]\nDescription=pypilot\nAfter=check-pypilot-security.service\nDefaultDependencies=false\nConflicts=pypilot_boatimu.service\n\n')
+		fo.write('[Service]\nType=simple\nExecStart=/usr/local/bin/pypilot\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
 		fo.write('[Install]\nWantedBy=local-fs.target')
 		fo.close()
 		fo = open('/etc/systemd/system/pypilot_boatimu.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot boatimu\nDefaultDependencies=false\nConflicts=pypilot.service\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=pypilot_boatimu -q\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
+		fo.write( '[Unit]\nDescription=pypilot boatimu\nAfter=check-pypilot-security.service\nDefaultDependencies=false\nConflicts=pypilot.service\n\n')
+		fo.write('[Service]\nType=simple\nExecStart=pypilot_boatimu -q\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
 		fo.write('[Install]\nWantedBy=local-fs.target')
 		fo.close()
 		fo = open('/etc/systemd/system/pypilot_hat.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot hat\nDefaultDependencies=false\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=pypilot_hat\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=3\n\n')
+		fo.write( '[Unit]\nDescription=pypilot hat\nAfter=check-pypilot-security.service\nDefaultDependencies=false\n\n')
+		fo.write('[Service]\nType=simple\nExecStart=pypilot_hat\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=3\n\n')
 		fo.write('[Install]\nWantedBy=local-fs.target')
 		fo.close()
 		fo = open('/etc/systemd/system/pypilot_web.service', 'w')
-		fo.write( '[Unit]\nDescription=pypilot web\nDefaultDependencies=false\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=pypilot_web 8000\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=3\n\n')
+		fo.write( '[Unit]\nDescription=pypilot web\nAfter=check-pypilot-security.service\nDefaultDependencies=false\n\n')
+		fo.write('[Service]\nType=simple\nExecStart=pypilot_web 8000\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=3\n\n')
 		fo.write('[Install]\nWantedBy=local-fs.target')
 		fo.close()
 		fo = open('/etc/systemd/system/openplotter-pypilot-read.service', 'w')
 		fo.write( '[Unit]\nDescription=openplotter-pypilot-read\nDefaultDependencies=false\nConflicts=pypilot.service\n\n')
-		fo.write('[Service]\nType=simple\nExecStart=openplotter-pypilot-read\nStandardOutput=journal\nStandardError=journal\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
+		fo.write('[Service]\nType=simple\nExecStart=openplotter-pypilot-read\nWorkingDirectory='+pypilotFolder+'\nUser='+conf2.user+'\nRestart=always\nRestartSec=2\n\n')
 		fo.write('[Install]\nWantedBy=local-fs.target')
 		fo.close()
 		subprocess.call(['systemctl', 'daemon-reload'])
+		subprocess.call(['systemctl', 'enable', 'check-pypilot-security.service'])
+		subprocess.call(['systemctl', 'start', 'check-pypilot-security.service'])
 		print(_('DONE'))
-	except Exception as e: print(_('FAILED: ')+str(e))
-
-	print(_('Checking access to Signal K server...'))
-	try:
-		from openplotterSignalkInstaller import connections
-		skConnections = connections.Connections('PYPILOT')
-		result = skConnections.checkConnection()
-		if result[1]: print(result[1])
-		else: print(_('DONE'))
 	except Exception as e: print(_('FAILED: ')+str(e))
 
 	print(_('Setting version...'))
