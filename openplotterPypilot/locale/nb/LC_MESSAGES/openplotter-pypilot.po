@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2024-05-20 11:45+0200\n"
-"PO-Revision-Date: 2024-07-14 12:51+0200\n"
+"POT-Creation-Date: 2024-07-14 12:46+0200\n"
+"PO-Revision-Date: 2025-04-26 10:29\n"
 "Last-Translator: \n"
 "Language-Team: Norwegian Bokmal\n"
 "Language: nb_NO\n"
@@ -13,12 +13,40 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: nb\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Crowdin-File-ID: 19\n"
-"X-Poedit-SearchPath-0: .\n"
+
+#: actions.py:30
+msgid "Pypilot: command"
+msgstr "Pypilot: kommando"
+
+#: actions.py:30
+msgid "Positive and negative relative values or absolute values are allowed: 270, +10, -10..."
+msgstr "Positive og negative relative verdier eller absolutte verdier er tillatt: 270, +10, -10..."
+
+#: actions.py:31
+msgid "Pypilot: engage AP"
+msgstr "Pypilot: Aktiver AP"
+
+#: actions.py:32
+msgid "Pypilot: disengage AP"
+msgstr "Pypilot: deaktiver AP"
+
+#: actions.py:33
+msgid "Pypilot: tack starboard"
+msgstr "Pypilot: slå styrbord"
+
+#: actions.py:34
+msgid "Pypilot: tack port"
+msgstr "Pypilot: slå babord"
+
+#: actions.py:35
+msgid "Pypilot: tack cancel"
+msgstr "Pypilot: Avbryt"
 
 #: data/openplotter-pypilot.desktop:3
 msgid "Pypilot"
@@ -74,15 +102,15 @@ msgstr "pypilot versjon:"
 
 #: openplotterPypilot.py:131
 msgid "Autopilot service enabled"
-msgstr ""
+msgstr "Autopilot-tjeneste aktivert"
 
 #: openplotterPypilot.py:136
 msgid "IMU service enabled"
-msgstr ""
+msgstr "IMU tjeneste aktivert"
 
 #: openplotterPypilot.py:141
 msgid "All services disabled"
-msgstr ""
+msgstr "Alle tjenester deaktivert"
 
 #: openplotterPypilot.py:151
 msgid "Detected IMU:"
@@ -90,7 +118,7 @@ msgstr "Oppdaget IMU:"
 
 #: openplotterPypilot.py:156
 msgid "Please enable I2C interface in Preferences -> Raspberry Pi configuration -> Interfaces."
-msgstr ""
+msgstr "Vennligst aktiver I2C grensesnitt i Innstillinger -> Raspberry Pi konfigurasjon -> Grensesnitt."
 
 #: openplotterPypilot.py:158 openplotterPypilot.py:168
 msgid "Failed"
@@ -227,3 +255,4 @@ msgstr "kjører ikke"
 #: startup.py:86
 msgid "both pypilot and pypilot_boatimu services are running"
 msgstr "både pypilot og pypilot_boatimu tjenester kjører"
+

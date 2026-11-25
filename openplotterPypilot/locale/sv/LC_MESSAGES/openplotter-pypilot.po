@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: openplotter\n"
-"POT-Creation-Date: 2024-05-20 11:45+0200\n"
-"PO-Revision-Date: 2024-07-14 12:51+0200\n"
+"POT-Creation-Date: 2024-07-14 12:46+0200\n"
+"PO-Revision-Date: 2025-09-18 17:33\n"
 "Last-Translator: \n"
 "Language-Team: Swedish\n"
 "Language: sv\n"
@@ -13,12 +13,40 @@ msgstr ""
 "X-Poedit-Basepath: ../../..\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-SearchPath-0: .\n"
 "X-Crowdin-Project: openplotter\n"
 "X-Crowdin-Project-ID: 289888\n"
 "X-Crowdin-Language: sv-SE\n"
 "X-Crowdin-File: openplotter-pypilot.po\n"
 "X-Crowdin-File-ID: 19\n"
-"X-Poedit-SearchPath-0: .\n"
+
+#: actions.py:30
+msgid "Pypilot: command"
+msgstr "Pypilot: kommando"
+
+#: actions.py:30
+msgid "Positive and negative relative values or absolute values are allowed: 270, +10, -10..."
+msgstr "Positiva och negativa relativa värden eller absoluta värden är tillåtna: 270, +10, -10..."
+
+#: actions.py:31
+msgid "Pypilot: engage AP"
+msgstr "Pypilot: aktivera AP"
+
+#: actions.py:32
+msgid "Pypilot: disengage AP"
+msgstr "Pypilot: avaktivera AP"
+
+#: actions.py:33
+msgid "Pypilot: tack starboard"
+msgstr "Pypilot: slå till styrbord"
+
+#: actions.py:34
+msgid "Pypilot: tack port"
+msgstr "Pypilot: slå till babord"
+
+#: actions.py:35
+msgid "Pypilot: tack cancel"
+msgstr "Pypilot: Avbryt slag"
 
 #: data/openplotter-pypilot.desktop:3
 msgid "Pypilot"
@@ -227,3 +255,4 @@ msgstr "körs inte"
 #: startup.py:86
 msgid "both pypilot and pypilot_boatimu services are running"
 msgstr "både pypilot och pypilot_boatimu tjänsterna körs"
+
